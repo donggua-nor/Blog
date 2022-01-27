@@ -1,0 +1,1 @@
+const t={key:"v-813cfba6",path:"/js/types.html",title:"\u6570\u636E\u7C7B\u578B",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1643317393e3},filePathRelative:"js/types.md"};export{t as data};

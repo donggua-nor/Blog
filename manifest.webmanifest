@@ -1,0 +1,15 @@
+{
+  "name": "Donggua's blog",
+  "short_name": "Donggua",
+  "description": "A blog that note personal FE kownledge",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#3eaf7c",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "72x72 96x96 128x128 256x256"
+    }
+  ]
+}

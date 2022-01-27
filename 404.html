@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="VuePress 2.0.0-beta.35">
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+      html.dark {
+        --c-bg: #22272e;
+      }
+      html, body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme');
+			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+				document.documentElement.classList.toggle('dark', true);
+			}
+    </script>
+    <link rel="manifest" href="/manifest.webmanifest"><meta name="application-name" content="Donggua's Blog"><meta name="apple-mobile-web-app-title" content="Donggua"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png"><meta name="msapplication-TileImage" content="/favicon.ico"><meta name="msapplication-TileColor" content="#3eaf7c"><meta name="theme-color" content="#3eaf7c"><title>Donggua</title><meta name="description" content="Donggua's Blog">
+    <link rel="modulepreload" href="/assets/app.943322fe.js"><link rel="modulepreload" href="/assets/404.html.9b42cd8b.js"><link rel="modulepreload" href="/assets/404.html.e554e2af.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper.21dcd24c.js">
+    <link rel="stylesheet" href="/assets/style.76779ea8.css">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="theme-container"><div class="theme-default-content"><h1>404</h1><blockquote>There&#39;s nothing here.</blockquote><a href="/" class="">Take me home</a></div></div><!----><!----><!--]--></div>
+    <script type="module" src="/assets/app.943322fe.js" defer></script>
+  </body>
+</html>
