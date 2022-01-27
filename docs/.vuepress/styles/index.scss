@@ -1,0 +1,16 @@
+:root {
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: 'Head';
+  src: url('/font/Good Brush.woff');
+}
+
+.navbar .site-name {
+  font-family: 'Head';
+  font-size: 1.5rem;
+}
+.home .feature h2 {
+  font-family: 'Head';
+}
