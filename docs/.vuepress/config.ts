@@ -4,6 +4,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   lang: 'zh-CN',
   title: 'Donggua',
   description: "Donggua's Blog",
+  base: '/Blog/',
   dest: 'dist',
   cache: '.cache',
   temp: '.temp',
