@@ -29,18 +29,34 @@ export default defineUserConfig<DefaultThemeOptions>({
     navbar: [
       {
         text: 'JavaScript',
-        link: '/js/types'
+        activeMatch: '^/js',
+        link: '/js/base/types'
       },
       {
         text: 'Vue',
+        activeMatch: '^/vue',
         link: '/vue/base'
       },
       {
         text: 'TypeScript',
+        activeMatch: '^/ts',
         link: '/ts/base'
       }
     ],
-    sidebar: 'auto'
+    sidebar: {
+      '/js/': [
+        {
+          text: 'JavaScript基础',
+          children: ['/js/base/types', '/js/base/clone']
+        }
+      ],
+      '/vue/': [],
+      '/ts/': []
+    },
+    // a11y
+    openInNewWindow: '在新窗口打开',
+    toggleDarkMode: '切换夜间模式',
+    toggleSidebar: '切换侧边栏'
   },
 
   plugins: [
