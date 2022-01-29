@@ -25,7 +25,7 @@ _Reference values / Objects 对象_
 
 * 引用数据占据内存空间更多且不固定并存储于 **堆（Heap）** 中，**按引用（by reference）** 访问，即内存中存储对象的引用地址 / 指针，查询速度较慢。
 
-<img class="d-img__center" src="https://cdn.JsDelivr.net/gh/donggua-nor/FreePic//blog/js_values_stored.png" />
+<img class="d-img__center" src="https://cdn.JsDelivr.net/gh/donggua-nor/picture-lib//blog/js_values_stored.png" />
 
 * 基本数据仅保存原始值，而引用数据的对象一般拥有相应的**属性或方法**。
 
