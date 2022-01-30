@@ -47,7 +47,13 @@ export default defineUserConfig<DefaultThemeOptions>({
       '/js/': [
         {
           text: 'JavaScript基础',
-          children: ['/js/base/types', '/js/base/clone', '/js/base/prototype', '/js/base/execution']
+          children: [
+            '/js/base/types',
+            '/js/base/clone',
+            '/js/base/prototype',
+            '/js/base/execution',
+            '/js/base/async'
+          ]
         }
       ],
       '/vue/': [],
