@@ -1,0 +1,1 @@
+import{o as e,c as o,b as s,d as t}from"./app.bcc828e2.js";import{_ as a}from"./plugin-vue_export-helper.21dcd24c.js";const c={},r={id:"awesome-vue",tabindex:"-1"},_=s("a",{class:"header-anchor",href:"#awesome-vue","aria-hidden":"true"},"#",-1),d=t(" Awesome Vue"),n=[_,d];function i(h,m){return e(),o("h1",r,n)}var f=a(c,[["render",i]]);export{f as default};
