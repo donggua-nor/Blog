@@ -1,7 +1,7 @@
 {
   "name": "Donggua's blog",
   "short_name": "Donggua",
-  "description": "A blog that note personal FE kownledge",
+  "description": "A blog that records personal FE kownledge",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#fff",
