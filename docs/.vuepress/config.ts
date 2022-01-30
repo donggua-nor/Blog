@@ -47,7 +47,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       '/js/': [
         {
           text: 'JavaScript基础',
-          children: ['/js/base/types', '/js/base/clone', '/js/base/prototype']
+          children: ['/js/base/types', '/js/base/clone', '/js/base/prototype', '/js/base/execution']
         }
       ],
       '/vue/': [],
@@ -57,6 +57,12 @@ export default defineUserConfig<DefaultThemeOptions>({
     openInNewWindow: '在新窗口打开',
     toggleDarkMode: '切换夜间模式',
     toggleSidebar: '切换侧边栏'
+  },
+
+  markdown: {
+    extractHeaders: {
+      level: [2, 3, 4, 5]
+    }
   },
 
   plugins: [
