@@ -6,7 +6,7 @@
 
 ```js
 function Person(name) {
-    this.name = name;
+  this.name = name;
 }
 const man = new Person('man');
 
@@ -27,7 +27,7 @@ Person.prototype;
 // }
 
 Person.prototype.say = function() {
-    console.log('hello')
+  console.log('hello')
 };
 man.say(); // hello
 ```
@@ -77,7 +77,7 @@ Object.getPrototypeOf(child) === man; // true
 
 `child` 对象本身并没有 `name` 属性, 当输出 `child.name` 时，实际上是输出了 `child.__proto__` 所指向的原型上的属性，即 `man.name`
 
-同时在 **JavaScript** 中，函数也是对象的一种，而所有的对象都是由基类 `Object` 继承而来
+同时在 JavaScript 中，函数也是对象的一种，而所有的对象都是由基类 `Object` 继承而来
 
 ```js
 Person instanceof Object; // true
@@ -95,7 +95,7 @@ Person.prototype.__proto__ === Object.prototype; // true
 Object.prototype.__proto__; // null
 ```
 
-实际上，在 **JavaScript** 中，当读取对象属性时，浏览器会查找当前对象中是否有该属性，如果找不到，则通过 `__proto__` 向上查找原型中是否存在该属性并以此类推，直到最顶层的原型对象为止。且 `Object` 基类不存在再往上的原型对象，即为 `null`
+实际上，在 JavaScript 中，当读取对象属性时，浏览器会查找当前对象中是否有该属性，如果找不到，则通过 `__proto__` 向上查找原型中是否存在该属性并以此类推，直到最顶层的原型对象为止。且 `Object` 基类不存在再往上的原型对象，即为 `null`
 
 我们可以通过关系图进行总结得出原型链如下：
 
@@ -104,21 +104,21 @@ Object.prototype.__proto__; // null
 ## JS中的继承实现
 
 :::tip
-  在**JavaScript**中，实际上并没有真正的类，其对象继承是基于**原型**，而非经典模型的OOP模式。
+  在 JavaScript 中，实际上并没有真正的类，其对象继承是基于**原型**，而非经典模型的OOP模式。
 :::
 
-**JavaScript**中的继承实际上是源于构造函数中的 `prototype` 属性，该属性上定义的属性和方法可以被对象实例共享。
+JavaScript 中的继承实际上是源于构造函数中的 `prototype` 属性，该属性上定义的属性和方法可以被对象实例共享。
 而每个对象都有隐式属性 `__proto__` 并指向其构造函数的 `prototype` ，并可通过此原型链进行关联访问，从而呈现出实例对象继承原型 `prototype` 的样子
 
 ### 原型链继承
 
 ```js
 function Person() {
-    this.value = 1;
-    this.arr = [1];
+  this.value = 1;
+  this.arr = [1];
 }
 Person.prototype.log = function() {
-    console.log('JavaScript')
+  console.log('JavaScript')
 };
 
 function Child() {}
@@ -148,15 +148,15 @@ girl.arr; // [1, 2]
 
 ```js
 function Person(sex) {
-    this.sex = sex;
-    this.arr = [1];
+  this.sex = sex;
+  this.arr = [1];
 }
 Person.prototype.log = function() {
-    console.log(this.sex)
+  console.log(this.sex)
 };
 
 function Child(sex) {
-    Person.call(this, sex);
+  Person.call(this, sex);
 }
 
 const boy = new Child('boy');
@@ -180,15 +180,15 @@ girl.log; // undefined
 
 ```js
 function Person(sex) {
-    this.sex = sex;
-    this.arr = [1];
+  this.sex = sex;
+  this.arr = [1];
 }
 Person.prototype.log = function() {
-    console.log(this.sex)
+  console.log(this.sex)
 };
 
 function Child(sex) {
-    Person.call(this, sex); // 继承实例属性
+  Person.call(this, sex); // 继承实例属性
 }
 
 Child.prototype = new Person(); // 继承属性与方法
@@ -211,28 +211,28 @@ girl.arr; // [1]
 
 ### 原型式继承
 
-由 **JavaScript** 布道者 [*Douglas Crockford*](https://zh.wikipedia.org/wiki/%E9%81%93%E6%A0%BC%E6%8B%89%E6%96%AF%C2%B7%E5%85%8B%E7%BE%85%E5%85%8B%E7%A6%8F%E7%89%B9) 于 [_《Prototypal Inheritance in JavaScript》_](https://www.crockford.com/javascript/prototypal.html) 提出：
+由 JavaScript 布道者 [*Douglas Crockford*](https://zh.wikipedia.org/wiki/%E9%81%93%E6%A0%BC%E6%8B%89%E6%96%AF%C2%B7%E5%85%8B%E7%BE%85%E5%85%8B%E7%A6%8F%E7%89%B9) 于 [_《Prototypal Inheritance in JavaScript》_](https://www.crockford.com/javascript/prototypal.html) 提出：
 
 ```js
 function object(o) {
-    function F() {};
-    F.prototype = o;
-    return new F();
+  function F() {};
+  F.prototype = o;
+  return new F();
 }
 ```
 
 借用临时构造函数，将传入的对象作为其原型对象并返回其实例。
-这种继承方式更贴近 **JavaScript** 原型性质，新对象通过共享基础对象的 `prototype` 原型属性，实现原型继承。
+这种继承方式更贴近 JavaScript 原型性质，新对象通过共享基础对象的 `prototype` 原型属性，实现原型继承。
 
 ES5将其规范化实现，增加了 `Object.create()` 方法
 
 ```js
 if (typeof Object.create !== 'function') {
-    Object.create = function(o) {
-        function F() {}
-        F.prototype = o;
-        return new F();
-    };
+  Object.create = function(o) {
+    function F() {}
+    F.prototype = o;
+    return new F();
+  };
 }
 const newObject = Object.create(oldObject);
 ```
@@ -243,11 +243,11 @@ const newObject = Object.create(oldObject);
 
 ```js
 function createObject(o) {
-    const obj = object(o); // 以原型式继承为基础
-    obj.log = function() {
-        console.log('new object')
-    }; // 增强对象
-    return obj;
+  const obj = object(o); // 以原型式继承为基础
+  obj.log = function() {
+    console.log('new object')
+  }; // 增强对象
+  return obj;
 }
 ```
 
@@ -288,15 +288,15 @@ Child.prototype.constructor = Child;
 
 ```js
 function Person(sex) {
-    this.sex = sex;
-    this.arr = [1];
+  this.sex = sex;
+  this.arr = [1];
 }
 Person.prototype.log = function() {
-    console.log(this.sex)
+  console.log(this.sex)
 };
 
 function Child(sex) {
-    Person.call(this, sex); // 继承实例属性
+  Person.call(this, sex); // 继承实例属性
 }
 
 // 以父类原型为基础创建一个新的对象，并赋值给子类原型
@@ -310,16 +310,16 @@ Child.prototype.constructor = Child;
 
 ```js
 class Person {
-    static isSuper = true;
-    constructor(sex) {
-        this.sex = sex;
-    }
+  static isSuper = true;
+  constructor(sex) {
+    this.sex = sex;
+  }
 }
 
 class Child extends Person {
-    constructor() {
-        super();
-    }
+  constructor() {
+    super();
+  }
 }
 ```
 
@@ -328,52 +328,52 @@ class Child extends Person {
 ```js
 // 实现继承
 function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function");
-    }
-    subClass.prototype = Object.create(superClass && superClass.prototype, {
-        constructor: {
-            value: subClass,
-            writable: true,
-            configurable: true
-        },
-    });
-    if (superClass) {
-        subClass.__proto__ = superClass;
-    }
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    },
+  });
+  if (superClass) {
+    subClass.__proto__ = superClass;
+  }
 }
 
 // 执行构造函数
 function _createSuper(Derived) {
-    // ...
-    return Super.apply(this, arguments);
+  // ...
+  return Super.apply(this, arguments);
 }
 
 // 避免把构造函数当成普通函数执行的验证，即需要通过 new 调用
 function _classCallCheck() {
-    if (!instance instanceof Constructor) {
-        throw new TypeError("Cannot call a class as a function");
-    }
+  if (!instance instanceof Constructor) {
+    throw new TypeError("Cannot call a class as a function");
+  }
 }
 
 // 父类构造函数
 var Person = function Person(sex) {
-    _classCallCheck(this, Person);
-    this.sex = sex;
+  _classCallCheck(this, Person);
+  this.sex = sex;
 };
 
 Object.defineProperty(Person, "isSuper", true);
 
 // 子类构造函数
 var Child = /*#__PURE__*/ (function(_Person) {
-    _inherits(Child, _Person);
-    var _super = _createSuper(Child);
+  _inherits(Child, _Person);
+  var _super = _createSuper(Child);
 
-    function Child() {
-        _classCallCheck(this, Child);
-        return _super.call(this);
-    }
-    return Child;
+  function Child() {
+    _classCallCheck(this, Child);
+    return _super.call(this);
+  }
+  return Child;
 })(Person);
 ```
 

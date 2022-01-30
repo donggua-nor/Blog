@@ -10,10 +10,10 @@
 
 ```js
 const obj = {
-    name: 'donggua',
-    props: {
-        value: 1
-    }
+  name: 'donggua',
+  props: {
+    value: 1
+  }
 }
 
 const newObj = Object.assign({}, obj);
@@ -52,14 +52,14 @@ ary; // [4, 2, 3, [1, 5]];
 
 ```js
 const obj = {
-    name: 'donggua',
-    props: {
-        value: 1
-    }
+  name: 'donggua',
+  props: {
+    value: 1
+  }
 }
 
 const newObj = {
-    ...obj
+  ...obj
 };
 newObj.name = '_donggua';
 newObj.props.value++;
@@ -83,10 +83,10 @@ ary; // [4, 2, 3, [1, 5]];
 
 ```js
 const obj = {
-    name: 'donggua',
-    props: {
-        value: 1
-    }
+  name: 'donggua',
+  props: {
+    value: 1
+  }
 }
 
 const newObj = JSON.parse(JSON.stringify(obj));
@@ -110,18 +110,18 @@ newObj; // { name: '_donggua', props: { value: 2 } }
 const map = new Map();
 map.set(1, 2); // Map: 0: {1 => 2}
 const obj = {
-    a: undefined,
-    b: Symbol(),
-    c: NaN,
-    d: Infinity,
-    e: -Infinity,
-    f: map,
-    g: new Date(),
-    // h: obj => throw Error
+  a: undefined,
+  b: Symbol(),
+  c: NaN,
+  d: Infinity,
+  e: -Infinity,
+  f: map,
+  g: new Date(),
+  // h: obj => throw Error
 };
 
 Object.defineProperty(obj, 'i', {
-    value: ''
+  value: ''
 })
 
 const newObj = JSON.parse(JSON.stringify(obj));
@@ -154,7 +154,7 @@ const newObj = JSON.parse(JSON.stringify(obj));
 
 ```js
 const original = {
-    name: "MDN"
+  name: "MDN"
 };
 original.itself = original;
 
@@ -181,11 +181,11 @@ console.assert(clone.itself === clone); // and the circular reference is preserv
 
 ```js
 function cloneUsingChannel(obj) {
-    return new Promise(resolve => {
-        const channel = new MessageChannel();
-        channel.port1.onmessage = e => resolve(e.data)
-        channel.port2.postMessage(obj);
-    })
+  return new Promise(resolve => {
+    const channel = new MessageChannel();
+    channel.port1.onmessage = e => resolve(e.data)
+    channel.port2.postMessage(obj);
+  })
 }
 ```
 
@@ -193,7 +193,7 @@ function cloneUsingChannel(obj) {
 
 ```js
 const obj = {
-    fn: function() {}
+  fn: function() {}
 }
 const newObj = cloneUsingChannel(obj)
 // Failed to execute 'postMessage' on 'MessagePort': function() {} could not be cloned.

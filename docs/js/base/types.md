@@ -87,7 +87,7 @@ typeof new WeakSet(); // object
 
 ```js
 function Person(name) {
-    this.name = name
+  this.name = name
 };
 const man = new Person();
 
