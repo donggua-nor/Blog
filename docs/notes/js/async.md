@@ -148,7 +148,7 @@ function promiseLauncher(gen) {
 
 基于 `Promise` 的支持更广泛且实用性广，也是 `co` 模块后续重构选择的实现方式。
 
-### async / await
+## async / await
 
 > It is a stepping stone towards the async/await proposal  —————— 引用于 tj/co
 

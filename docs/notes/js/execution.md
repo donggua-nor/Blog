@@ -51,8 +51,8 @@ var name = 'donggua'
 
 将词法分析获得的 token，结合语句表达式，组合建立**抽象语法树**
 
-:::tip
-**抽象语法树**（_Abstract Synatax Tree_, **AST**）常用于：
+:::tip **抽象语法树**（_Abstract Synatax Tree_, **AST**）
+常用于：
 * `ESLint` 等代码风格与语法检查
 * `babel` 等工具进行代码转换
 * `IDE` 的代码格式化、高亮与自动补全等

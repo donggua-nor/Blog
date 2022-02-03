@@ -6,7 +6,7 @@ heroText: null
 tagline: null
 actions:
   - text: Start
-    link: /js/base/types
+    link: /notes/js/types
 
 features:
   - title: Coding

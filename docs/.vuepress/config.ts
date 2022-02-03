@@ -10,7 +10,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   temp: '.temp',
   head: [
     ['link', { rel: 'manifest', href: '/Blog/manifest.webmanifest' }],
-    ['link', { rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' }],
+    ['link', { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     ['meta', { name: 'application-name', content: "Donggua's Blog" }],
     ['meta', { name: 'apple-mobile-web-app-title', content: 'Donggua' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
@@ -29,36 +29,34 @@ export default defineUserConfig<DefaultThemeOptions>({
     contributors: false,
     navbar: [
       {
-        text: 'JavaScript',
-        activeMatch: '^/js',
-        link: '/js/base/types'
+        text: 'Notes',
+        activeMatch: '^/notes',
+        link: '/notes/js/types'
       },
       {
         text: 'Vue',
         activeMatch: '^/vue',
-        link: '/vue/base'
-      },
-      {
-        text: 'TypeScript',
-        activeMatch: '^/ts',
-        link: '/ts/base'
+        link: '/vue/'
       }
     ],
     sidebar: {
-      '/js/': [
+      '/notes/': [
         {
-          text: 'JavaScript基础',
+          text: 'JavaScript',
           children: [
-            '/js/base/types',
-            '/js/base/clone',
-            '/js/base/prototype',
-            '/js/base/execution',
-            '/js/base/async'
+            '/notes/js/types',
+            '/notes/js/clone',
+            '/notes/js/prototype',
+            '/notes/js/execution',
+            '/notes/js/async'
           ]
+        },
+        {
+          text: 'Node',
+          children: ['/notes/node/cjs', '/notes/node/esm']
         }
       ],
-      '/vue/': [],
-      '/ts/': []
+      '/vue/': ['/vue/']
     },
     // a11y
     openInNewWindow: '在新窗口打开',
