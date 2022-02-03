@@ -10,7 +10,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   temp: '.temp',
   head: [
     ['link', { rel: 'manifest', href: '/Blog/manifest.webmanifest' }],
-    ['link', { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', type: 'image/x-icon', href: '/Blog/favicon.ico' }],
     ['meta', { name: 'application-name', content: "Donggua's Blog" }],
     ['meta', { name: 'apple-mobile-web-app-title', content: 'Donggua' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],

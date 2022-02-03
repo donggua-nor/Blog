@@ -56,13 +56,15 @@ Module {
 
 ```js
 module.exports.a = 1;
-
 // 等同于
 module.exports = { a: 1 };
-
 // 或
 exports.a = 1;
-同时应该注意， 我们不能修改 exports 的指向
+```
+
+同时应该注意， 我们不能修改 `exports` 的指向
+
+```js
 // 以下写法是错误且无效的
 exports = 'angthing';
 ```
@@ -74,9 +76,7 @@ exports = 'angthing';
 ```js
 require("./a");
 require("./a").done = true;
-require("./a").done
-
-// true
+require("./a").done // true
 ```
 
 `Node` 中使用 `require.cache` 指向 `Module._cache` 给予开发者访问查看模块的缓存
@@ -93,6 +93,7 @@ const b = require('./b.js');
 console.log('in a, b.done = %j', b.done);
 exports.done = true;
 console.log('a done');
+
 // b.js
 console.log('b starting');
 exports.done = false;
@@ -100,6 +101,7 @@ const a = require('./a.js');
 console.log('in b, a.done = %j', a.done);
 exports.done = true;
 console.log('b done');
+
 // main.js
 console.log('main starting');
 const a = require('./a.js');
@@ -131,19 +133,13 @@ function Module(id = '', parent) {
 Module.prototype.require = function(id) {
   validateString(id, 'id');
   if (id === '') {
-
     throw new ERR_INVALID_ARG_VALUE('id', id, 'must be a non-empty string');
-
   }
   requireDepth++;
   try {
-
     return Module._load(id, this, /* isMain */ false);
-
   } finally {
-
     requireDepth--;
-
   }
 };
 ```

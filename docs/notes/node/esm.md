@@ -1,6 +1,6 @@
 # ES Module
 
-ES6 新增的模块化方案，并正在逐步取代 [CommonJS](./cjs) 等规范，将是未来浏览器与服务器通用的模块解决方案
+ES6 新增的模块化方案，将逐步取代 [CommonJS](./cjs) 等规范，成为未来浏览器与服务器通用的模块解决方案
 
 ## 基本使用
 
@@ -199,7 +199,6 @@ export { utils };
 scr = "./utils.js" > < /script>
 ```
 
-Note：
 :::tip Note
 带有 `type="module"` 属性的脚本将被异步执行，不会堵塞浏览器渲染
 :::
