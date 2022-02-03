@@ -1,1 +1,0 @@
-const t={key:"v-2507cade",path:"/ts/base.html",title:"TypeScript is COOOOL!",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1643552836e3},filePathRelative:"ts/base.md"};export{t as data};
