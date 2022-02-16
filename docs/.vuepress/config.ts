@@ -37,6 +37,11 @@ export default defineUserConfig<DefaultThemeOptions>({
         text: 'Vue',
         activeMatch: '^/vue',
         link: '/vue/'
+      },
+      {
+        text: 'Playground',
+        activeMatch: '^/pg',
+        link: '/pg/js'
       }
     ],
     sidebar: {
@@ -56,7 +61,8 @@ export default defineUserConfig<DefaultThemeOptions>({
           children: ['/notes/node/cjs', '/notes/node/esm']
         }
       ],
-      '/vue/': ['/vue/']
+      '/vue/': ['/vue/'],
+      '/pg/': ['/pg/js', '/pg/ts']
     },
     // a11y
     openInNewWindow: '在新窗口打开',
