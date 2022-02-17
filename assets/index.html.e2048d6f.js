@@ -1,4 +1,4 @@
-import{o as s,c as n,a}from"./app.775c4268.js";import{_ as e}from"./plugin-vue_export-helper.21dcd24c.js";const p={},t={class:"language-typescript ext-ts line-numbers-mode"},o=a(`<pre class="language-typescript"><code><span class="token keyword">class</span> <span class="token class-name">Donggua</span> <span class="token punctuation">{</span>
+import{o as s,c as n,a}from"./app.3986c5ab.js";import{_ as e}from"./plugin-vue_export-helper.21dcd24c.js";const p={},t={class:"language-typescript ext-ts line-numbers-mode"},o=a(`<pre class="language-typescript"><code><span class="token keyword">class</span> <span class="token class-name">Donggua</span> <span class="token punctuation">{</span>
   nickname<span class="token operator">:</span> <span class="token string">&#39;donggua&#39;</span><span class="token punctuation">,</span>
   wechat<span class="token operator">:</span> <span class="token string">&#39;donggua_nor&#39;</span><span class="token punctuation">,</span>
   address<span class="token operator">:</span> <span class="token string">&#39;Guangzhou, China&#39;</span><span class="token punctuation">,</span>
