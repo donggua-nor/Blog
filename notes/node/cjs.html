@@ -23,7 +23,7 @@
 			}
     </script>
     <link rel="manifest" href="/Blog/manifest.webmanifest"><link rel="icon" type="image/x-icon" href="/Blog/favicon.ico"><meta name="application-name" content="Donggua's Blog"><meta name="apple-mobile-web-app-title" content="Donggua"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="msapplication-TileImage" content="/favicon.ico"><meta name="msapplication-TileColor" content="#3eaf7c"><meta name="theme-color" content="#3eaf7c"><meta name="apple-mobile-web-app-capable" content="yes"><title>CommonJS | Donggua</title><meta name="description" content="Donggua's Blog">
-    <link rel="modulepreload" href="/Blog/assets/app.f87845b3.js"><link rel="modulepreload" href="/Blog/assets/cjs.html.86f01e5c.js"><link rel="modulepreload" href="/Blog/assets/cjs.html.cd643967.js"><link rel="modulepreload" href="/Blog/assets/plugin-vue_export-helper.21dcd24c.js">
+    <link rel="modulepreload" href="/Blog/assets/app.dcfb3008.js"><link rel="modulepreload" href="/Blog/assets/cjs.html.9fa9b9c9.js"><link rel="modulepreload" href="/Blog/assets/cjs.html.b17276a4.js"><link rel="modulepreload" href="/Blog/assets/plugin-vue_export-helper.21dcd24c.js">
     <link rel="stylesheet" href="/Blog/assets/style.948b266c.css">
   </head>
   <body>
@@ -183,6 +183,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token keyword">in</span> a, change inside <span class="token boolean">false</span>
 <span class="token keyword">in</span> main, a.done <span class="token boolean">true</span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>同时我们会发现：</p><ol><li><code>b.js</code> 中的 <code>a.done = true</code> 只影响了 <code>main.js</code> 中的输出结果</li><li><code>b.js</code> 中调用 <code>a.change()</code> 方法没有影响到 <code>main.js</code> 和 <code>b.js</code> 的输出结果</li></ol><p>通过<strong>debugger</strong>可以看到：</p><p>当 <code>main.js</code> 运行到 <code>const a = require(&quot;./a&quot;);</code> 时， <code>node</code> 才执行 <code>Module._load()</code> 获取模块 <code>a</code></p><p><img src="https://cdn.JsDelivr.net/gh/donggua-nor/picture-lib//blog/node_debug_cjs.png" alt="node_debug_cjs"></p><p>而 <code>b.js</code> 再次加载模块 <code>a</code> 时，是通过缓存机制读取的。</p><h2 id="总结" tabindex="-1"><a class="header-anchor" href="#总结" aria-hidden="true">#</a> 总结</h2><ul><li><code>CommonJs</code> 属于运行时加载</li><li><code>CommonJs</code> 是同步加载</li><li><code>require()</code> 是对<code>exports</code>对象的赋值操作，而<code>Module._load()</code> 借用函数形式保证模块内外不会互相影响</li></ul><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><!----></footer><nav class="page-nav"><p class="inner"><!----><span class="next"><a href="/Blog/notes/node/esm.html" class="" aria-label="ES Module"><!--[--><!--]--> ES Module <!--[--><!--]--></a></span></p></nav><!--[--><!--]--></main><!--]--></div><!----><!----><!--]--></div>
-    <script type="module" src="/Blog/assets/app.f87845b3.js" defer></script>
+    <script type="module" src="/Blog/assets/app.dcfb3008.js" defer></script>
   </body>
 </html>
