@@ -53,7 +53,8 @@ export default defineUserConfig<DefaultThemeOptions>({
             '/notes/js/clone',
             '/notes/js/prototype',
             '/notes/js/execution',
-            '/notes/js/async'
+            '/notes/js/async',
+            '/notes/js/recycle'
           ]
         },
         {
