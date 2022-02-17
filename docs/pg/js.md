@@ -54,7 +54,102 @@ console.log(car2.__proto__.color) //original color
 
 ## instanceof
 
-## Object.create()
+see [usage](/Blog/notes/js/types.html#instanceof)、[instanceof](/Blog/notes/js/prototype.html#原型链)
+
+:::: code-group
+::: code-group-item Achieve
+
+```js
+function Instanceof(instance, ctor) {
+  if (typeof ctor !== 'function') {
+    throw new Error(`Right-hand side of 'instanceof' is not callable`)
+  }
+  if (!isObject(instance)) {
+    return false
+  }
+  let proto = getProto(instance)
+  while(true) {
+    if (proto === ctor.prototype) {
+      return true
+    }
+    proto = getProto(proto)
+  }
+}
+
+const isSupportProto = '__ptoto__' in {}
+
+function getProto(obj) {
+  return isSupportProto ? obj.__proto__ : Object.getPrototypeOf(obj)
+}
+
+function isObject(val) {
+  return val !== null && typeof val === 'object'
+}
+```
+
+:::
+::: code-group-item Test
+
+```js
+function Car(make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+}
+const auto = new Car('Honda', 'Accord', 1998);
+
+console.log(auto instanceof Car); // true
+console.log(auto instanceof Object); // true
+
+console.log(Instanceof(auto, Car)); // true
+console.log(Instanceof(auto, Object)); // true
+```
+
+:::
+::::
+
+## Object.create
+
+see [Object.create](/Blog/notes/js/prototype.html#原型式继承)
+
+:::: code-group
+::: code-group-item Achieve
+
+```js
+function ObjectCreate(original) {
+  function F() {}
+  F.prototype = original
+  return new F()
+}
+```
+
+:::
+::: code-group-item Test
+
+```js
+const person = {
+  isHuman: false,
+  say: function() {
+    console.log('Hello！')
+  }
+};
+
+const me = Object.create(person);
+const u = ObjectCreate(person);
+
+me.name = 'donggua';
+me.isHuman = true;
+me.say(); // Hello！
+console.log(me); // { name: 'donggua', isHuman: true } ==prototype=> person
+
+u.name = 'visitor'
+u.isHuman = true;
+me.say(); // Hello！
+console.log(u); // { name: 'visitor', isHuman: true } ==prototype=> person
+```
+
+:::
+::::
 
 ## Iterator
 
