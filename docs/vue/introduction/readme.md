@@ -2,9 +2,7 @@
 sidebarDepth: 3
 ---
 
-# 前置
-
-## 参考
+# 介绍与参考
 
 本篇为笔者经历一定的 `Vue` 项目实战后，在期望深入与面试驱动共同推动下，多方面参考学习总结而来
 
@@ -17,7 +15,7 @@ sidebarDepth: 3
 ```bash
 .
 ├── dist              # 构建结果目录
-├── scripts           # rollup 构建配置、工程化脚本
+├── scripts           # Rollup 构建配置、工程化脚本
 ├── src               #
 │   ├── compiler      # template => render
 │   ├── core          # 核心源码
@@ -32,11 +30,11 @@ sidebarDepth: 3
 
 > [对不同构建版本的解释](https://cn.vuejs.org/v2/guide/installation.html#对不同构建版本的解释)
 
-`rollup` 构建结果，存放了 `Vue` 不同构建版本的文件
+`Vue` 源码是基于 [Rollup](https://rollupjs.org/guide/zh/) 构建的，在此目录下存放 `Rollup` 构建的对应版本文件
 
 ### scripts
 
-由 `rollup` 构建配置， `Git` 提交校验脚本， `Shell` 发布脚本组成
+由 `Rollup` 构建配置， `Git` 提交校验脚本， `Shell` 发布脚本组成
 
 完成不同构建版本的打包，代码更新提交，版本更新发布
 
@@ -57,7 +55,6 @@ sidebarDepth: 3
 通过 [vue-cli](https://cli.vuejs.org/)（目前已新增 [create-vue](https://github.com/vuejs/create-vue)、[Vite](https://cn.vitejs.dev/)）创建的项目，以 `.vue` 文件的 [SFCs](https://vue-loader.vuejs.org/zh/spec.html) 单文件组件形式开发，通过 [vue-loader](https://vue-loader.vuejs.org/zh/) 结合打包工具在构建时进行预编译。
 
 因此日常开发使用的是 **运行时** `runtime-only` 版本。可通过开启 [runtimeCompiler](https://cli.vuejs.org/zh/config/#runtimecompiler) 使用 **包含运行时编译器** 的 `runtime + compiler` 版本。
-
 
 #### core
 
