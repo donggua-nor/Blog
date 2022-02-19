@@ -67,6 +67,11 @@ export default defineUserConfig<DefaultThemeOptions>({
           text: '介绍',
           collapsible: false,
           children: ['/vue/introduction/']
+        },
+        {
+          text: 'Vue初始化',
+          collapsible: false,
+          children: ['/vue/initialization/entry']
         }
       ],
       '/pg/': ['/pg/js', '/pg/ts']
