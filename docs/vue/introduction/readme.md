@@ -17,11 +17,11 @@ sidebarDepth: 3
 ├── dist              # 构建结果目录
 ├── scripts           # Rollup 构建配置、工程化脚本
 ├── src               #
-│   ├── compiler      # template => render
+│   ├── compiler      # 编译相关
 │   ├── core          # 核心源码
 │   ├── platforms     # 跨平台（web、weex）
-│   ├── server        # node端渲染相关
-│   ├── sfc           # 单文件(Single File Component)解析
+│   ├── server        # 服务端端渲染相关
+│   ├── sfc           # .vue 文件解析逻辑
 │   └── shared        # 通用工具函数
 └── test              # e2e、单元测试用例
 ```

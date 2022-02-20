@@ -41,6 +41,8 @@
 
 ## 基于 Rollup 的源码构建
 
+### build 构建文件
+
 打开 `scripts/build.js` 文件，了解主要的代码逻辑部分：
 
 ```js
@@ -66,7 +68,7 @@ build(builds)
 * 根据对应场景传入对应的参数，将在此进行构建配置的过滤以沟通不同版本的代码
 * 相关配置存放于 `scripts/config.js` 中
 
----
+### alias 路径别名
 
 打开 `scripts/config.js` ，需要先关注一下 `Rollup` 路径别名配置：
 
@@ -112,7 +114,7 @@ import Vue from 'core/index'
 import Vue from 'src/core/index'
 ```
 
----
+### config 构建配置
 
 了解完路径别名规则，再看下最终完成打包的构建配置：
 
@@ -160,7 +162,7 @@ function genConfig(name) {
     }
   }
 
-  // ...
+  // ...略去部分配置代码
 
   return config
 }
@@ -169,4 +171,86 @@ function genConfig(name) {
 exports.getAllBuilds = () => Object.keys(builds).map(genConfig)
 ```
 
-当构建我们项目所需的 [ES Module](/Blog/notes/node/esm.html#基本使用) 规范源码文件时，将经过 `Rollup` ，以 `web/entry-runtime.js` 为入口文件进行构建打包，最终生成 `vue.runtime.esm.js` 文件放置于 `dist` 目录中。
+当构建我们项目所需的 [ES Module](/Blog/notes/node/esm.html#基本使用) 规范源码文件时，将经过 `Rollup` 以 `web/entry-runtime.js` 为入口文件进行构建打包，最终生成 `vue.runtime.esm.js` 文件放置于 `dist` 目录中。
+
+## Vue 的入口
+
+在 `web/entry-runtime.js` 构建入口文件中，是一份简单的接口转发代码：
+
+```js
+import Vue from './runtime/index'
+
+export default Vue
+```
+
+进一步查找源入口，打开 `src/platforms/web/runtime/index.js` 文件：
+
+```js
+import Vue from 'core/index'
+
+// ...略去与入口无关的代码，将在其他对应章节详述
+
+export default Vue
+```
+
+通过事先了解的 `Rollup` 构建中的 [alias](#alias-路径别名) 配置，我们便可找到对应的 `src/core/index.js` ：
+
+```js
+import Vue from './instance/index'
+import { initGlobalAPI } from './global-api/index'
+
+initGlobalAPI(Vue)
+
+// ...服务端渲染相关
+
+Vue.version = '__VERSION__'
+
+export default Vue
+```
+
+其中有两处关键： `initGlobalAPI(Vue)` 从语义化的函数命名可知是对 `Vue` 进行全局 API 扩展的功能函数。同时引导我们进入更接近的 `src/core/instance/index.js` 文件：
+
+```js
+import { initMixin } from './init'
+import { stateMixin } from './state'
+import { renderMixin } from './render'
+import { eventsMixin } from './events'
+import { lifecycleMixin } from './lifecycle'
+import { warn } from '../util/index'
+
+function Vue(options) {
+  if (process.env.NODE_ENV !== 'production' &&
+    !(this instanceof Vue)
+  ) {
+    warn('Vue is a constructor and should be called with the `new` keyword')
+  }
+  this._init(options)
+}
+
+initMixin(Vue)
+stateMixin(Vue)
+eventsMixin(Vue)
+lifecycleMixin(Vue)
+renderMixin(Vue)
+
+export default Vue
+```
+
+在此终于找到了 `Vue` 的初始化声明，结合我们初始化 `Vue` 项目的使用方式： `new Vue(options)` 可得知： `Vue` 使用基础的 `Function` 形式实现了类，并对其进行功能扩展。
+
+::: tip
+`Vue` 未采用 [ES6 Class](https://es6.ruanyifeng.com/#docs/class) 语法糖实现，结合源码目录结构，可知此处是根据功能对相关扩展进行模块化并保存到相应的目录下。这兴许是为了后期维护迭代的权衡，不失为巧妙的编程设计。
+:::
+
+::: tip new.target VS instanceof
+对于判断是否使用了 `new` 关键字调用某构造函数， `new.target` 更为严谨，毕竟 `instanceof` 并不一定总是准确的，因为原型链路的相关配置是有可能会被开发者魔改的
+
+当然 `window` 实例并不允许修改其原型：
+
+```js
+// in browser
+window.__proto__ = function Test() {}
+// TypeError：Immutable prototype object '#<Window>' cannot have their prototype set
+```
+
+:::
