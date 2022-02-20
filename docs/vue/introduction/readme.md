@@ -1,8 +1,10 @@
 ---
-sidebarDepth: 3
+sidebarDepth: 1
 ---
 
-# 介绍与参考
+# 介绍
+
+## 参考
 
 本篇为笔者经历一定的 `Vue` 项目实战后，在期望深入与面试驱动共同推动下，多方面参考学习总结而来
 
@@ -10,7 +12,7 @@ sidebarDepth: 3
 * [@wangtunan](https://github.com/wangtunan) - [Vue2.0 源码分析](https://wangtunan.github.io/blog/vueAnalysis/introduction/)
 * [@HcySunYang](https://github.com/HcySunYang) - [vue-design](https://github.com/HcySunYang/vue-design)
 
-## 主要目录结构
+## 主要目录
 
 ```bash
 .

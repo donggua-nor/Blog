@@ -64,7 +64,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       ],
       '/vue/': [
         {
-          text: '介绍',
+          text: 'Vue2源码解析',
           collapsible: false,
           children: ['/vue/introduction/']
         },
