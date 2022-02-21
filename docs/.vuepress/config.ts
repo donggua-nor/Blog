@@ -71,7 +71,22 @@ export default defineUserConfig<DefaultThemeOptions>({
         {
           text: 'Vue初始化',
           collapsible: false,
-          children: ['/vue/initialization/entry']
+          children: [
+            '/vue/initialization/entry',
+            '/vue/initialization/constructor',
+            '/vue/initialization/global-api',
+            '/vue/initialization/process'
+          ]
+        },
+        {
+          text: '深入响应式原理',
+          collapsible: false,
+          children: ['/vue/reactive']
+        },
+        {
+          text: '组件化',
+          collapsible: false,
+          children: ['/vue/components/template']
         }
       ],
       '/pg/': ['/pg/js', '/pg/ts']
