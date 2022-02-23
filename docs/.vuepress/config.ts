@@ -60,6 +60,10 @@ export default defineUserConfig<DefaultThemeOptions>({
         {
           text: 'Node',
           children: ['/notes/node/cjs', '/notes/node/esm']
+        },
+        {
+          text: 'TypeScript',
+          children: ['/notes/ts/']
         }
       ],
       '/vue/': [
