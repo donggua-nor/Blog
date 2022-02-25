@@ -1,6 +1,6 @@
 # 介绍
 
- 本篇仅是笔者实践 type-challenge 的知识回顾笔记，基本是对官方文档的精简拷贝
+ [type-challenges](https://github.com/type-challenges/type-challenges) 的前置知识回顾笔记，源于 [官方文档](https://www.typescriptlang.org/docs/handbook/intro.html) 与 [@wangtunan](https://github.com/wangtunan) 的慷慨指导
 
 ## 基础
 
@@ -67,24 +67,53 @@ function fn(s) {
 
 :::
 
-无论是开发者指定或是由 TypeScript 隐式推断出的 `any` 类型，都会导致 TypeScript 失去准确的类型推断能力，
-可能会导致遗漏一些运行时错误，违背使用 TypeScript 的初衷。
+:::warning
+无论是开发者指定或是由 TypeScript 隐式推断出的 `any` 类型，都会导致 TypeScript 失去准确的类型推断能力。可能会导致遗漏一些运行时错误，违背使用 TypeScript 的初衷。
+:::
 
-### 类型推断与类型注解
+### Unknown
 
-* **类型推断**：显式指定变量的类型
-* **类型注解**：由 TypeScript 自动推断出变量类型
+`unknown` 用于描述一个我们还不知道其类型的变量
 
 ```ts
-let nickname: string = 'donggua'
-let job = 'FE' // TypeScript 自动推断为 job: string
+let notSure: unknown = 4;
+notSure = "maybe a string instead";
+
+// OK, definitely a boolean
+notSure = false;
 ```
 
-:::tip
-
-* 在为变量赋值明确的值时，建议尽量使用 **类型注解** 的方式
-* 对于函数返回值，始终显示指明返回类型是个更好的习惯
+:::tips unknown VS any
+相比于 `any` 不会对变量进行任何检查，对于 `unknown` 类型的变量在执行大多数操作时必须进行相应的检查，因此 `unknown` 类型相对更加严格
 :::
+
+### 字面量
+
+除了常见的类型，还可以将类型声明为具体的数字或者字符串，常用于 [联合类型](#联合类型与交叉类型)
+
+```ts
+const demo: 'demo' = 'demo'
+
+// 更常用的联合类型
+type Alignment = "left" | "right" | "center"
+```
+
+### 对象
+
+定义对象类型，可以罗列属性和对应的类型
+
+```ts
+const obj: { name: string, job: string } = { 
+  name: 'donggua',
+  job: 'fe'
+}
+
+// 索引签名
+const obj: { [key: string]: string } = { 
+  name: 'donggua',
+  job: 'fe'
+}
+```
 
 ### 函数
 
@@ -125,6 +154,52 @@ names.forEach((s) => {
 });
 ```
 
+#### Never
+
+`never` 类型表示的是那些永不存在的值的类型，更多的用于表示函数无法达到终点
+
+```ts
+function errorHandler(message: string): never {
+  throw new Error(message);
+}
+
+function infiniteLoop(): never {
+  while (true) {}
+}
+```
+
+:::tip Important
+如果一个联合类型中存在 `never` ，那么实际的联合类型并不会包含 `never`
+
+```ts
+// 定义
+type test = 'name' | 'age' | never
+// 实际
+type test = 'name' | 'age'
+```
+
+:::
+
+### 数组与元组
+
+* 数组类型声明有 `类型[]` 以及 [泛型](#泛型) 两种形式
+
+```ts
+const queues: number[] = [1, 2, 3]
+const stack: Array<number> = [1, 2, 3]
+```
+
+* 元组相当于固定长度的数组，并且已知数组每项对应的的类型
+
+ 对元祖类型的数据进行 **越界访问** 或 **分配错误的类型值** 时，TypeScript 将报错提示
+
+```ts
+type Tuple = [string, number]
+const tuple: Tuple = ['donggua', 123]
+tuple[0] = 666 // Type 'number' is not assignable to type 'string'
+console.log(tuple[2]) // Tuple type 'Tuple' of length '2' has no element at index '2'
+```
+
 ### 类型别名与接口
 
 * 类型别名即使用关键词 `type` 指定基础类型、对象类型、联合类型等任意类型的命名，类似于 JavaScript 中的 `let`
@@ -150,25 +225,21 @@ interface Person {
  TODO ...
 :::
 
-### 数组与元组
+### 类型推断与类型注解
 
-* 数组类型声明有 `类型[]` 以及 [范型](#范型) 两种形式
-
-```ts
-const queues: number[] = [1, 2, 3]
-const stack: Array<number> = [1, 2, 3]
-```
-
-* 元组相当于固定长度的数组，并且已知数组每项对应的的类型
-
- 对元祖类型的数据进行 **越界访问** 或 **分配错误的类型值** 时，TypeScript 将报错提示
+* **类型推断**：显式指定变量的类型
+* **类型注解**：由 TypeScript 自动推断出变量类型
 
 ```ts
-type Tuple = [string, number]
-const tuple: Tuple = ['donggua', 123]
-tuple[0] = 666 // Type 'number' is not assignable to type 'string'
-console.log(tuple[2]) // Tuple type 'Tuple' of length '2' has no element at index '2'
+let nickname: string = 'donggua'
+let job = 'FE' // TypeScript 自动推断为 job: string
 ```
+
+:::tip
+
+* 在为变量赋值明确的值时，建议尽量使用 **类型注解** 的方式
+* 对于函数返回值，始终显示指明返回类型是个更好的习惯
+:::
 
 ### 联合类型与交叉类型
 
@@ -191,6 +262,58 @@ type Fish = {
 }
 
 type Animal = Bird & Fish
+```
+
+### 枚举
+
+枚举表示一组常量集合，通过 `enum` 关键词定义
+
+```ts
+enum FORM_ITEMS {
+  INPUT: 'input',
+  SELECT: 'select'
+}
+```
+
+#### 数字枚举
+
+当定义数字枚举类型时, TypeScript 默认对成员进行自动递增，若初始项没有赋值，则默认由 `0` 开始
+
+```ts
+// 默认由 0 开始递增
+enum Queues {
+  FIRST,
+  SECOND
+}
+console.log(Queues.FIRST) // 0
+console.log(Queues.SECOND) // 1
+
+// 按序递增
+enum Queues {
+  FIRST = 1,
+  SECOND,
+  THIRD = 5,
+  FOURTH,
+  FIFTH
+}
+console.log(Queues.FIRST) // 1
+console.log(Queues.SECOND) // 2
+console.log(Queues.THIRD) // 5
+console.log(Queues.FOURTH) // 6
+console.log(Queues.FIFTH) // 7
+```
+
+#### 反向映射
+
+数字枚举成员还可以通过枚举值获取对应的枚举名称，称为 **反向映射**
+
+```ts
+enum Queues {
+  FIRST,
+  SECOND
+}
+console.log(Queues[0]) // FIRST
+console.log(Queues[1]) // SECOND
 ```
 
 ## 进阶
