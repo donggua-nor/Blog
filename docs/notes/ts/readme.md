@@ -83,7 +83,7 @@ notSure = "maybe a string instead";
 notSure = false;
 ```
 
-:::tips unknown VS any
+:::tip unknown VS any
 相比于 `any` 不会对变量进行任何检查，对于 `unknown` 类型的变量在执行大多数操作时必须进行相应的检查，因此 `unknown` 类型相对更加严格
 :::
 
@@ -222,7 +222,69 @@ interface Person {
 ```
 
 :::tip type VS interface
- TODO ...
+ - 二者都可以用来声明对象或函数签名，仅语法不同
+
+```ts
+  // type
+  type Person = {
+    name: string;
+    sex: number;
+  }
+  type Params = (a: number, b: number) => void
+
+  // interface
+  interface Person {
+    name: string;
+    sex: number;
+  }
+  interface Params {
+    (a: number, b: number) => void
+  }
+  ```
+
+* 二者可以相互拓展，`type` 借助 `&`，`interface` 借助 `extends`
+
+```ts
+// type extends type
+type Parameter = { a: number };
+type Result = Parameter & { b: number };
+
+// interface extends interface
+interface Parameter = { a: number };
+interface Result extends Parameter { 
+  b: number;
+};
+// type extends interface
+interface Parameter = { a: number };
+type Result = Parameter & { b: number };
+
+// interface extends type
+type Parameter = { a: number };
+interface Result extends Parameter { 
+  b: number;
+};
+// 接口只能扩展对象类型或对象类型与静态已知成员的交集
+type Parameter = { a: number } | { b: number };
+// An interface can only extend an object type or intersection of
+// object types with statically known members.
+interface Result extends Parameter {
+  c: number;
+}
+```
+
+* `type` 可用于声明基础类型、联合类型、元组，而 `interface` 不行
+
+```ts
+type str = string
+type Union = string | number
+type tuple = [string, number]
+```
+
+* `interface` 可以作为 `ES6 Class` 的抽象类使用
+  详见 [类](#类)
+
+* `interface` 支持声明合并
+  详见 [声明合并](#声明合并)
 :::
 
 ### 类型推断与类型注解
@@ -317,3 +379,31 @@ console.log(Queues[1]) // SECOND
 ```
 
 ## 进阶
+
+### infer
+
+### 泛型
+
+### 类
+
+### 装饰器
+
+### 类型收窄
+
+### 操作符
+
+#### 非空断言
+
+#### 加号与减号
+
+#### typeof
+
+#### keyof 与 in
+
+#### extends
+
+### 命名空间
+
+### 声明合并
+
+### tsconfig.json
