@@ -289,8 +289,8 @@ type tuple = [string, number]
 
 ### 类型推断与类型注解
 
-* **类型推断**：显式指定变量的类型
-* **类型注解**：由 TypeScript 自动推断出变量类型
+* **类型注解**：显式指定变量的类型
+* **类型推断**：由 TypeScript 根据上下文内容自动推断出变量类型
 
 ```ts
 let nickname: string = 'donggua'
@@ -379,31 +379,3 @@ console.log(Queues[1]) // SECOND
 ```
 
 ## 进阶
-
-### infer
-
-### 泛型
-
-### 类
-
-### 装饰器
-
-### 类型收窄
-
-### 操作符
-
-#### 非空断言
-
-#### 加号与减号
-
-#### typeof
-
-#### keyof 与 in
-
-#### extends
-
-### 命名空间
-
-### 声明合并
-
-### tsconfig.json
