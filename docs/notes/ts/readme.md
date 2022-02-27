@@ -202,7 +202,7 @@ console.log(tuple[2]) // Tuple type 'Tuple' of length '2' has no element at inde
 
 ### 类型别名与接口
 
-* 类型别名即使用关键词 `type` 指定基础类型、对象类型、联合类型等任意类型的命名，类似于 JavaScript 中的 `let`
+* 类型别名即使用关键字 `type` 指定基础类型、对象类型、联合类型等任意类型的命名，类似于 JavaScript 中的 `let`
 
 ```ts
 type ID = number;
@@ -221,7 +221,7 @@ interface Person {
 }
 ```
 
-:::tip type VS interface
+:::details type VS interface
  - 二者都可以用来声明对象或函数签名，仅语法不同
 
 ```ts
@@ -280,11 +280,20 @@ type Union = string | number
 type tuple = [string, number]
 ```
 
-* `interface` 可以作为 `ES6 Class` 的抽象类使用
-  详见 [类](#类)
+* 类可以实现接口或类型别名，但不可实现联合类型的类型别名
 
-* `interface` 支持声明合并
-  详见 [声明合并](#声明合并)
+```ts
+  type UnionAlias = { a: number } | { b: number }
+  class Demo implements UnionAlias {}
+  // A class can only implement an object type or intersection of object types
+  // with statically known members
+  ```
+
+* `interface` 支持 [声明合并](#声明合并)
+:::
+
+:::tip
+类似 `let` 、 `const` 的选择，一般情况下建议使用 `interface` ，在不支持的情况下再使用 `type` 类型别名
 :::
 
 ### 类型推断与类型注解
@@ -328,7 +337,7 @@ type Animal = Bird & Fish
 
 ### 枚举
 
-枚举表示一组常量集合，通过 `enum` 关键词定义
+枚举表示一组常量集合，通过 `enum` 关键字定义
 
 ```ts
 enum FORM_ITEMS {
@@ -379,3 +388,287 @@ console.log(Queues[1]) // SECOND
 ```
 
 ## 进阶
+
+### 类
+
+> 随着 `ECMAScript` 的发展，TypeScript 中针对 [ES6 Class](https://es6.ruanyifeng.com/#docs/class) 的特性已经逐步落地并于主流浏览器/平台上得到支持。
+
+#### 继承
+
+* 通过 `extends` 关键字派生子类实现继承
+
+* 通过 `super` 关键字执行基类构造函数、访问基类的属性或方法
+
+```ts
+const enum SEX {
+  UNKNOWN,
+  MAN,
+  WOMAN
+}
+
+class Person {
+  name: string
+  constructor(name: string) {
+    this.name = name
+  }
+  introduce() {
+    console.log(`Hello, my name is ${this.name}.`)
+  }
+}
+
+class Man extends Person {
+  gender = SEX.MAN
+  constructor(name: string) {
+    super(name)
+  }
+}
+
+const man = new Man('donggua');
+console.log(man); // Man { name: 'donggua', gender: 1 }
+man.introduce(); // Hello, my name is donggua.
+```
+
+#### 存取器
+
+在类中可以通过 `getters` 、 `setters` 拦截对象成员的存取行为
+
+```ts
+class Person {
+  _name: string
+  constructor(name: string) {
+    this._name = name
+  }
+  get name() {
+    return this._name
+  }
+  set name(newName: string) {
+    this._name = newName
+  }
+}
+
+const man = new Person('donggua')
+man.name = 'donggua_nor'
+man.name // donggua_nor
+```
+
+:::tip
+仅设置了 `get` 而没有 `set` 的存取器将被推断为 `readonly` ，以告知用户该属性不应该被改变
+
+```ts
+class Person {
+  _name: string
+  constructor(name: string) {
+    this._name = name
+  }
+  get name() {
+    return this._name
+  }
+}
+
+const man = new Person('donggua')
+man.name = 'donggua_nor'
+// Cannot assign to 'name' because it is a read-only property
+```
+
+:::
+
+#### 属性修饰符
+
+TypeScript 提供了几种语义化的修饰符，用以描述类中各种属性：
+* `readonly` 只读属性
+
+```ts
+class Person {
+  readonly name: string
+  constructor(name: string) {
+    this.name = name
+  }
+}
+
+const man = new Person('donggua')
+man.name = 'donggua_nor'
+// Cannot assign to 'name' because it is a read-only property
+```
+
+* `public` 表示公有的访问修饰符，可以自由访问类中的成员
+* `private` 表示私有的访问修饰符，只能在类内部使用
+* `protected` 表示受保护的访问修饰符，只能在基类及其派生类内部使用
+
+```ts
+class Person {
+  public name: string
+  private age: number
+  protected address: string
+  constructor(name: string, age: number, address: string) {
+    this.name = name
+    this.age = age
+    this.address = address
+  }
+}
+
+class Man extends Person {
+  constructor(name: string, age: number, address: string) {
+    super(name, age, address)
+  }
+  getAge() {
+    console.log(this.age);
+    // Property 'age' is private and only accessible within class 'Person'
+  }
+  getAddress() {
+    return this.address
+  }
+}
+
+const man = new Man('donggua', 26, 'guangzhou')
+console.log(man.name) // donggua
+man.age
+// Property 'age' is private and only accessible within class 'Person'
+man.address
+// Property 'address' is protected and only accessible within class 'Person'
+// and its subclasses
+```
+
+:::tip
+ - 不同于 `C#` 必须明确使用 `public` 指定成员是公开的，TypeScript 默认成员为 `public` 属性
+ - `ECMAScript` [新提案](https://github.com/tc39/proposal-private-methods) 中对于私有属性/方法是使用 `#` 修饰符
+
+```ts
+class Person {
+  #name: string
+  constructor(name: string) {
+    this.name = name
+  }
+}
+const man = new Person('donggua')
+man.name
+// Property '#name' is not accessible outside class 'Person'
+// because it has a private identifier
+```
+
+:::
+
+* `static` 静态属性与静态方法
+
+不同于实例属性/方法，静态属性/方法不会被实例所继承，而必须通过类来使用
+
+```ts
+class SingleInstance {
+  static instance: SingleInstance;
+  private constructor(public name: string) {}
+  static getInstance(name: string) {
+    if (!this.instance) {
+      this.instance = new SingleInstance(name);
+    }
+    return this.instance;
+  }
+}
+
+const instance1 = SingleInstance.getInstance('instance1');
+const instance2 = SingleInstance.getInstance('instance2');
+console.log(instance1 === instance2); // true
+```
+
+#### 抽象类
+
+除了上述关键字，TypeScript 还提供了 `abstract` 关键字用于定义抽象类以及抽象类内部的抽象方法。
+
+```ts
+abstract class Person {
+  constructor(public name: string) {}
+  abstract introduce(): void
+}
+```
+
+其中，抽象类应作为基类使用，不可被实例化。抽象类中的抽象方法不包含具体实现并且必须由派生类实现：
+
+```ts
+abstract class Person {
+  constructor(public name: string) {}
+  abstract introduce(): void
+}
+
+class Man extends Person {
+  constructor(name: string) {
+    super(name)
+  }
+  introduce() {
+    console.log(`Hello, my name is ${this.name}.`)
+  }
+}
+
+const err = new Person() // Cannot create an instance of an abstract class
+const man = new Man('donggua')
+```
+
+#### 类实现接口
+
+类同 `Java` 、 `C#` ，TypeScript 支持类继承一个或多个接口以约束类的行为，即类必须拥有接口中对应的属性和方法，通过 `implemenets` 关键字实现
+
+```ts
+interface Person {
+  name: string
+  introduce: () => void
+}
+
+class Man implements Person {
+  constructor(public name: string) {}
+  introduce() {
+    console.log(`Hello, my name is ${this.name}.`)
+  }
+}
+```
+
+:::warning
+类实现接口时，仅支持实例部分属性/方法，而不允许接口定义其静态属性/方法
+
+```ts
+interface Person {
+  new (name: string): void;
+}
+
+class Man implements Person {
+  constructor(public name: string) {}
+}
+// Class 'Man' incorrectly implements interface 'Person'.
+// Type 'Man' provides no match for the signature 'new (name: string): void'
+```
+
+:::
+
+:::tip
+类也可以实现类型别名，但接口更为贴合类
+
+```ts
+type Person = {
+  name: string
+  introduce: () => void
+}
+
+class Man implements Person {
+  constructor(public name: string) {}
+  introduce() {
+    console.log(`Hello, my name is ${this.name}.`)
+  }
+}
+```
+
+:::
+
+#### 接口继承类
+
+在 TypeScript 中支持接口继承类，接口继承类后，将拥有类中所有的属性与方法：
+
+```ts
+class Person {
+  constructor(public name: string, public age: number) {}
+}
+interface Man extends Person {
+  address: string;
+}
+
+const donggua: Man = {
+  name: 'donggua',
+  age: 26,
+  address: 'guangzhou'
+};
+```
