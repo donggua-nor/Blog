@@ -672,3 +672,109 @@ const donggua: Man = {
   address: 'guangzhou'
 };
 ```
+
+### 泛型
+
+泛型就是将原本具体的类型作为参数声明，在使用或调用时再指定为具体的类型，即 **参数化类型**。通过泛型，可以协助我们定义可复用的方法、接口和类。
+
+#### 泛型变量
+
+假设我们需要定义一个函数，该函数的作用是返回任何传入的值，那么我们自然会想到使用 `any`
+
+```ts
+function identity(arg: any): any {
+  return arg
+}
+```
+
+虽然结果是符合预期的，但使用 `any` 将失去类型检查，违背使用 TypeScript 的初衷。即使场景下明确不需要类型检查，但项目中开启了 `noImplicitAny` 配置，导致我们无法使用 `any` 。
+
+此时泛型就派上了用场：我们可以使用 `<>` 定义一个参数变量 `Type` 用于捕获实际传入的类型，通过该参数变量，我们就可以指定实参和返回值为对应的类型
+
+```ts
+function identity<T>(arg: T): T {
+  return arg
+}
+
+console.log(identity<string>('donggua')) // 'donggua'
+```
+
+上述代码意为， `identity` 函数接收 **类型参数** `T` 和参数 `arg` ，参数 `arg` 和函数返回值类型是 `T` 。当传入 `string` 类型的参数时， `T` 的具体类型就是 `string` 。
+
+#### 各类泛型定义
+
+* 箭头函数和对象字面量
+
+以上述例子为例，我们可以将其改造为箭头函数形式
+
+```ts
+const identity: <T>(arg: T) => T = arg => arg
+```
+
+为方便理解，可以把上述代码拆解为：
+
+```ts
+type GenericFn = <T>(arg: T) => T
+let identity: GenericFn
+identity = arg => arg // identity = (arg) => { return arg }
+```
+
+对于箭头函数的泛型定义，我们还可以使用对象字面量的形式书写
+
+```ts
+// type GenericFn = <T>(arg: T) => T
+type GenericFn = { <T>(arg: T): T }
+```
+
+* 泛型接口
+
+结合上述类型别名和对象字面量的泛型定义，我们不难想到泛型接口的定义形式：
+
+```ts
+interface GenericFn {
+  <T>(arg: T): T
+}
+```
+
+为了清晰的表明具体的类型参数，一般将类型参数提取出来，以表明泛型参数为整个接口的参数
+
+```ts
+interface GenericFn<T> {
+  (arg: T): T
+}
+```
+
+* 泛型类
+
+泛型类和泛型接口实现相似，但始终应注意的是，类的静态属性/方法亦不能使用泛型类型
+
+```ts
+class GenericNumber<T> {
+    zeroValue: T;
+    add: (x: T, y: T) => T;
+}
+
+let myGenericNumber = new GenericNumber<number>();
+myGenericNumber.zeroValue = 0;
+myGenericNumber.add = function(x, y) { return x + y; };
+```
+
+* 类的构造函数
+
+当需要对类的构造函数进行类型声明时，应采用 `new` 关键字结合 `()`
+
+```ts
+interface Ctor<T> {
+  new (): T;
+}
+function createInstance<T>(ctor: Ctor<T>): T {
+  return new ctor();
+}
+
+class Person {
+  name: string = 'donggua';
+}
+
+const man = createInstance(Person);
+console.log(man); // Person { name: 'donggua' }
+```
