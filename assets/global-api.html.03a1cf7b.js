@@ -1,0 +1,1 @@
+const t={key:"v-ebf1be48",path:"/vue/initialization/global-api.html",title:"initGlobalAPI",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1645957521e3},filePathRelative:"vue/initialization/global-api.md"};export{t as data};
