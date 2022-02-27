@@ -24,3 +24,9 @@
   display: block;
   margin: 0 auto;
 }
+
+@media only screen and (min-width: 1920px) {
+  .page .theme-default-content:not(.custom) {
+    max-width: 920px;
+  }
+}
