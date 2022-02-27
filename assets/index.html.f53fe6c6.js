@@ -1,1 +1,0 @@
-const e={key:"v-1dc3ccb4",path:"/vue/reactive/",title:"\u6570\u636E\u9A71\u52A8",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1645890961e3},filePathRelative:"vue/reactive/readme.md"};export{e as data};
