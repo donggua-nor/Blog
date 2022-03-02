@@ -1,1 +1,0 @@
-const t={key:"v-6aefb9b7",path:"/vue/initialization/process.html",title:"\u6D41\u7A0B\u68B3\u7406\u603B\u7ED3",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1645977938e3},filePathRelative:"vue/initialization/process.md"};export{t as data};
