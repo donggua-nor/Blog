@@ -107,7 +107,11 @@ const obj: { name: string, job: string } = {
   name: 'donggua',
   job: 'fe'
 }
+```
 
+在 JavaScript 中访问对象还可以使用方括号 `[]` 作为属性访问器，TypeScript也提供了对应的 **索引访问类型**：
+
+```ts
 // 索引签名
 const obj: { [key: string]: string } = { 
   name: 'donggua',
@@ -777,4 +781,35 @@ class Person {
 
 const man = createInstance(Person);
 console.log(man); // Person { name: 'donggua' }
+```
+
+### typeof
+
+`typeof` 操作符用于在获取变量或属性的类型，多用于获取复杂数据类型，或配合其他操作符使用
+
+```ts
+// 对原始类型使用，返回对应类型，但并没有什么必要
+type name: string = 'donggua'
+type Base = typeof name
+// Base: string
+
+// 对对象使用
+const person = { name: "donggua", age: "26" }
+type Obj = typeof person;
+// Obj: { name: string; age: number }
+
+// 对枚举类型使用形似于对象
+enum TYPES {
+  INPUT,
+  SELECT,
+}
+type Enum = typeof TYPES
+// Enum: { INPUT: number; INPUT: number }
+
+// 对函数使用
+function sum(a: number, b: number): number {
+  return a + b
+}
+type Func = typeof sum
+// Func: (a: number, b: number) => number
 ```
