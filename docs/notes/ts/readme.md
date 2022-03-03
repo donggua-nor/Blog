@@ -109,10 +109,11 @@ const obj: { name: string, job: string } = {
 }
 ```
 
-在 JavaScript 中访问对象还可以使用方括号 `[]` 作为属性访问器，TypeScript也提供了对应的 **索引访问类型**：
+在 JavaScript 中访问对象还可以使用方括号 `[]` 作为属性访问器，TypeScript也提供了对应的 **索引访问类型**。
+
+即通过 `[]` 进行索引签名访问，并以此创建 **映射类型**：
 
 ```ts
-// 索引签名
 const obj: { [key: string]: string } = { 
   name: 'donggua',
   job: 'fe'
@@ -813,3 +814,54 @@ function sum(a: number, b: number): number {
 type Func = typeof sum
 // Func: (a: number, b: number) => number
 ```
+
+### keyof
+
+`keyof` 操作用于获取对象所有属性键的字面量组合而成的联合类型，类似于 JavaScript 中的 `Object.keys()`
+
+```ts
+type Person = {
+  name: string;
+  age: number;
+}
+type Result = keyof Person;
+// Result: 'name' | 'age'
+```
+
+* 需要注意的是，对于 `number` 类型的索引签名，将视为 `string | number` 联合类型，因为 JavaScript 中对象属性键会被强制转换为字符串
+
+```ts
+type Mapish = {
+  [key: number]: string;
+}
+type Result = keyof Arrayish;
+// Result: 'string' | 'number'
+
+const obj: Mapish = {}
+obj[1] = 'donggua' // 等同于 obj['1'] = 'donggua'
+```
+
+### in
+
+`in` 操作符右侧跟随一个联合类型，表示逐一遍历该联合类型的所有字面量，类似于 JavaScript 中的 `for...in` ，通常结合 `keyof` 用以创建索引签名的映射类型
+
+```ts
+type Readonly<T> = {
+  readonly [K in keyof T]: T[K]
+}
+type Person = {
+  name: string;
+  age: number;
+}
+
+type Result = Readonly<Person>
+// Result：{
+//   readonly name: string;
+//   readonly age: number;
+// }
+```
+
+* 定义一个类型别名 `Readonly` 接收一个泛型参数 `T`
+* `keyof T` 获取 `T` 的联合类型，在此结果为 `'name' | 'age'`
+* 使用 `in` 遍历 `'name' | 'age'` 并将每次的取值赋值给变量 `K`
+* `readonly` 关键字将对象中的属性转换为只读属性，对应值为 `T[K]`
