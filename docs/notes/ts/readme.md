@@ -784,6 +784,59 @@ const man = createInstance(Person);
 console.log(man); // Person { name: 'donggua' }
 ```
 
+### 声明合并
+
+**声明合并** 是指 TypeScript 编译器会针对函数、接口或类等的同名声明进行合并，并拥有所有合并的声明的特性
+
+在 `Java` 之类的语言中，最熟悉的声明合并就是 **函数重载**
+
+```ts
+// 最为常见的接口合并
+interface Person {
+  name: string;
+  age: number;
+}
+interface Person {
+  gender: number;
+}
+const person: Person = {
+  name: 'donggua',
+  age: 26,
+  gender: 1
+}
+
+// 函数重载
+function add(a: number, b: number): number
+function add(a: string, b: string): string
+function add(a: number | string, b: number | string): number | string {
+  if (typeof a === 'number' && typeof b === 'number') {
+    return a + b
+  }
+  return `${a}${b}`
+}
+```
+:::tip TypeScript 中重载的注意事项
+- 声明方式为连续多个声明后紧跟具体实现函数，否则将报错
+
+```ts
+function add(a: number, b: number): number
+function add(a: number | string, b: number | string): number | string {
+  return `${a}${b}`;
+}
+function add(a: string, b: string): string;
+// Function implementation is missing or not immediately following the declaration.
+// 函数声明缺少或没有紧随一个实现函数
+```
+- 最终实现必须兼容已有的构造声明
+
+```ts
+function add(a: number, b: number): number
+// This overload signature is not compatible with its implementation signature.
+function add(a: string, b: string): string {
+  return a + b
+}
+```
+:::
 ### typeof
 
 `typeof` 操作符用于在获取变量或属性的类型，多用于获取复杂数据类型，或配合其他操作符使用
@@ -865,3 +918,29 @@ type Result = Readonly<Person>
 * `keyof T` 获取 `T` 的联合类型，在此结果为 `'name' | 'age'`
 * 使用 `in` 遍历 `'name' | 'age'` 并将每次的取值赋值给变量 `K`
 * `readonly` 关键字将对象中的属性转换为只读属性，对应值为 `T[K]`
+
+### infer
+
+`infer` 关键字声明占位变量，起到延迟推导的作用。
+
+```ts
+type ReturnType<T> = T extends (...args: any) => infer R ? R : any
+
+const add = (a: number, b: number): number => a + b
+
+type Result = ReturnType<typeof add>
+// Result: number
+```
+以 `ReturnType<T>` 为例，用于获取函数返回类型:
+
+- 声明泛型变量 `T` 表示一个函数类型
+- 声明占位变量 `R`，此时并不确定函数具体返回类型
+- 若 `T` 类型为函数类型，则根据函数类型上下文推导出 `R` 具体类型并返回，否则则返回 `any` 类型
+- 在上述例子中，`add` 即为返回 `number` 类型的函数，由此推断出 `R` 为 `number`
+
+## 拓展
+
+### 装饰器
+### 命名空间
+
+### tsconfig.json
