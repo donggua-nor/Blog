@@ -338,6 +338,10 @@ type Fish = {
 }
 
 type Animal = Bird & Fish
+// Animal: {
+//   fly: () => void;
+//   swim: () => void;
+// }
 ```
 
 ### 枚举
