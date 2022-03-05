@@ -862,7 +862,7 @@ enum TYPES {
   SELECT,
 }
 type Enum = typeof TYPES
-// Enum: { INPUT: number; INPUT: number }
+// Enum: { INPUT: number; SELECT: number }
 
 // 对函数使用
 function sum(a: number, b: number): number {
