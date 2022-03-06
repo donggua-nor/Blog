@@ -14,7 +14,19 @@
 * `null`
 * `undefined`
 
-::: details strictNullChecks
+:::tip null 与 undefined
+
+* 非空断言
+
+非空断言采用 `!.` 操作符，用以移除 `null` 、 `undefined` 类型，类似于 JavaScript 可选链操作符 `?.`
+
+```ts
+function liveDangerously(x?: number | null) {
+  console.log(x!.toFixed());
+}
+```
+
+* strictNullChecks
 `strictNullChecks` 开启严格空值检查模式
 
 ```json
@@ -32,6 +44,16 @@ const b: undefined = undefined
 const c: any = null
 
 const err: number = null // Type 'null' is not assignable to type 'number'
+```
+
+访问一个可能是 `null` 、 `undefined` 类型的变量属性或方法时，需先进行[类型收窄](#类型收窄)
+
+```ts
+function printLength(value?: string | null) {
+  if (typeof value === 'string') {
+    console.log(value.length);
+  }
+}
 ```
 
 :::
@@ -172,18 +194,6 @@ function infiniteLoop(): never {
   while (true) {}
 }
 ```
-
-:::tip Important
-如果一个联合类型中存在 `never` ，那么实际的联合类型并不会包含 `never`
-
-```ts
-// 定义
-type test = 'name' | 'age' | never
-// 实际
-type test = 'name' | 'age'
-```
-
-:::
 
 ### 数组与元组
 
@@ -788,6 +798,61 @@ const man = createInstance(Person);
 console.log(man); // Person { name: 'donggua' }
 ```
 
+### 类型收窄
+
+除了上下文的类型推断，TypeScript 还提供 **类型收窄** 机制，可协助编辑器将类型推断为更精确的类型范围，即将宽类型约束为窄类型。
+
+#### 类型保护
+
+类型保护通常使用 JavaScript 代码逻辑判断进行类型收窄：
+* `typeof` 判断原始数据类型
+* `boolean` 类型转换
+* `switch` 与 `===`、`!==` 等值判断
+* `in` 判断对象属性是否存在
+* `instanceof` 判断构造函数实例
+* `if`、`while` 等控制流语句
+
+#### 类型断言
+
+类型断言使用 `as` 关键字声明指定一个具体的类型
+
+```ts
+type Bird = {
+  fly: () => void;
+}
+type Fish = {
+  swim: () => void;
+}
+
+function behavior(pet: Fish | Bird) {
+  if ((pet as Fish).swim) {
+    (pet as Fish).swim() // pet: Fish
+  } else {
+    (pet as Bird).fly()  // pet: Bird
+  }
+}
+```
+
+#### 类型谓词
+
+类型谓词采用 `parameterName is Type` 形式进行类型收窄：
+
+```ts
+function isFish(pet: Fish | Bird): pet is Fish {
+  return (pet as Fish).swim !== undefined;
+}
+
+function behavior(pet: Fish | Bird) {
+  if (isFish(pet)) {
+    pet.swim() // pet: Fish
+  } else {
+    pet.fly()  // pet: Bird
+  }
+}
+```
+
+`isFish` 函数以类型谓词 `pet is Fish` 代替 `boolean` 作为函数返回值，借助 `isFish` 函数便可将 `pet` 收窄为对应类型。
+
 ### 声明合并
 
 **声明合并** 是指 TypeScript 编译器会针对函数、接口或类等的同名声明进行合并，并拥有所有合并的声明的特性
@@ -819,8 +884,9 @@ function add(a: number | string, b: number | string): number | string {
   return `${a}${b}`
 }
 ```
+
 :::tip TypeScript 中重载的注意事项
-- 声明方式为连续多个声明后紧跟具体实现函数，否则将报错
+* 声明方式为连续多个声明后紧跟具体实现函数，否则将报错
 
 ```ts
 function add(a: number, b: number): number
@@ -831,7 +897,8 @@ function add(a: string, b: string): string;
 // Function implementation is missing or not immediately following the declaration.
 // 函数声明缺少或没有紧随一个实现函数
 ```
-- 最终实现必须兼容已有的构造声明
+
+* 最终实现必须兼容已有的构造声明
 
 ```ts
 function add(a: number, b: number): number
@@ -840,18 +907,112 @@ function add(a: string, b: string): string {
   return a + b
 }
 ```
+
 :::
+
+### 条件类型
+
+ **条件类型** 类似于 JavaScript 中的三元表达式：
+
+```ts
+type IsBoolean<T> = T extends boolean ? true : false
+type IsArray<T> = T extends { length: number } ? true : false
+
+type Res1 = IsBoolean<string> // false
+type Res2 = IsBoolean<true> // true
+type Res3 = IsBoolean<true> // false
+type Res4 = IsArray<[1,2]> // true
+```
+
+#### extends
+
+在条件类型中， `extends` 右侧紧随联合类型，意为将类型收窄为该联合类型范围内，称为 **类型约束**
+
+```ts
+type GetArrayItem<T> = T extends any[] ? T[number] : T
+type Item = GetArrayItem<string[]>
+// Item: string
+type Arg = GetArrayItem<number>
+// Arg：number
+```
+
+`GetArrayItem<T>` 用于获取数组元素的类型， `T extends any[]` 意为约束传入类型为数组，当条件成立时借用索引类型 `T[number]` 返回数组元素的类型，否则返回传入的类型。
+
+#### infer
+
+`infer` 关键字在条件类型中声明占位变量，起到延迟推断获取正确类型的作用。
+
+```ts
+type GetArrayItem<T> = T extends Array[infer Item] ? Item : T
+type Item = GetArrayItem<string[]>
+// Item: string
+type Arg = GetArrayItem<number>
+// Arg：number
+```
+
+借助 `infer` 修改了 `GetArrayItem<T>` 的实现，声明占位变量 `Item` ，当传入类型满足对应的类型数组约束时，直接返回推断出的类型 `Item` ，否则返回传入的类型。
+
+再以 `ReturnType<T>` 为例，用于获取函数返回类型:
+
+```ts
+type ReturnType<T> = T extends (...args: any) => infer R ? R : any
+
+const add = (a: number, b: number): number => a + b
+
+type Result = ReturnType<typeof add>
+// Result: number
+```
+
+* 声明泛型变量 `T` 表示一个函数类型
+* 声明占位变量 `R`，此时并不确定函数具体返回类型
+* 若 `T` 类型为函数类型，则根据函数类型上下文推导出 `R` 具体类型并返回，否则则返回 `any` 类型
+* 在上述例子中，`add` 即为返回 `number` 类型的函数，由此推断出 `R` 为 `number`
+
+#### 分布式条件类型
+
+在条件类型中，对联合类型应用 `extends` 时，会遍历联合类型成员并一一应用该条件类型：
+
+```ts
+type FilterStr<T> = T extends string ? never : T
+type Union = string | number | boolean
+type Result = FilterStr<Union>
+// Result: number | boolean
+```
+
+`FilterStr<T>` 用于过滤掉 `string` 类型获取新的联合类型，其中传入类型 `T` 为联合类型，即 `string | number | boolean extends string` 将对联合类型所有成员进行分发运算：
+
+```ts
+string | number | boolean extends string
+=> string extends string   // true
+=> number extends string   // false
+=> boolean extends string  // false
+```
+
+最终结果即为： `never | number | boolean` ，并根据联合类型中的 `never` 特性得： `number | boolean`
+
+:::tip
+通过 `[]` 包裹 `extends` 关键词每一部分可规避应用**分布式条件类型**
+
+```ts
+type FilterStr<T> = [T] extends [string] ? never : T
+type Union = string | number | boolean
+type Result = FilterStr<Union>
+// Result: string | number | boolean
+```
+
+:::
+
 ### typeof
 
 `typeof` 操作符用于在获取变量或属性的类型，多用于获取复杂数据类型，或配合其他操作符使用
 
 ```ts
-// 对原始类型使用，返回对应类型，但并没有什么必要
+// 对原始类型使用时等同于 JavaScript 中的 typeof，返回对应类型，但并没有什么必要
 type name: string = 'donggua'
 type Base = typeof name
 // Base: string
 
-// 对对象使用
+// 对对象使用时，将获取对象完整的属性类型
 const person = { name: "donggua", age: "26" }
 type Obj = typeof person;
 // Obj: { name: string; age: number }
@@ -872,9 +1033,20 @@ type Func = typeof sum
 // Func: (a: number, b: number) => number
 ```
 
+### never
+
+`never` 关键字除了应用于[函数声明](#never)，还有额外的特性：一个联合类型中存在 `never` ，其实际的联合类型并不会包含 `never`
+
+```ts
+// 定义
+type test = 'name' | 'age' | never
+// 实际
+type test = 'name' | 'age'
+```
+
 ### keyof
 
-`keyof` 操作用于获取对象所有属性键的字面量组合而成的联合类型，类似于 JavaScript 中的 `Object.keys()`
+`keyof` 操作符用于获取对象所有属性键的字面量组合而成的联合类型，类似于 JavaScript 中的 `Object.keys()`
 
 ```ts
 type Person = {
@@ -918,33 +1090,15 @@ type Result = Readonly<Person>
 // }
 ```
 
-* 定义一个类型别名 `Readonly` 接收一个泛型参数 `T`
+* 定义 `Readonly` 工具函数，接收一个泛型参数 `T`
 * `keyof T` 获取 `T` 的联合类型，在此结果为 `'name' | 'age'`
 * 使用 `in` 遍历 `'name' | 'age'` 并将每次的取值赋值给变量 `K`
 * `readonly` 关键字将对象中的属性转换为只读属性，对应值为 `T[K]`
 
-### infer
-
-`infer` 关键字声明占位变量，起到延迟推导的作用。
-
-```ts
-type ReturnType<T> = T extends (...args: any) => infer R ? R : any
-
-const add = (a: number, b: number): number => a + b
-
-type Result = ReturnType<typeof add>
-// Result: number
-```
-以 `ReturnType<T>` 为例，用于获取函数返回类型:
-
-- 声明泛型变量 `T` 表示一个函数类型
-- 声明占位变量 `R`，此时并不确定函数具体返回类型
-- 若 `T` 类型为函数类型，则根据函数类型上下文推导出 `R` 具体类型并返回，否则则返回 `any` 类型
-- 在上述例子中，`add` 即为返回 `number` 类型的函数，由此推断出 `R` 为 `number`
-
 ## 拓展
 
 ### 装饰器
+
 ### 命名空间
 
 ### tsconfig.json
