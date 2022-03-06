@@ -1,1 +1,0 @@
-import{o as e,c as t,d as a,e as o}from"./app.a485aa53.js";import{_ as i}from"./plugin-vue_export-helper.21dcd24c.js";const r={},s={id:"initglobalapi",tabindex:"-1"},c=a("a",{class:"header-anchor",href:"#initglobalapi","aria-hidden":"true"},"#",-1),n=o(" initGlobalAPI"),_=[c,n];function d(l,h){return e(),t("h1",s,_)}var m=i(r,[["render",d]]);export{m as default};
