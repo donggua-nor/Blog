@@ -69,6 +69,9 @@ function Instanceof(instance, ctor) {
   }
   let proto = getProto(instance)
   while(true) {
+    if (proto === null) {
+      return false
+    }
     if (proto === ctor.prototype) {
       return true
     }
