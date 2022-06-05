@@ -1,1 +1,0 @@
-import{_ as e,o as a,c as t,d as o,e as i}from"./app.ef5a5570.js";const s={},c={id:"initglobalapi",tabindex:"-1"},_=o("a",{class:"header-anchor",href:"#initglobalapi","aria-hidden":"true"},"#",-1),n=i(" initGlobalAPI"),r=[_,n];function l(d,h){return a(),t("h1",c,r)}var p=e(s,[["render",l],["__file","global-api.html.vue"]]);export{p as default};
