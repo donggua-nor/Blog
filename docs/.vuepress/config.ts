@@ -79,7 +79,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             '/vue/initialization/entry',
             '/vue/initialization/constructor',
             '/vue/initialization/global-api',
-            '/vue/initialization/process'
+            // '/vue/initialization/process'
           ]
         },
         {

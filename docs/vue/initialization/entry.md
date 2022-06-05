@@ -29,7 +29,7 @@
 在此罗列了本文章需要关注的信息：
 * 指明项目引用不同规范下的文件入口
 
-比如笔者调试的项目demo是基于 `vue-cli` 构建的项目，优先使用 `module` 字段标识的文件
+比如笔者调试的项目demo是基于 `vue-cli` 构建的项目，优先使用 `module` 字段标识对应的 `ESM` 模块文件
 
 在调试源码时一般调试 `dist/vue.runtime.esm.js` 文件
 
@@ -236,21 +236,6 @@ renderMixin(Vue)
 export default Vue
 ```
 
-在此终于找到了 `Vue` 的初始化声明，结合我们初始化 `Vue` 项目的使用方式： `new Vue(options)` 可得知： `Vue` 使用基础的 `Function` 形式实现了类，并对其进行功能扩展。
+在此终于找到了 `Vue` 的初始化声明，接下来便可以由此开始对 `Vue` 构造函数及整体功能进行进一步深入了解。
 
-::: tip
-`Vue` 未采用 [ES6 Class](https://es6.ruanyifeng.com/#docs/class) 语法糖实现，结合源码目录结构，可知此处是根据功能对相关扩展进行模块化并保存到相应的目录下。这兴许是为了后期维护迭代的权衡，不失为巧妙的编程设计。
-:::
 
-::: tip new.target VS instanceof
-对于判断是否使用了 `new` 关键字调用某构造函数， `new.target` 更为严谨，毕竟 `instanceof` 并不一定总是准确的，因为原型链路的相关配置是有可能会被开发者魔改的
-
-当然 `window` 实例并不允许修改其原型：
-
-```js
-// in browser
-window.__proto__ = function Test() {}
-// TypeError：Immutable prototype object '#<Window>' cannot have their prototype set
-```
-
-:::
