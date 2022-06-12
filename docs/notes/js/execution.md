@@ -51,7 +51,8 @@ var name = 'donggua'
 
 将词法分析获得的 token，结合语句表达式，组合建立**抽象语法树**
 
-:::tip **抽象语法树**（_Abstract Synatax Tree_, **AST**）
+:::tip
+**抽象语法树**（ _Abstract Synatax Tree_, **AST** ）
 常用于：
 * `ESLint` 等代码风格与语法检查
 * `babel` 等工具进行代码转换
@@ -100,7 +101,7 @@ var name = 'donggua'
 
 ### 执行上下文
 
-JS 代码的执行环境称为 **执行上下文* (_Execution Contect_)，一般分为以下几种：
+JS 代码的执行环境称为 **执行上下文** (_Execution Contect_)，一般分为以下几种：
 * 全局代码
 * 函数代码
 * Eval 代码
