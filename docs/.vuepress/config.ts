@@ -1,6 +1,8 @@
 import { defineUserConfig } from 'vuepress'
-import type { DefaultThemeOptions } from 'vuepress'
-export default defineUserConfig<DefaultThemeOptions>({
+const { defaultTheme } = require('@vuepress/theme-default')
+const { pwaPlugin } = require('@vuepress/plugin-pwa')
+const { pwaPopupPlugin } = require('@vuepress/plugin-pwa-popup')
+export default defineUserConfig({
   lang: 'zh-CN',
   title: 'Donggua',
   description: "Donggua's Blog",
@@ -20,8 +22,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }]
   ],
 
-  theme: '@vuepress/theme-default',
-  themeConfig: {
+  theme: defaultTheme({
     lastUpdated: true,
     repo: 'https://github.com/donggua-nor/Blog',
     repoLabel: 'Github',
@@ -78,7 +79,7 @@ export default defineUserConfig<DefaultThemeOptions>({
           children: [
             '/vue/initialization/entry',
             '/vue/initialization/constructor',
-            '/vue/initialization/global-api',
+            '/vue/initialization/global-api'
             // '/vue/initialization/process'
           ]
         },
@@ -99,7 +100,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     openInNewWindow: '在新窗口打开',
     toggleDarkMode: '切换夜间模式',
     toggleSidebar: '切换侧边栏'
-  },
+  }),
 
   markdown: {
     extractHeaders: {
@@ -108,17 +109,14 @@ export default defineUserConfig<DefaultThemeOptions>({
   },
 
   plugins: [
-    ['@vuepress/plugin-pwa'],
-    [
-      '@vuepress/plugin-pwa-popup',
-      {
-        locales: {
-          '/': {
-            message: 'new features are coming',
-            buttonText: 'refresh'
-          }
+    pwaPlugin(),
+    pwaPopupPlugin({
+      locales: {
+        '/': {
+          message: 'new features are coming',
+          buttonText: 'refresh'
         }
       }
-    ]
+    })
   ]
 })
