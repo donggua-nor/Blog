@@ -1,0 +1,1 @@
+import{_ as a,o as t,c as o,d as e,e as i}from"./app.1a600e4b.js";const l={},r=e("h1",{id:"initglobalapi",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#initglobalapi","aria-hidden":"true"},"#"),i(" initGlobalAPI")],-1),c=[r];function n(s,_){return t(),o("div",null,c)}var h=a(l,[["render",n],["__file","global-api.html.vue"]]);export{h as default};

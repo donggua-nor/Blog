@@ -3,13 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="generator" content="VuePress 2.0.0-beta.48">
+    <meta name="generator" content="VuePress 2.0.0-beta.49">
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+      html.dark {
+        --c-bg: #22272e;
+      }
+      html, body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme');
+			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+				document.documentElement.classList.toggle('dark', true);
+			}
+    </script>
     <link rel="manifest" href="/Blog/manifest.webmanifest"><link rel="icon" type="image/x-icon" href="/Blog/favicon.ico"><meta name="application-name" content="Donggua's Blog"><meta name="apple-mobile-web-app-title" content="Donggua"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="msapplication-TileImage" content="/favicon.ico"><meta name="msapplication-TileColor" content="#3eaf7c"><meta name="theme-color" content="#3eaf7c"><meta name="apple-mobile-web-app-capable" content="yes"><title>Donggua</title><meta name="description" content="Donggua's Blog">
-    <link rel="modulepreload" href="/Blog/assets/app.e85e7de9.js"><link rel="modulepreload" href="/Blog/assets/404.html.6dc0132d.js"><link rel="modulepreload" href="/Blog/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/Blog/assets/404.html.e87b28ca.js"><link rel="prefetch" href="/Blog/assets/index.html.fa3498cf.js"><link rel="prefetch" href="/Blog/assets/js.html.ed62fffb.js"><link rel="prefetch" href="/Blog/assets/ts.html.33b096ab.js"><link rel="prefetch" href="/Blog/assets/async.html.d353a8b7.js"><link rel="prefetch" href="/Blog/assets/clone.html.867b4c40.js"><link rel="prefetch" href="/Blog/assets/execution.html.ad3eed3e.js"><link rel="prefetch" href="/Blog/assets/prototype.html.9b9c2e62.js"><link rel="prefetch" href="/Blog/assets/recycle.html.4ebd4a7e.js"><link rel="prefetch" href="/Blog/assets/types.html.6e1a0c95.js"><link rel="prefetch" href="/Blog/assets/cjs.html.0ae96dfd.js"><link rel="prefetch" href="/Blog/assets/esm.html.92a7596e.js"><link rel="prefetch" href="/Blog/assets/index.html.a7dac2c7.js"><link rel="prefetch" href="/Blog/assets/template.html.662a4a40.js"><link rel="prefetch" href="/Blog/assets/constructor.html.9ae462d3.js"><link rel="prefetch" href="/Blog/assets/entry.html.893a56e3.js"><link rel="prefetch" href="/Blog/assets/global-api.html.ce30fc1e.js"><link rel="prefetch" href="/Blog/assets/index.html.062d9d3c.js"><link rel="prefetch" href="/Blog/assets/index.html.71fdf784.js"><link rel="prefetch" href="/Blog/assets/index.html.ab0f007f.js"><link rel="prefetch" href="/Blog/assets/js.html.fcc238f3.js"><link rel="prefetch" href="/Blog/assets/ts.html.2c5310af.js"><link rel="prefetch" href="/Blog/assets/async.html.7f4b8091.js"><link rel="prefetch" href="/Blog/assets/clone.html.4c78a651.js"><link rel="prefetch" href="/Blog/assets/execution.html.da56b00b.js"><link rel="prefetch" href="/Blog/assets/prototype.html.5424d315.js"><link rel="prefetch" href="/Blog/assets/recycle.html.c2a34a5d.js"><link rel="prefetch" href="/Blog/assets/types.html.36ea4959.js"><link rel="prefetch" href="/Blog/assets/cjs.html.52489b92.js"><link rel="prefetch" href="/Blog/assets/esm.html.6a67a27b.js"><link rel="prefetch" href="/Blog/assets/index.html.5ff6c598.js"><link rel="prefetch" href="/Blog/assets/template.html.1606625d.js"><link rel="prefetch" href="/Blog/assets/constructor.html.6cc5fd66.js"><link rel="prefetch" href="/Blog/assets/entry.html.aed39e3d.js"><link rel="prefetch" href="/Blog/assets/global-api.html.4aad0088.js"><link rel="prefetch" href="/Blog/assets/index.html.6cb05211.js"><link rel="prefetch" href="/Blog/assets/index.html.9924a0e5.js">
-    
+    <link rel="modulepreload" href="/Blog/assets/app.1a600e4b.js"><link rel="modulepreload" href="/Blog/assets/404.html.8ed5a401.js"><link rel="modulepreload" href="/Blog/assets/404.html.71929186.js"><link rel="prefetch" href="/Blog/assets/index.html.3c17108d.js"><link rel="prefetch" href="/Blog/assets/js.html.f5c30b30.js"><link rel="prefetch" href="/Blog/assets/ts.html.e2d6d659.js"><link rel="prefetch" href="/Blog/assets/async.html.85b24e58.js"><link rel="prefetch" href="/Blog/assets/clone.html.9b310e4d.js"><link rel="prefetch" href="/Blog/assets/execution.html.f5083419.js"><link rel="prefetch" href="/Blog/assets/prototype.html.c13fddbb.js"><link rel="prefetch" href="/Blog/assets/recycle.html.f687bcae.js"><link rel="prefetch" href="/Blog/assets/types.html.0b285e11.js"><link rel="prefetch" href="/Blog/assets/cjs.html.27307daf.js"><link rel="prefetch" href="/Blog/assets/esm.html.1b7130c1.js"><link rel="prefetch" href="/Blog/assets/index.html.cf14182f.js"><link rel="prefetch" href="/Blog/assets/template.html.6bb8a587.js"><link rel="prefetch" href="/Blog/assets/constructor.html.daa32ffe.js"><link rel="prefetch" href="/Blog/assets/entry.html.4e54f8bc.js"><link rel="prefetch" href="/Blog/assets/global-api.html.248a7eb9.js"><link rel="prefetch" href="/Blog/assets/index.html.545bed4e.js"><link rel="prefetch" href="/Blog/assets/index.html.c6e95385.js"><link rel="prefetch" href="/Blog/assets/index.html.a155a88a.js"><link rel="prefetch" href="/Blog/assets/js.html.b3eda12f.js"><link rel="prefetch" href="/Blog/assets/ts.html.2a537af0.js"><link rel="prefetch" href="/Blog/assets/async.html.52fb0125.js"><link rel="prefetch" href="/Blog/assets/clone.html.365b4ac8.js"><link rel="prefetch" href="/Blog/assets/execution.html.e7ddff77.js"><link rel="prefetch" href="/Blog/assets/prototype.html.f074d0c3.js"><link rel="prefetch" href="/Blog/assets/recycle.html.a9436640.js"><link rel="prefetch" href="/Blog/assets/types.html.a260a2e3.js"><link rel="prefetch" href="/Blog/assets/cjs.html.bb5949a5.js"><link rel="prefetch" href="/Blog/assets/esm.html.b66239bd.js"><link rel="prefetch" href="/Blog/assets/index.html.c4278ce0.js"><link rel="prefetch" href="/Blog/assets/template.html.fc2949e0.js"><link rel="prefetch" href="/Blog/assets/constructor.html.6e025bfb.js"><link rel="prefetch" href="/Blog/assets/entry.html.9385991c.js"><link rel="prefetch" href="/Blog/assets/global-api.html.d6c78f85.js"><link rel="prefetch" href="/Blog/assets/index.html.6d92de04.js"><link rel="prefetch" href="/Blog/assets/index.html.64226b3c.js"><link rel="prefetch" href="/Blog/assets/404.2eb47613.js"><link rel="prefetch" href="/Blog/assets/Layout.29c42dff.js"><link rel="prefetch" href="/Blog/assets/index.0e8935cb.js">
+    <link rel="stylesheet" href="/Blog/assets/style.706e167f.css">
   </head>
   <body>
-    <div id="app"><!--[--><404></404><!--]--></div>
-    <script type="module" src="/Blog/assets/app.e85e7de9.js" defer></script>
+    <div id="app"><!--[--><div class="theme-container"><main class="page"><div class="theme-default-content"><h1>404</h1><blockquote>How did we get here?</blockquote><a href="/Blog/" class="">Take me home</a></div></main></div><!----><!----><!--]--></div>
+    <script type="module" src="/Blog/assets/app.1a600e4b.js" defer></script>
   </body>
 </html>
