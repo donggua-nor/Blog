@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-09b6c948","path":"/vue/components/template.html","title":"模版引擎","lang":"zh-CN","frontmatter":{},"headers":[],"git":{"updatedTime":1673266170000},"filePathRelative":"vue/components/template.md"}');export{e as data};
