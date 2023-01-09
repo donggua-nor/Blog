@@ -1,7 +1,8 @@
 import { defineUserConfig } from 'vuepress'
-const { defaultTheme } = require('@vuepress/theme-default')
-const { pwaPlugin } = require('@vuepress/plugin-pwa')
-const { pwaPopupPlugin } = require('@vuepress/plugin-pwa-popup')
+import { defaultTheme } from '@vuepress/theme-default'
+import { pwaPlugin } from '@vuepress/plugin-pwa'
+import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
+
 export default defineUserConfig({
   lang: 'zh-CN',
   title: 'Donggua',
@@ -98,12 +99,12 @@ export default defineUserConfig({
     },
     // a11y
     openInNewWindow: '在新窗口打开',
-    toggleDarkMode: '切换夜间模式',
+    toggleColorMode: '切换夜间模式',
     toggleSidebar: '切换侧边栏'
   }),
 
   markdown: {
-    extractHeaders: {
+    headers: {
       level: [2, 3, 4, 5]
     }
   },
