@@ -35,11 +35,11 @@ export default defineUserConfig({
         activeMatch: '^/notes',
         link: '/notes/js/types'
       },
-      {
-        text: 'Vue',
-        activeMatch: '^/vue',
-        link: '/vue/introduction/'
-      },
+      // {
+      //   text: 'Vue',
+      //   activeMatch: '^/vue',
+      //   link: '/vue/introduction/'
+      // },
       {
         text: 'Playground',
         activeMatch: '^/pg',
@@ -68,33 +68,33 @@ export default defineUserConfig({
           children: ['/notes/ts/']
         }
       ],
-      '/vue/': [
-        {
-          text: 'Vue2源码解析',
-          collapsible: false,
-          children: ['/vue/introduction/']
-        },
-        {
-          text: 'Vue初始化',
-          collapsible: false,
-          children: [
-            '/vue/initialization/entry',
-            '/vue/initialization/constructor',
-            '/vue/initialization/global-api'
-            // '/vue/initialization/process'
-          ]
-        },
-        {
-          text: '深入响应式原理',
-          collapsible: false,
-          children: ['/vue/reactive']
-        },
-        {
-          text: '组件化',
-          collapsible: false,
-          children: ['/vue/components/template']
-        }
-      ],
+      // '/vue/': [
+      //   {
+      //     text: 'Vue2源码解析',
+      //     collapsible: false,
+      //     children: ['/vue/introduction/']
+      //   },
+      //   {
+      //     text: 'Vue初始化',
+      //     collapsible: false,
+      //     children: [
+      //       '/vue/initialization/entry',
+      //       '/vue/initialization/constructor',
+      //       '/vue/initialization/global-api'
+      //       // '/vue/initialization/process'
+      //     ]
+      //   },
+      //   {
+      //     text: '深入响应式原理',
+      //     collapsible: false,
+      //     children: ['/vue/reactive']
+      //   },
+      //   {
+      //     text: '组件化',
+      //     collapsible: false,
+      //     children: ['/vue/components/template']
+      //   }
+      // ],
       '/pg/': ['/pg/js', '/pg/ts']
     },
     // a11y
