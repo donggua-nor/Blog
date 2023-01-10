@@ -13,7 +13,8 @@
     "skipLibCheck": true,
     "sourceMap": false,
     "strict": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "preserveSymlinks": true
   },
   "include": ["**/.vuepress/**/*", "packages/**/*"],
   "exclude": ["node_modules", ".temp", "lib", "dist"]
