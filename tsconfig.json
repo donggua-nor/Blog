@@ -3,19 +3,16 @@
     "baseUrl": "./",
     "module": "esnext",
     "target": "esnext",
-    "declaration": true,
-    "declarationMap": false,
     "moduleResolution": "node",
     "newLine": "lf",
-    "noEmitOnError": true,
-    "noImplicitAny": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": false,
     "strict": true,
     "strictNullChecks": true,
-    "preserveSymlinks": true
+    "preserveSymlinks": true,
+    "esModuleInterop": true
   },
-  "include": ["**/.vuepress/**/*", "packages/**/*"],
+  "include": ["**/.vuepress/**/*"],
   "exclude": ["node_modules", ".temp", "lib", "dist"]
 }

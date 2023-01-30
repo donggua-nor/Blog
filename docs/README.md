@@ -3,7 +3,7 @@ home: true
 title: Home
 heroImage: /images/hero.jpg
 heroText: null
-tagline: null
+tagline: Tring to be better
 actions:
   - text: Start
     link: /notes/js/types
