@@ -61,7 +61,7 @@ export default defineUserConfig({
         },
         {
           text: 'Node',
-          children: ['/notes/node/cjs', '/notes/node/esm']
+          children: ['/notes/node/cjs', '/notes/node/esm', '/notes/node/pkg']
         },
         {
           text: 'TypeScript',
