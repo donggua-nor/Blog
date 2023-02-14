@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-29611d5b","path":"/pg/ts.html","title":"Type-Challenges","lang":"zh-CN","frontmatter":{},"headers":[],"git":{"updatedTime":1676387865000},"filePathRelative":"pg/ts.md"}');export{t as data};
