@@ -97,7 +97,7 @@ const pkgNameReg = ^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$
 
 ```
 
-## packageManager <Badge>v16.9.0</Badge><Badge>v14.19.0</Badge>
+## packageManager
 
 ```ts
 const pkgManagerReg = (npm|pnpm|yarn)@\d+\.\d+\.\d+(-.+)?
@@ -276,13 +276,13 @@ console.log('Npm is COOL')
 }
 ```
 
-## types <Badge>Community Conditions Definitions</Badge>
+## types
 
 声明此项目的 `TypeScript` 类型文件
 
 ## main
 
-## browser <Badge>Community Conditions Definitions</Badge>
+## browser
 
 ## module
 
