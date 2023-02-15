@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-ebf1be48","path":"/vue/initialization/global-api.html","title":"initGlobalAPI","lang":"zh-CN","frontmatter":{},"headers":[],"git":{"updatedTime":1676462816000},"filePathRelative":"vue/initialization/global-api.md"}');export{a as data};

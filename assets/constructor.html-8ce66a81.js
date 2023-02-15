@@ -1,1 +1,0 @@
-import{_ as t,p as c,q as r,R as e,t as o}from"./framework-0f934b27.js";const a={},s=e("h1",{id:"vue-整体面貌",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#vue-整体面貌","aria-hidden":"true"},"#"),o(" Vue 整体面貌")],-1),n=[s];function _(d,i){return c(),r("div",null,n)}const h=t(a,[["render",_],["__file","constructor.html.vue"]]);export{h as default};
