@@ -7,7 +7,7 @@ export default defineUserConfig({
   lang: 'zh-CN',
   title: 'Donggua',
   description: "Donggua's Blog",
-  base: '/Blog/',
+  base: process.env.APP_BASE_PATH || '/' ,
   dest: 'dist',
   cache: '.cache',
   temp: '.temp',
