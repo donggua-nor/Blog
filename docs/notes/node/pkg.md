@@ -2,7 +2,7 @@
 
 ## name
 
-项目名称，发布到 [npm](https://www.npmjs.com/) 中的唯一标识
+`string` 项目名称，发布到 [npm](https://www.npmjs.com/) 中的唯一标识
 
 ```ts
 const pkgNameReg = ^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$
@@ -14,11 +14,11 @@ const pkgNameReg = ^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$
 
 ## version
 
-版本号，遵循 [语义化版本号](https://semver.org/)，使用 [npm version](https://docs.npmjs.com/cli/v8/commands/npm-version) 管理
+`string` 版本号，遵循 [语义化版本号](https://semver.org/)，使用 [npm version](https://docs.npmjs.com/cli/v8/commands/npm-version) 管理
 
 ## description
 
-项目描述
+`string` 项目描述
 
 ## keywords
 
@@ -26,7 +26,7 @@ const pkgNameReg = ^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$
 
 ## homepage
 
-项目主页，一般是项目网站或者 GitHub 地址
+`string` 项目主页，一般是项目网站或者 GitHub 地址
 
 ## repository
 
@@ -73,7 +73,7 @@ const pkgNameReg = ^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$
 
 ## author, contributors
 
-作者或贡献者信息
+`string` 作者或贡献者信息
 
 ```json
 {
@@ -99,13 +99,15 @@ const pkgNameReg = ^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$
 
 ## packageManager
 
+`string` 指明项目使用的包管理工具
+
 ```ts
 const pkgManagerReg = (npm|pnpm|yarn)@\d+\.\d+\.\d+(-.+)?
 ```
 
 ## type
 
-`commonjs | module` 表明包使用的模块语法（ `Node@14` 以上版本支持 [ESM](http://localhost:8080/Blog/notes/node/esm.html)）
+`'commonjs' | 'module'` 表明包使用的模块语法（ `Node@14` 以上版本支持 [ESM](http://localhost:8080/Blog/notes/node/esm.html)）
 
 * 默认为 `commonjs`, 对于 `mjs` 后缀名文件采用 `ESM` 语法解析
 
@@ -260,7 +262,7 @@ console.log('Npm is COOL')
 
 ## overrides
 
-针对特定依赖项进行按需重写，支持嵌套、限定范围
+`Record<string, string>` 针对特定依赖项进行按需重写，支持嵌套、限定范围
 
 ```json
 {
@@ -278,15 +280,27 @@ console.log('Npm is COOL')
 
 ## types
 
-声明此项目的 `TypeScript` 类型文件
+`string => filePath` 声明此项目的 `TypeScript` 类型文件
+
+## files
+
+ `Array<string>`
 
 ## main
 
+ `string`
+
 ## browser
+
+ `string`
 
 ## module
 
+ `string`
+
 ## exports
+
+ `Record<string, string | Exports>`
 
 :::tip
 [Package entry points](https://nodejs.org/api/packages.html?spm=ata.21736010.0.0.3d314bfcjrqivI#packages_package_entry_points)
@@ -296,7 +310,7 @@ console.log('Npm is COOL')
 
 ## config
 
-[process.env](https://nodejs.org/api/process.html#processenv) 配置命令行的环境变量
+`Record<string, string>` [process.env](https://nodejs.org/api/process.html#processenv) 配置命令行的环境变量
 
 :::: code-group
 :::code-group-item main.js
@@ -328,16 +342,18 @@ console.log(process.env.npm_package_config_foo) // bar
 
 ## publishConfig
 
-发布配置，详见[config | npm Docs](https://docs.npmjs.com/cli/v8/using-npm/config)
+`Record<string, string>` 发布配置，详见[config | npm Docs](https://docs.npmjs.com/cli/v8/using-npm/config)
 
 ## engines
+
+`Record<'node'|'npm', string>` 指明该项目运行的平台
 
 * 指明项目所需 `node` 版本
 
 ```json
 {
   "engines": {
-    "node": ">=14"
+    "node": ">=14 <18"
   } 
 }
 ```
