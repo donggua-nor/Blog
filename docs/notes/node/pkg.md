@@ -284,29 +284,155 @@ console.log('Npm is COOL')
 
 ## files
 
- `Array<string>`
+`Array<string>` 指明将此项目作为依赖包安装时包含的文件，默认为排除以下文件的全部内容：
+
+* `.git`
+* `CVS`
+* `.svn`
+* `.hg`
+* `.lock-wscript`
+* `.wafpickle-N`
+* `.*.swp`
+* `.DS_Store`
+* `._*`
+* `npm-debug.log`
+* `.npmrc`
+* `node_modules`
+* `config.gypi`
+* `*.orig`
+* `package.json` / `npm-shrinkwrap.json`
+
+ :::tip
+ 与 `files` 字段作用类似的还有 `.npmignore` 、 `.gitignore`
+
+ 
+但 `files` 类似于白名单，往往产物内容更少更方便。而 `ignore` 文件类似于黑名单，需要开发者持续维护
+
+ - [npm | Docs](https://docs.npmjs.com/cli/v9/using-npm/developers#keeping-files-out-of-your-package)
+ - [For the love of god, don’t use .npmignore](https://medium.com/@jdxcode/for-the-love-of-god-dont-use-npmignore-f93c08909d8d)
+ :::
 
 ## main
 
- `string`
+`string` 标准化的工具包主入口
+
+默认为 `index.js` ，主要用于 `Node.js` 的 [cjs](/notes/node/cjs.html) 模块
+
+:::: code-group
+:::code-group-item app
+
+```js
+const foo = require('foo') // => from "main" field
+// foo => { value: 1 }
+```
+
+:::
+:::code-group-item dep
+
+```js
+// foo.cjs
+module.exports = {
+  value: 1
+}
+```
+
+```json
+// package.json
+{
+  "main": "./foo.cjs"
+}
+```
+
+:::
+::::
 
 ## browser
 
- `string`
+`string` 工具包主入口
+
+当项目仅服务于浏览器端，则应采用此字段代替 [main](#main) 字段
+
+```html
+<script src="foo.js"></script>
+```
+
+:::tip
+参阅 [package-browser-field-spec](https://github.com/defunctzombie/package-browser-field-spec)
+:::
 
 ## module
 
- `string`
+`string` 工具包主入口
+
+非官方支持的字段，基本上是 [Webpack](https://webpack.js.org/guides/author-libraries/#final-steps)、[Rollup](https://github.com/rollup/rollup/wiki/pkg.module) 等打包工具为支持 [ES Module](/notes/node/esm.html) 而约定的字段
+
+:::tip
+参阅 [what-is-the-module-package-json-field-for | stackoverflow](https://stackoverflow.com/questions/42708484/what-is-the-module-package-json-field-for)
+:::
 
 ## exports
 
- `Record<string, string | Exports>`
+`Record<string, string | Exports>` 最新标准的导出接口 <Badge>recommend</Badge>
+
+为工具包主入口及其语义版本升级提供了更可靠的保证，支持多模块、多环境、子路径等定义形式。
+
+```json
+{
+  "exports": {
+    ".": {
+      "node-addons": "", // for C++ plugins
+      "node": "foo-node.js", // Node.js environment，一般不需要
+      "import": "foo.mjs", // for import/import()
+      "require": "foo.cjs", // for require()
+      "default": "" // 兜底
+    },
+    // 子模块路径 foo/bar.js
+    "./bar.js": {
+      "import": "./bar.mjs",
+      "require": "./bar.cjs", 
+    },
+    // for TypeScript
+    "types": {},
+    // for browser
+    "browser": {},
+    // for deno
+    "deno": {},
+    // dev environment
+    "development": {},
+    // prod environment
+    "production": {}
+  }
+}
+```
 
 :::tip
-[Package entry points](https://nodejs.org/api/packages.html?spm=ata.21736010.0.0.3d314bfcjrqivI#packages_package_entry_points)
+* 优先使用 `exports` 并配合 `main` 等字段做兼容配置
+
+```json
+{
+  "main": "foo.cjs",
+  "module": "foo.mjs",
+  "browser": "foo.umd.js",
+  "types": "foo.d.ts",
+  "exports": {
+    ".": {
+      "import": "foo.mjs",
+      "require": "foo.cjs",
+      "browser": "foo.umd.js",
+      "types": "foo.d.ts"
+    }
+  }
+}
+```
+
+* 注意多模块条件导出处理　[Dual CommonJS/ES module packages](http://nodejs.cn/api/packages.html#dual-commonjses-module-packages)
+
+* 参阅　[Package entry points](https://nodejs.org/api/packages.html?spm=ata.21736010.0.0.3d314bfcjrqivI#packages_package_entry_points)
 :::
 
 ## workspaces
+
+`Array<string>` 声明多包项目 _monorepo_ 的子包路径 详见 [workspaces | npm Docs](https://docs.npmjs.com/cli/v8/using-npm/workspaces)
 
 ## config
 
