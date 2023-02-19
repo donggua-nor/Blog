@@ -1,4 +1,4 @@
-import{_ as n,p as s,q as a,Q as e,a1 as t}from"./framework-0f934b27.js";const o={},c=t(`<div class="language-typescript line-numbers-mode" data-ext="ts"><pre class="language-typescript"><code><span class="token keyword">class</span> <span class="token class-name">Donggua</span> <span class="token punctuation">{</span>
+import{_ as n,p as s,q as a,Q as e,a1 as t}from"./framework-e93b08cb.js";const o={},c=t(`<div class="language-typescript line-numbers-mode" data-ext="ts"><pre class="language-typescript"><code><span class="token keyword">class</span> <span class="token class-name">Donggua</span> <span class="token punctuation">{</span>
   nickname<span class="token operator">:</span> <span class="token string">&#39;donggua&#39;</span><span class="token punctuation">,</span>
   wechat<span class="token operator">:</span> <span class="token string">&#39;donggua_nor&#39;</span><span class="token punctuation">,</span>
   address<span class="token operator">:</span> <span class="token string">&#39;Guangzhou, China&#39;</span><span class="token punctuation">,</span>
