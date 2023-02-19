@@ -43,7 +43,7 @@ const pkgNameReg = ^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$
 * `string` <Badge>recommend</Badge>
 * `string | { type: string; url: string } | Array<{ type: string; url: string }>`
 
-参阅 [https://spdx.org/licenses/](https://spdx.org/licenses/)
+详见 [https://spdx.org/licenses/](https://spdx.org/licenses/)
 
 ```json
 {
@@ -200,9 +200,9 @@ console.log('Npm is COOL')
 * `^`：仅固定 `major` 大版本，匹配 `minor`、`patch` 版本
 * `~`：固定 `major`、`minor` 版本，仅匹配 `patch` 补丁版本
 
-其余版本范围参阅文档 [dependencies](https://docs.npmjs.com/cli/v8/configuring-npm/package-json/#dependencies)
+其余版本范围详见文档 [dependencies](https://docs.npmjs.com/cli/v8/configuring-npm/package-json/#dependencies)
 
-通过 [npm link](https://docs.npmjs.com/cli/v8/commands/npm-link) 等生成的本地包路径参阅 [local-path 文档](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#local-paths)
+通过 [npm link](https://docs.npmjs.com/cli/v8/commands/npm-link) 等生成的本地包路径详见 [local-path 文档](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#local-paths)
 
 ### dependencies
 
