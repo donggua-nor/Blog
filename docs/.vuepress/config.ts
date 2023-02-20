@@ -63,7 +63,7 @@ export default defineUserConfig({
           children: ['/notes/ts/']
         }
       ],
-      '/pg/': ['/pg/js', '/pg/ts']
+      '/pg/': ['/pg/js']
     },
     // a11y
     openInNewWindow: '在新窗口打开',
