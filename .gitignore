@@ -9,7 +9,9 @@ dist-ssr
 *.local
 .cache
 .temp
-pnpm-lock.yaml
+package-lock.json
+npm-shrinkwrap.json
+yarn.lock
 
 # Editor directories and files
 .vscode/*
