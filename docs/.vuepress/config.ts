@@ -7,7 +7,7 @@ export default defineUserConfig({
   lang: 'zh-CN',
   title: 'Donggua',
   description: "Donggua's Blog",
-  base: process.env.APP_BASE_PATH || '/' ,
+  base: process.env.APP_BASE_PATH || '/',
   dest: 'dist',
   cache: '.cache',
   temp: '.temp',
@@ -39,6 +39,11 @@ export default defineUserConfig({
         text: 'Playground',
         activeMatch: '^/pg',
         link: '/pg/js'
+      },
+      {
+        text: 'Workflow',
+        activeMatch: '^/workflow',
+        link: '/workflow/'
       }
     ],
     sidebar: {
@@ -63,7 +68,8 @@ export default defineUserConfig({
           children: ['/notes/ts/']
         }
       ],
-      '/pg/': ['/pg/js']
+      '/pg/': ['/pg/js'],
+      '/workflow/': ['/workflow/']
     },
     // a11y
     openInNewWindow: '在新窗口打开',
