@@ -16,36 +16,36 @@ const obj = {
   }
 }
 
-const newObj = Object.assign({}, obj);
-newObj.name = '_donggua';
-newObj.props.value++;
+const newObj = Object.assign({}, obj)
+newObj.name = '_donggua'
+newObj.props.value++
 
-obj; // { name: 'donggua', props: { value: 2 } }
-newObj; // { name: '_donggua', props: { value: 2 } }
+obj // { name: 'donggua', props: { value: 2 } }
+newObj // { name: '_donggua', props: { value: 2 } }
 ```
 
 ### Array.prototype.concat()
 
 ```js
-const arr = [1, 2, 3, [4, 5]];
-const ary = arr.concat();
-ary[0] = 4;
-ary[3][0] = 1;
+const arr = [1, 2, 3, [4, 5]]
+const ary = arr.concat()
+ary[0] = 4
+ary[3][0] = 1
 
-arr; // [1, 2, 3, [1, 5]];
-ary; // [4, 2, 3, [1, 5]];
+arr // [1, 2, 3, [1, 5]];
+ary // [4, 2, 3, [1, 5]];
 ```
 
 ### Array.prototype.slice()
 
 ```js
-const arr = [1, 2, 3, [4, 5]];
-const ary = arr.slice();
-ary[0] = 4;
-ary[3][0] = 1;
+const arr = [1, 2, 3, [4, 5]]
+const ary = arr.slice()
+ary[0] = 4
+ary[3][0] = 1
 
-arr; // [1, 2, 3, [1, 5]];
-ary; // [4, 2, 3, [1, 5]];
+arr // [1, 2, 3, [1, 5]];
+ary // [4, 2, 3, [1, 5]];
 ```
 
 ### ES6 扩展运算符
@@ -60,19 +60,19 @@ const obj = {
 
 const newObj = {
   ...obj
-};
-newObj.name = '_donggua';
-newObj.props.value++;
+}
+newObj.name = '_donggua'
+newObj.props.value++
 
-obj; // { name: 'donggua', props: { value: 2 } }
-newObj; // { name: '_donggua', props: { value: 2 } }
-const arr = [1, 2, 3, [4, 5]];
-const ary = [...arr];
-ary[0] = 4;
-ary[3][0] = 1;
+obj // { name: 'donggua', props: { value: 2 } }
+newObj // { name: '_donggua', props: { value: 2 } }
+const arr = [1, 2, 3, [4, 5]]
+const ary = [...arr]
+ary[0] = 4
+ary[3][0] = 1
 
-arr; // [1, 2, 3, [1, 5]];
-ary; // [4, 2, 3, [1, 5]];
+arr // [1, 2, 3, [1, 5]];
+ary // [4, 2, 3, [1, 5]];
 ```
 
 ## 深拷贝
@@ -89,26 +89,26 @@ const obj = {
   }
 }
 
-const newObj = JSON.parse(JSON.stringify(obj));
-newObj.name = '_donggua';
-newObj.props.value++;
+const newObj = JSON.parse(JSON.stringify(obj))
+newObj.name = '_donggua'
+newObj.props.value++
 
-obj; // { name: 'donggua', props: { value: 1 } }
-newObj; // { name: '_donggua', props: { value: 2 } }
+obj // { name: 'donggua', props: { value: 1 } }
+newObj // { name: '_donggua', props: { value: 2 } }
 ```
 
-**但 `JSON.stringify()` 存在明显的弊端:** 
+**但 `JSON.stringify()` 存在明显的弊端:**
 
-* `JSON.stringify()` 只能序列化对象的可枚举的自有属性
-* `undefined`、`Symbol`、任意函数将被忽略
-* `NaN`、`Infinity` 、`-Infinity` 将被当成 `null` 处理
-* `RegExp`、`Error`、`Set`、`Map` 等特殊对象，仅会序列化可枚举的属性（一般情况下即为空对象）
-* Date 类型，转换后会调用 toJSON 转为字符串类型
-* 循环引用的对象将报错
+- `JSON.stringify()` 只能序列化对象的可枚举的自有属性
+- `undefined`、`Symbol`、任意函数将被忽略
+- `NaN`、`Infinity` 、`-Infinity` 将被当成 `null` 处理
+- `RegExp`、`Error`、`Set`、`Map` 等特殊对象，仅会序列化可枚举的属性（一般情况下即为空对象）
+- Date 类型，转换后会调用 toJSON 转为字符串类型
+- 循环引用的对象将报错
 
 ```js
-const map = new Map();
-map.set(1, 2); // Map: 0: {1 => 2}
+const map = new Map()
+map.set(1, 2) // Map: 0: {1 => 2}
 const obj = {
   a: undefined,
   b: Symbol(),
@@ -116,15 +116,15 @@ const obj = {
   d: Infinity,
   e: -Infinity,
   f: map,
-  g: new Date(),
+  g: new Date()
   // h: obj => throw Error
-};
+}
 
 Object.defineProperty(obj, 'i', {
   value: ''
 })
 
-const newObj = JSON.parse(JSON.stringify(obj));
+const newObj = JSON.parse(JSON.stringify(obj))
 
 // before:
 // obj: {
@@ -138,7 +138,7 @@ const newObj = JSON.parse(JSON.stringify(obj));
 //     i: "hidden value"
 // }
 
-// after 
+// after
 // newObj: {
 //     c: null,
 //     d: null,
@@ -154,37 +154,38 @@ const newObj = JSON.parse(JSON.stringify(obj));
 
 ```js
 const original = {
-  name: "MDN"
-};
-original.itself = original;
+  name: 'MDN'
+}
+original.itself = original
 
-const clone = structuredClone(original);
+const clone = structuredClone(original)
 
-console.assert(clone !== original); // the objects are not the same (not same identity)
-console.assert(clone.name === "MDN"); // they do have the same values
-console.assert(clone.itself === clone); // and the circular reference is preserved
+console.assert(clone !== original) // the objects are not the same (not same identity)
+console.assert(clone.name === 'MDN') // they do have the same values
+console.assert(clone.itself === clone) // and the circular reference is preserved
 ```
 
 `HTML` 规范的标准提案，默认解决了循环引用问题，支持多种默认数据类型。同时不限于普通拷贝，可使用 `structuredClone(value, { transfer })` 调用方式以直接移动源数据
 
 :::warning
-尽管作为规范标准实现的Web API，但目前兼容性还是个巨大的问题，同时仍有其他不足：
-* 无法拷贝对象的原型链
-* 无法拷贝函数
-* 不支持 `Error` 数据类型
-* ...
-:::
+尽管作为规范标准实现的 Web API，但目前兼容性还是个巨大的问题，同时仍有其他不足：
+
+- 无法拷贝对象的原型链
+- 无法拷贝函数
+- 不支持 `Error` 数据类型
+- ...
+  :::
 
 ### MessageChannel
 
-> vue.nextTick 源码曾使用的Web API，在了解这个API时发现可以用于深拷贝
+> vue.nextTick 源码曾使用的 Web API，在了解这个 API 时发现可以用于深拷贝
 
 ```js
 function cloneUsingChannel(obj) {
-  return new Promise(resolve => {
-    const channel = new MessageChannel();
-    channel.port1.onmessage = e => resolve(e.data)
-    channel.port2.postMessage(obj);
+  return new Promise((resolve) => {
+    const channel = new MessageChannel()
+    channel.port1.onmessage = (e) => resolve(e.data)
+    channel.port2.postMessage(obj)
   })
 }
 ```
@@ -193,7 +194,7 @@ function cloneUsingChannel(obj) {
 
 ```js
 const obj = {
-  fn: function() {}
+  fn: function () {}
 }
 const newObj = cloneUsingChannel(obj)
 // Failed to execute 'postMessage' on 'MessagePort': function() {} could not be cloned.
@@ -201,17 +202,18 @@ const newObj = cloneUsingChannel(obj)
 
 ### JQuery、lodash
 
-* `JQuery.extend()`
+- `JQuery.extend()`
 
 ```js
-import $ from "jquery";
+import $ from 'jquery'
 
-const newObj = $.extend(true, {}, obj);
+const newObj = $.extend(true, {}, obj)
 ```
 
-* `lodash.cloneDeep`
+- `lodash.cloneDeep`
 
 ```js
-import { cloneDeep } from "lodash"; 
+import { cloneDeep } from 'lodash'
 
-const newObj = cloneDeep(obj); 
+const newObj = cloneDeep(obj)
+```

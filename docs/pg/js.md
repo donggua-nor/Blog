@@ -68,7 +68,7 @@ function Instanceof(instance, ctor) {
     return false
   }
   let proto = getProto(instance)
-  while(true) {
+  while (true) {
     if (proto === null) {
       return false
     }
@@ -95,17 +95,17 @@ function isObject(val) {
 
 ```js
 function Car(make, model, year) {
-  this.make = make;
-  this.model = model;
-  this.year = year;
+  this.make = make
+  this.model = model
+  this.year = year
 }
-const auto = new Car('Honda', 'Accord', 1998);
+const auto = new Car('Honda', 'Accord', 1998)
 
-console.log(auto instanceof Car); // true
-console.log(auto instanceof Object); // true
+console.log(auto instanceof Car) // true
+console.log(auto instanceof Object) // true
 
-console.log(Instanceof(auto, Car)); // true
-console.log(Instanceof(auto, Object)); // true
+console.log(Instanceof(auto, Car)) // true
+console.log(Instanceof(auto, Object)) // true
 ```
 
 :::
@@ -132,23 +132,23 @@ function ObjectCreate(original) {
 ```js
 const person = {
   isHuman: false,
-  say: function() {
+  say: function () {
     console.log('Hello！')
   }
-};
+}
 
-const me = Object.create(person);
-const u = ObjectCreate(person);
+const me = Object.create(person)
+const u = ObjectCreate(person)
 
-me.name = 'donggua';
-me.isHuman = true;
-me.say(); // Hello！
-console.log(me); // { name: 'donggua', isHuman: true } ==prototype=> person
+me.name = 'donggua'
+me.isHuman = true
+me.say() // Hello！
+console.log(me) // { name: 'donggua', isHuman: true } ==prototype=> person
 
 u.name = 'visitor'
-u.isHuman = true;
-me.say(); // Hello！
-console.log(u); // { name: 'visitor', isHuman: true } ==prototype=> person
+u.isHuman = true
+me.say() // Hello！
+console.log(u) // { name: 'visitor', isHuman: true } ==prototype=> person
 ```
 
 :::

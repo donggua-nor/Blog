@@ -34,14 +34,14 @@ const pkgNameReg = ^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$
 
 ## bugs
 
- `string | { url: string; email?: string }`
+`string | { url: string; email?: string }`
 
 一般是 issue 地址。存在时可以通过 [npm bugs](https://docs.npmjs.com/cli/v8/commands/npm-bugs) 打开对应地址
 
 ## licenses
 
-* `string` <Badge>recommend</Badge>
-* `string | { type: string; url: string } | Array<{ type: string; url: string }>`
+- `string` <Badge>recommend</Badge>
+- `string | { type: string; url: string } | Array<{ type: string; url: string }>`
 
 详见 [https://spdx.org/licenses/](https://spdx.org/licenses/)
 
@@ -109,32 +109,32 @@ const pkgManagerReg = (npm|pnpm|yarn)@\d+\.\d+\.\d+(-.+)?
 
 `'commonjs' | 'module'` 表明包使用的模块语法（ `Node@14` 以上版本支持 [ESM](http://localhost:8080/Blog/notes/node/esm.html)）
 
-* 默认为 `commonjs`, 对于 `mjs` 后缀名文件采用 `ESM` 语法解析
+- 默认为 `commonjs`, 对于 `mjs` 后缀名文件采用 `ESM` 语法解析
 
-* 设置为 `module` 时，对于 `cjs` 后缀名文件采用 `commonjs` 语法解析
+- 设置为 `module` 时，对于 `cjs` 后缀名文件采用 `commonjs` 语法解析
 
 ## scripts
 
 `Record<string, string>` 带有以下默认生命周期的脚本命令： `<pre>` | `<post>`
 
-* install
-* uninstall
-* start
-* restart
-* stop
-* test
-* pack
-* publish
-* 自定义脚本命令
+- install
+- uninstall
+- start
+- restart
+- stop
+- test
+- pack
+- publish
+- 自定义脚本命令
 
 特殊的 `prepare` 、 `prepublishOnly` 见 [scripts 文档](https://docs.npmjs.com/cli/v8/using-npm/scripts)
 
 :::tip
 在 pnpm@6 与 yarn2 中， `preinstall` 将在 `install` 后执行，而不是在 `install` 之前
 
-* [yarn2 Lifecycle Scripts](https://yarnpkg.com/advanced/lifecycle-scripts)
+- [yarn2 Lifecycle Scripts](https://yarnpkg.com/advanced/lifecycle-scripts)
 
-* [preinstall phase is executed after install phase
+- [preinstall phase is executed after install phase
   ](https://github.com/pnpm/pnpm/issues/3836)
 
 为此 pnpm 提供了 [pnpm:devPreinstall](https://github.com/pnpm/pnpm/commit/245920f14ee02eb7d8fa0545902a6288a567a5d2) 钩子以兼容开发者的使用习惯
@@ -197,8 +197,8 @@ console.log('Npm is COOL')
 
 常见依赖包版本遵循 [语义化版本号](https://semver.org/)，并根据声明语法供 [lockfile](https://docs.npmjs.com/cli/v8/configuring-npm/package-lock-json) 匹配：
 
-* `^`：仅固定 `major` 大版本，匹配 `minor`、`patch` 版本
-* `~`：固定 `major`、`minor` 版本，仅匹配 `patch` 补丁版本
+- `^`：仅固定 `major` 大版本，匹配 `minor`、`patch` 版本
+- `~`：固定 `major`、`minor` 版本，仅匹配 `patch` 补丁版本
 
 其余版本范围详见文档 [dependencies](https://docs.npmjs.com/cli/v8/configuring-npm/package-json/#dependencies)
 
@@ -220,7 +220,7 @@ console.log('Npm is COOL')
 
 :::tip
 
-* `>=npm@7` 默认安装 `peerDependencies`， `3<npm<=6` 用户需要自行管理 `peerDependencies`
+- `>=npm@7` 默认安装 `peerDependencies`， `3<npm<=6` 用户需要自行管理 `peerDependencies`
 
 :::
 
@@ -238,7 +238,7 @@ console.log('Npm is COOL')
     "vue": {
       "optional": true // 若使用 `vue-router` 时未安装 `vue` 依赖，那么将 `vue` 视为可选依赖
     }
-  },
+  }
 }
 ```
 
@@ -250,9 +250,9 @@ console.log('Npm is COOL')
 
 比如在使用 [chokidar](https://github.com/paulmillr/chokidar) 在 `OSX` 系统使用原生的 `fsevents` 进行文件监听处理，但在 `Linux` (主要是 mac) 上安装此依赖时经常出现 `fsevents` 相关的报错信息。此时可以添加参数忽略此依赖进行安装：
 
-* `npm/pnpm install --no-optional`
+- `npm/pnpm install --no-optional`
 
-* `yarn install --ignore-optional`
+- `yarn install --ignore-optional`
 
 :::
 
@@ -286,31 +286,30 @@ console.log('Npm is COOL')
 
 `Array<string>` 指明将此项目作为依赖包安装时包含的文件，默认为排除以下文件的全部内容：
 
-* `.git`
-* `CVS`
-* `.svn`
-* `.hg`
-* `.lock-wscript`
-* `.wafpickle-N`
-* `.*.swp`
-* `.DS_Store`
-* `._*`
-* `npm-debug.log`
-* `.npmrc`
-* `node_modules`
-* `config.gypi`
-* `*.orig`
-* `package.json` / `npm-shrinkwrap.json`
+- `.git`
+- `CVS`
+- `.svn`
+- `.hg`
+- `.lock-wscript`
+- `.wafpickle-N`
+- `.*.swp`
+- `.DS_Store`
+- `._*`
+- `npm-debug.log`
+- `.npmrc`
+- `node_modules`
+- `config.gypi`
+- `*.orig`
+- `package.json` / `npm-shrinkwrap.json`
 
- :::tip
- 与 `files` 字段作用类似的还有 `.npmignore` 、 `.gitignore`
+:::tip
+与 `files` 字段作用类似的还有 `.npmignore` 、 `.gitignore`
 
- 
 但 `files` 类似于白名单，往往产物内容更少更方便。而 `ignore` 文件类似于黑名单，需要开发者持续维护
 
- - [npm | Docs](https://docs.npmjs.com/cli/v9/using-npm/developers#keeping-files-out-of-your-package)
- - [For the love of god, don’t use .npmignore](https://medium.com/@jdxcode/for-the-love-of-god-dont-use-npmignore-f93c08909d8d)
- :::
+- [npm | Docs](https://docs.npmjs.com/cli/v9/using-npm/developers#keeping-files-out-of-your-package)
+- [For the love of god, don’t use .npmignore](https://medium.com/@jdxcode/for-the-love-of-god-dont-use-npmignore-f93c08909d8d)
+  :::
 
 ## main
 
@@ -389,7 +388,7 @@ module.exports = {
     // 子模块路径 foo/bar.js
     "./bar.js": {
       "import": "./bar.mjs",
-      "require": "./bar.cjs", 
+      "require": "./bar.cjs"
     },
     // for TypeScript
     "types": {},
@@ -406,7 +405,8 @@ module.exports = {
 ```
 
 :::tip
-* 优先使用 `exports` 并配合 `main` 等字段做兼容配置
+
+- 优先使用 `exports` 并配合 `main` 等字段做兼容配置
 
 ```json
 {
@@ -425,10 +425,10 @@ module.exports = {
 }
 ```
 
-* 注意多模块条件导出处理　[Dual CommonJS/ES module packages](http://nodejs.cn/api/packages.html#dual-commonjses-module-packages)
+- 注意多模块条件导出处理　[Dual CommonJS/ES module packages](http://nodejs.cn/api/packages.html#dual-commonjses-module-packages)
 
-* 参阅　[Package entry points](https://nodejs.org/api/packages.html?spm=ata.21736010.0.0.3d314bfcjrqivI#packages_package_entry_points)
-:::
+- 参阅　[Package entry points](https://nodejs.org/api/packages.html?spm=ata.21736010.0.0.3d314bfcjrqivI#packages_package_entry_points)
+  :::
 
 ## workspaces
 
@@ -456,7 +456,7 @@ console.log(process.env.npm_package_config_foo) // bar
   "scripts": {
     "variable": "node main.js"
   },
-  "config":　{
+  "config": {
     "port": "8080",
     "foo": "bar"
   }
@@ -474,52 +474,52 @@ console.log(process.env.npm_package_config_foo) // bar
 
 `Record<'node'|'npm', string>` 指明该项目运行的平台
 
-* 指明项目所需 `node` 版本
+- 指明项目所需 `node` 版本
 
 ```json
 {
   "engines": {
     "node": ">=14 <18"
-  } 
+  }
 }
 ```
 
-* 指明安装包所需 `npm` 版本 
+- 指明安装包所需 `npm` 版本
 
 ```json
 {
   "engines": {
     "npm": "~5.2.0" // npx version
-  } 
+  }
 }
 ```
 
 ## os
 
 `Array<string>` 基于 [process.platform](https://nodejs.org/api/process.html#processplatform) 运行项目的操作系统黑白名单：
- 
 
 ```json
 {
+  // whitelist
   "os": ["darwin", "linux"]
-  // or
+  // blacklist
   {
     "os": ["!win32"]
   }
 }
- ```
+```
 
 ## cpu
 
 `Array<string>` 基于 [process.arch](https://nodejs.org/api/process.html#processarch) 运行项目的操作系统黑白名单：
- 
 
 ```json
 {
-  "os": ["darwin", "linux"]
-  // or
+  // whitelist
+  "cpu": ["x64", "ia32"]
+  // blacklist
   {
-    "os": ["!win32"]
+    "cpu": ["!arm"]
   }
 }
- ```
+```

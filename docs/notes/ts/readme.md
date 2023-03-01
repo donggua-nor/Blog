@@ -1,33 +1,33 @@
 # 笔记
 
- [type-challenges](https://github.com/type-challenges/type-challenges) 的前置知识回顾笔记，源于 [官方文档](https://www.typescriptlang.org/docs/handbook/intro.html) 与 [@wangtunan](https://github.com/wangtunan) 的慷慨指导
+[type-challenges](https://github.com/type-challenges/type-challenges) 的前置知识回顾笔记，源于 [官方文档](https://www.typescriptlang.org/docs/handbook/intro.html) 与 [@wangtunan](https://github.com/wangtunan) 的慷慨指导
 
 ## 基础
 
 ### 原始类型
 
-* `string`
-* `number`
-* `boolean`
-* `symbol`
-* `bigint`
-* `null`
-* `undefined`
+- `string`
+- `number`
+- `boolean`
+- `symbol`
+- `bigint`
+- `null`
+- `undefined`
 
 :::tip null 与 undefined
 
-* 非空断言
+- 非空断言
 
 非空断言采用 `!.` 操作符，用以移除 `null` 、 `undefined` 类型，类似于 JavaScript 可选链操作符 `?.`
 
 ```ts
 function liveDangerously(x?: number | null) {
-  console.log(x!.toFixed());
+  console.log(x!.toFixed())
 }
 ```
 
-* strictNullChecks
-`strictNullChecks` 开启严格空值检查模式
+- strictNullChecks
+  `strictNullChecks` 开启严格空值检查模式
 
 ```json
 // tsconfig.json
@@ -51,7 +51,7 @@ const err: number = null // Type 'null' is not assignable to type 'number'
 ```ts
 function printLength(value?: string | null) {
   if (typeof value === 'string') {
-    console.log(value.length);
+    console.log(value.length)
   }
 }
 ```
@@ -98,11 +98,11 @@ function fn(s) {
 `unknown` 用于描述一个我们还不知道其类型的变量
 
 ```ts
-let notSure: unknown = 4;
-notSure = "maybe a string instead";
+let notSure: unknown = 4
+notSure = 'maybe a string instead'
 
 // OK, definitely a boolean
-notSure = false;
+notSure = false
 ```
 
 :::tip unknown VS any
@@ -117,7 +117,7 @@ notSure = false;
 const demo: 'demo' = 'demo'
 
 // 更常用的联合类型
-type Alignment = "left" | "right" | "center"
+type Alignment = 'left' | 'right' | 'center'
 ```
 
 ### 对象
@@ -125,18 +125,18 @@ type Alignment = "left" | "right" | "center"
 定义对象类型，可以罗列属性和对应的类型
 
 ```ts
-const obj: { name: string, job: string } = { 
+const obj: { name: string; job: string } = {
   name: 'donggua',
   job: 'fe'
 }
 ```
 
-在 JavaScript 中访问对象还可以使用方括号 `[]` 作为属性访问器，TypeScript也提供了对应的 **索引访问类型**。
+在 JavaScript 中访问对象还可以使用方括号 `[]` 作为属性访问器，TypeScript 也提供了对应的 **索引访问类型**。
 
 即通过 `[]` 进行索引签名访问，并以此创建 **映射类型**：
 
 ```ts
-const obj: { [key: string]: string } = { 
+const obj: { [key: string]: string } = {
   name: 'donggua',
   job: 'fe'
 }
@@ -167,18 +167,18 @@ function log(): void {
 不同于函数声明，TypeScript 会根据 **上下文推断** 为匿名函数指定正确的类型
 
 ```ts
-const names = ["Alice", "Bob", "Eve"]; // 此处不做类型注解
- 
+const names = ['Alice', 'Bob', 'Eve'] // 此处不做类型注解
+
 names.forEach(function (s) {
-  console.log(s.toUppercase());
-// Property 'toUppercase' does not exist on type 'string'. Did you mean 'toUpperCase'?
-});
- 
+  console.log(s.toUppercase())
+  // Property 'toUppercase' does not exist on type 'string'. Did you mean 'toUpperCase'?
+})
+
 // 箭头函数同样支持
 names.forEach((s) => {
-  console.log(s.toUppercase());
-// Property 'toUppercase' does not exist on type 'string'. Did you mean 'toUpperCase'?
-});
+  console.log(s.toUppercase())
+  // Property 'toUppercase' does not exist on type 'string'. Did you mean 'toUpperCase'?
+})
 ```
 
 #### Never
@@ -187,7 +187,7 @@ names.forEach((s) => {
 
 ```ts
 function errorHandler(message: string): never {
-  throw new Error(message);
+  throw new Error(message)
 }
 
 function infiniteLoop(): never {
@@ -197,16 +197,16 @@ function infiniteLoop(): never {
 
 ### 数组与元组
 
-* 数组类型声明有 `类型[]` 以及 [泛型](#泛型) 两种形式
+- 数组类型声明有 `类型[]` 以及 [泛型](#泛型) 两种形式
 
 ```ts
 const queues: number[] = [1, 2, 3]
 const stack: Array<number> = [1, 2, 3]
 ```
 
-* 元组相当于固定长度的数组，并且已知数组每项对应的的类型
+- 元组相当于固定长度的数组，并且已知数组每项对应的的类型
 
- 对元祖类型的数据进行 **越界访问** 或 **分配错误的类型值** 时，TypeScript 将报错提示
+对元祖类型的数据进行 **越界访问** 或 **分配错误的类型值** 时，TypeScript 将报错提示
 
 ```ts
 type Tuple = [string, number]
@@ -217,27 +217,28 @@ console.log(tuple[2]) // Tuple type 'Tuple' of length '2' has no element at inde
 
 ### 类型别名与接口
 
-* 类型别名即使用关键字 `type` 指定基础类型、对象类型、联合类型等任意类型的命名，类似于 JavaScript 中的 `let`
+- 类型别名即使用关键字 `type` 指定基础类型、对象类型、联合类型等任意类型的命名，类似于 JavaScript 中的 `let`
 
 ```ts
-type ID = number;
+type ID = number
 type Person = {
-  name: string;
-  age: number;
+  name: string
+  age: number
 }
 ```
 
-* 接口是指定对象类型命名的另一种形式
+- 接口是指定对象类型命名的另一种形式
 
 ```ts
 interface Person {
-  name: string;
-  age: number;
+  name: string
+  age: number
 }
 ```
 
 :::details type VS interface
- - 二者都可以用来声明对象或函数签名，仅语法不同
+
+- 二者都可以用来声明对象或函数签名，仅语法不同
 
 ```ts
   // type
@@ -255,9 +256,9 @@ interface Person {
   interface Params {
     (a: number, b: number) => void
   }
-  ```
+```
 
-* 二者可以相互拓展，`type` 借助 `&`，`interface` 借助 `extends`
+- 二者可以相互拓展，`type` 借助 `&`，`interface` 借助 `extends`
 
 ```ts
 // type extends type
@@ -266,7 +267,7 @@ type Result = Parameter & { b: number };
 
 // interface extends interface
 interface Parameter = { a: number };
-interface Result extends Parameter { 
+interface Result extends Parameter {
   b: number;
 };
 // type extends interface
@@ -275,7 +276,7 @@ type Result = Parameter & { b: number };
 
 // interface extends type
 type Parameter = { a: number };
-interface Result extends Parameter { 
+interface Result extends Parameter {
   b: number;
 };
 // 接口只能扩展对象类型或对象类型与静态已知成员的交集
@@ -287,7 +288,7 @@ interface Result extends Parameter {
 }
 ```
 
-* `type` 可用于声明基础类型、联合类型、元组，而 `interface` 不行
+- `type` 可用于声明基础类型、联合类型、元组，而 `interface` 不行
 
 ```ts
 type str = string
@@ -295,17 +296,17 @@ type Union = string | number
 type tuple = [string, number]
 ```
 
-* 类可以实现接口或类型别名，但不可实现联合类型的类型别名
+- 类可以实现接口或类型别名，但不可实现联合类型的类型别名
 
 ```ts
-  type UnionAlias = { a: number } | { b: number }
-  class Demo implements UnionAlias {}
-  // A class can only implement an object type or intersection of object types
-  // with statically known members
-  ```
+type UnionAlias = { a: number } | { b: number }
+class Demo implements UnionAlias {}
+// A class can only implement an object type or intersection of object types
+// with statically known members
+```
 
-* `interface` 支持 [声明合并](#声明合并)
-:::
+- `interface` 支持 [声明合并](#声明合并)
+  :::
 
 :::tip
 类似 `let` 、 `const` 的选择，一般情况下建议使用 `interface` ，在不支持的情况下再使用 `type` 类型别名
@@ -313,8 +314,8 @@ type tuple = [string, number]
 
 ### 类型推断与类型注解
 
-* **类型注解**：显式指定变量的类型
-* **类型推断**：由 TypeScript 根据上下文内容自动推断出变量类型
+- **类型注解**：显式指定变量的类型
+- **类型推断**：由 TypeScript 根据上下文内容自动推断出变量类型
 
 ```ts
 let nickname: string = 'donggua'
@@ -323,13 +324,13 @@ let job = 'FE' // TypeScript 自动推断为 job: string
 
 :::tip
 
-* 在为变量赋值明确的值时，建议尽量使用 **类型注解** 的方式
-* 对于函数返回值，始终显示指明返回类型是个更好的习惯
-:::
+- 在为变量赋值明确的值时，建议尽量使用 **类型注解** 的方式
+- 对于函数返回值，始终显示指明返回类型是个更好的习惯
+  :::
 
 ### 联合类型与交叉类型
 
-* 联合类型是由两个或者更多类型组成的类型，并用 `|` 连接，表示值可能是这些类型中的任意一个
+- 联合类型是由两个或者更多类型组成的类型，并用 `|` 连接，表示值可能是这些类型中的任意一个
 
 ```ts
 function print(value: number | string): void {
@@ -337,14 +338,14 @@ function print(value: number | string): void {
 }
 ```
 
-* 交叉类型是由多个类型的成员合并，用 `&` 连接，表示取所有成员的类型交集
+- 交叉类型是由多个类型的成员合并，用 `&` 连接，表示取所有成员的类型交集
 
 ```ts
 type Bird = {
-  fly: () => void;
+  fly: () => void
 }
 type Fish = {
-  swim: () => void;
+  swim: () => void
 }
 
 type Animal = Bird & Fish
@@ -414,9 +415,9 @@ console.log(Queues[1]) // SECOND
 
 #### 继承
 
-* 通过 `extends` 关键字派生子类实现继承
+- 通过 `extends` 关键字派生子类实现继承
 
-* 通过 `super` 关键字执行基类构造函数、访问基类的属性或方法
+- 通过 `super` 关键字执行基类构造函数、访问基类的属性或方法
 
 ```ts
 const enum SEX {
@@ -442,9 +443,9 @@ class Man extends Person {
   }
 }
 
-const man = new Man('donggua');
-console.log(man); // Man { name: 'donggua', gender: 1 }
-man.introduce(); // Hello, my name is donggua.
+const man = new Man('donggua')
+console.log(man) // Man { name: 'donggua', gender: 1 }
+man.introduce() // Hello, my name is donggua.
 ```
 
 #### 存取器
@@ -494,7 +495,8 @@ man.name = 'donggua_nor'
 #### 属性修饰符
 
 TypeScript 提供了几种语义化的修饰符，用以描述类中各种属性：
-* `readonly` 只读属性
+
+- `readonly` 只读属性
 
 ```ts
 class Person {
@@ -509,9 +511,9 @@ man.name = 'donggua_nor'
 // Cannot assign to 'name' because it is a read-only property
 ```
 
-* `public` 表示公有的访问修饰符，可以自由访问类中的成员
-* `private` 表示私有的访问修饰符，只能在类内部使用
-* `protected` 表示受保护的访问修饰符，只能在基类及其派生类内部使用
+- `public` 表示公有的访问修饰符，可以自由访问类中的成员
+- `private` 表示私有的访问修饰符，只能在类内部使用
+- `protected` 表示受保护的访问修饰符，只能在基类及其派生类内部使用
 
 ```ts
 class Person {
@@ -530,7 +532,7 @@ class Man extends Person {
     super(name, age, address)
   }
   getAge() {
-    console.log(this.age);
+    console.log(this.age)
     // Property 'age' is private and only accessible within class 'Person'
   }
   getAddress() {
@@ -548,8 +550,9 @@ man.address
 ```
 
 :::tip
- - 不同于 `C#` 必须明确使用 `public` 指定成员是公开的，TypeScript 默认成员为 `public` 属性
- - `ECMAScript` [新提案](https://github.com/tc39/proposal-private-methods) 中对于私有属性/方法是使用 `#` 修饰符
+
+- 不同于 `C#` 必须明确使用 `public` 指定成员是公开的，TypeScript 默认成员为 `public` 属性
+- `ECMAScript` [新提案](https://github.com/tc39/proposal-private-methods) 中对于私有属性/方法是使用 `#` 修饰符
 
 ```ts
 class Person {
@@ -566,25 +569,25 @@ man.name
 
 :::
 
-* `static` 静态属性与静态方法
+- `static` 静态属性与静态方法
 
 不同于实例属性/方法，静态属性/方法不会被实例所继承，而必须通过类来使用
 
 ```ts
 class SingleInstance {
-  static instance: SingleInstance;
+  static instance: SingleInstance
   private constructor(public name: string) {}
   static getInstance(name: string) {
     if (!this.instance) {
-      this.instance = new SingleInstance(name);
+      this.instance = new SingleInstance(name)
     }
-    return this.instance;
+    return this.instance
   }
 }
 
-const instance1 = SingleInstance.getInstance('instance1');
-const instance2 = SingleInstance.getInstance('instance2');
-console.log(instance1 === instance2); // true
+const instance1 = SingleInstance.getInstance('instance1')
+const instance2 = SingleInstance.getInstance('instance2')
+console.log(instance1 === instance2) // true
 ```
 
 #### 抽象类
@@ -642,7 +645,7 @@ class Man implements Person {
 
 ```ts
 interface Person {
-  new (name: string): void;
+  new (name: string): void
 }
 
 class Man implements Person {
@@ -682,14 +685,14 @@ class Person {
   constructor(public name: string, public age: number) {}
 }
 interface Man extends Person {
-  address: string;
+  address: string
 }
 
 const donggua: Man = {
   name: 'donggua',
   age: 26,
   address: 'guangzhou'
-};
+}
 ```
 
 ### 泛型
@@ -722,12 +725,12 @@ console.log(identity<string>('donggua')) // 'donggua'
 
 #### 各类泛型定义
 
-* 箭头函数和对象字面量
+- 箭头函数和对象字面量
 
 以上述例子为例，我们可以将其改造为箭头函数形式
 
 ```ts
-const identity: <T>(arg: T) => T = arg => arg
+const identity: <T>(arg: T) => T = (arg) => arg
 ```
 
 为方便理解，可以把上述代码拆解为：
@@ -735,7 +738,7 @@ const identity: <T>(arg: T) => T = arg => arg
 ```ts
 type GenericFn = <T>(arg: T) => T
 let identity: GenericFn
-identity = arg => arg // identity = (arg) => { return arg }
+identity = (arg) => arg // identity = (arg) => { return arg }
 ```
 
 对于箭头函数的泛型定义，我们还可以使用对象字面量的形式书写
@@ -745,7 +748,7 @@ identity = arg => arg // identity = (arg) => { return arg }
 type GenericFn = { <T>(arg: T): T }
 ```
 
-* 泛型接口
+- 泛型接口
 
 结合上述类型别名和对象字面量的泛型定义，我们不难想到泛型接口的定义形式：
 
@@ -763,39 +766,41 @@ interface GenericFn<T> {
 }
 ```
 
-* 泛型类
+- 泛型类
 
 泛型类和泛型接口实现相似，但始终应注意的是，类的静态属性/方法亦不能使用泛型类型
 
 ```ts
 class GenericNumber<T> {
-    zeroValue: T;
-    add: (x: T, y: T) => T;
+  zeroValue: T
+  add: (x: T, y: T) => T
 }
 
-let myGenericNumber = new GenericNumber<number>();
-myGenericNumber.zeroValue = 0;
-myGenericNumber.add = function(x, y) { return x + y; };
+let myGenericNumber = new GenericNumber<number>()
+myGenericNumber.zeroValue = 0
+myGenericNumber.add = function (x, y) {
+  return x + y
+}
 ```
 
-* 类的构造函数
+- 类的构造函数
 
 当需要对类的构造函数进行类型声明时，应采用 `new` 关键字结合 `()`
 
 ```ts
 interface Ctor<T> {
-  new (): T;
+  new (): T
 }
 function createInstance<T>(ctor: Ctor<T>): T {
-  return new ctor();
+  return new ctor()
 }
 
 class Person {
-  name: string = 'donggua';
+  name: string = 'donggua'
 }
 
-const man = createInstance(Person);
-console.log(man); // Person { name: 'donggua' }
+const man = createInstance(Person)
+console.log(man) // Person { name: 'donggua' }
 ```
 
 ### 类型收窄
@@ -805,12 +810,13 @@ console.log(man); // Person { name: 'donggua' }
 #### 类型保护
 
 类型保护通常使用 JavaScript 代码逻辑判断进行类型收窄：
-* `typeof` 判断原始数据类型
-* `boolean` 类型转换
-* `switch` 与 `===`、`!==` 等值判断
-* `in` 判断对象属性是否存在
-* `instanceof` 判断构造函数实例
-* `if`、`while` 等控制流语句
+
+- `typeof` 判断原始数据类型
+- `boolean` 类型转换
+- `switch` 与 `===`、`!==` 等值判断
+- `in` 判断对象属性是否存在
+- `instanceof` 判断构造函数实例
+- `if`、`while` 等控制流语句
 
 #### 类型断言
 
@@ -818,17 +824,17 @@ console.log(man); // Person { name: 'donggua' }
 
 ```ts
 type Bird = {
-  fly: () => void;
+  fly: () => void
 }
 type Fish = {
-  swim: () => void;
+  swim: () => void
 }
 
 function behavior(pet: Fish | Bird) {
   if ((pet as Fish).swim) {
-    (pet as Fish).swim() // pet: Fish
+    ;(pet as Fish).swim() // pet: Fish
   } else {
-    (pet as Bird).fly()  // pet: Bird
+    ;(pet as Bird).fly() // pet: Bird
   }
 }
 ```
@@ -839,14 +845,14 @@ function behavior(pet: Fish | Bird) {
 
 ```ts
 function isFish(pet: Fish | Bird): pet is Fish {
-  return (pet as Fish).swim !== undefined;
+  return (pet as Fish).swim !== undefined
 }
 
 function behavior(pet: Fish | Bird) {
   if (isFish(pet)) {
     pet.swim() // pet: Fish
   } else {
-    pet.fly()  // pet: Bird
+    pet.fly() // pet: Bird
   }
 }
 ```
@@ -862,11 +868,11 @@ function behavior(pet: Fish | Bird) {
 ```ts
 // 最为常见的接口合并
 interface Person {
-  name: string;
-  age: number;
+  name: string
+  age: number
 }
 interface Person {
-  gender: number;
+  gender: number
 }
 const person: Person = {
   name: 'donggua',
@@ -886,19 +892,20 @@ function add(a: number | string, b: number | string): number | string {
 ```
 
 :::tip TypeScript 中重载的注意事项
-* 声明方式为连续多个声明后紧跟具体实现函数，否则将报错
+
+- 声明方式为连续多个声明后紧跟具体实现函数，否则将报错
 
 ```ts
 function add(a: number, b: number): number
 function add(a: number | string, b: number | string): number | string {
-  return `${a}${b}`;
+  return `${a}${b}`
 }
-function add(a: string, b: string): string;
+function add(a: string, b: string): string
 // Function implementation is missing or not immediately following the declaration.
 // 函数声明缺少或没有紧随一个实现函数
 ```
 
-* 最终实现必须兼容已有的构造声明
+- 最终实现必须兼容已有的构造声明
 
 ```ts
 function add(a: number, b: number): number
@@ -912,7 +919,7 @@ function add(a: string, b: string): string {
 
 ### 条件类型
 
- **条件类型** 类似于 JavaScript 中的三元表达式：
+**条件类型** 类似于 JavaScript 中的三元表达式：
 
 ```ts
 type IsBoolean<T> = T extends boolean ? true : false
@@ -921,7 +928,7 @@ type IsArray<T> = T extends { length: number } ? true : false
 type Res1 = IsBoolean<string> // false
 type Res2 = IsBoolean<true> // true
 type Res3 = IsBoolean<true> // false
-type Res4 = IsArray<[1,2]> // true
+type Res4 = IsArray<[1, 2]> // true
 ```
 
 #### extends
@@ -963,10 +970,10 @@ type Result = ReturnType<typeof add>
 // Result: number
 ```
 
-* 声明泛型变量 `T` 表示一个函数类型
-* 声明占位变量 `R`，此时并不确定函数具体返回类型
-* 若 `T` 类型为函数类型，则根据函数类型上下文推导出 `R` 具体类型并返回，否则则返回 `any` 类型
-* 在上述例子中，`add` 即为返回 `number` 类型的函数，由此推断出 `R` 为 `number`
+- 声明泛型变量 `T` 表示一个函数类型
+- 声明占位变量 `R`，此时并不确定函数具体返回类型
+- 若 `T` 类型为函数类型，则根据函数类型上下文推导出 `R` 具体类型并返回，否则则返回 `any` 类型
+- 在上述例子中，`add` 即为返回 `number` 类型的函数，由此推断出 `R` 为 `number`
 
 #### 分布式条件类型
 
@@ -1050,20 +1057,20 @@ type test = 'name' | 'age'
 
 ```ts
 type Person = {
-  name: string;
-  age: number;
+  name: string
+  age: number
 }
-type Result = keyof Person;
+type Result = keyof Person
 // Result: 'name' | 'age'
 ```
 
-* 需要注意的是，对于 `number` 类型的索引签名，将视为 `string | number` 联合类型，因为 JavaScript 中对象属性键会被强制转换为字符串
+- 需要注意的是，对于 `number` 类型的索引签名，将视为 `string | number` 联合类型，因为 JavaScript 中对象属性键会被强制转换为字符串
 
 ```ts
 type Mapish = {
-  [key: number]: string;
+  [key: number]: string
 }
-type Result = keyof Arrayish;
+type Result = keyof Arrayish
 // Result: 'string' | 'number'
 
 const obj: Mapish = {}
@@ -1079,8 +1086,8 @@ type Readonly<T> = {
   readonly [K in keyof T]: T[K]
 }
 type Person = {
-  name: string;
-  age: number;
+  name: string
+  age: number
 }
 
 type Result = Readonly<Person>
@@ -1090,10 +1097,10 @@ type Result = Readonly<Person>
 // }
 ```
 
-* 定义 `Readonly` 工具函数，接收一个泛型参数 `T`
-* `keyof T` 获取 `T` 的联合类型，在此结果为 `'name' | 'age'`
-* 使用 `in` 遍历 `'name' | 'age'` 并将每次的取值赋值给变量 `K`
-* `readonly` 关键字将对象中的属性转换为只读属性，对应值为 `T[K]`
+- 定义 `Readonly` 工具函数，接收一个泛型参数 `T`
+- `keyof T` 获取 `T` 的联合类型，在此结果为 `'name' | 'age'`
+- 使用 `in` 遍历 `'name' | 'age'` 并将每次的取值赋值给变量 `K`
+- `readonly` 关键字将对象中的属性转换为只读属性，对应值为 `T[K]`
 
 ## 拓展
 
