@@ -1,3 +1,7 @@
+---
+outline: false
+---
+
 # JavaScript
 
 ## new
@@ -7,10 +11,9 @@
 3. 将新创建的对象作为 `this` 的上下文；
 4. 如果该函数没有返回对象，则返回 `this`
 
-:::: code-group
-::: code-group-item Test
+::: code-group
 
-```js
+```js [Test]
 function Car(number) {
   this.number = number
 }
@@ -27,10 +30,7 @@ console.log(car1.__proto__.color) //original color
 console.log(car2.__proto__.color) //original color
 ```
 
-:::
-::: code-group-item Achieve
-
-```js
+```js [Achieve]
 function New(ctor) {
   if (typeof ctor !== 'function') {
     return
@@ -48,18 +48,16 @@ function isObject(val) {
 ```
 
 :::
-::::
 
 ## call、apply、bind
 
 ## instanceof
 
-see [usage](/Blog/notes/js/types.html#instanceof)、[instanceof](/Blog/notes/js/prototype.html#原型链)
+see [usage](/notes/js/types#instanceof)、[instanceof](/notes/js/prototype#原型链)
 
-:::: code-group
-::: code-group-item Test
+::: code-group
 
-```js
+```js [Test]
 function Car(make, model, year) {
   this.make = make
   this.model = model
@@ -74,10 +72,7 @@ console.log(Instanceof(auto, Car)) // true
 console.log(Instanceof(auto, Object)) // true
 ```
 
-:::
-::: code-group-item Achieve
-
-```js
+```js [Achieve]
 function Instanceof(instance, ctor) {
   if (typeof ctor !== 'function') {
     throw new Error(`Right-hand side of 'instanceof' is not callable`)
@@ -109,16 +104,14 @@ function isObject(val) {
 ```
 
 :::
-::::
 
 ## Object.create
 
-see [Object.create](/Blog/notes/js/prototype.html#原型式继承)
+see [Object.create](/notes/js/prototype#原型式继承)
 
-:::: code-group
-::: code-group-item Test
+::: code-group
 
-```js
+```js [Test]
 const person = {
   isHuman: false,
   say: function () {
@@ -140,10 +133,7 @@ me.say() // Hello！
 console.log(u) // { name: 'visitor', isHuman: true } ==prototype=> person
 ```
 
-:::
-::: code-group-item Achieve
-
-```js
+```js [Achieve]
 function ObjectCreate(original) {
   function F() {}
   F.prototype = original
@@ -152,7 +142,6 @@ function ObjectCreate(original) {
 ```
 
 :::
-::::
 
 ## 防抖、节流
 
@@ -166,10 +155,9 @@ function ObjectCreate(original) {
 
 ## Iterator
 
-:::: code-group
-::: code-group-item Test
+::: code-group
 
-```ts
+```ts [Test]
 const info = {
   nickname: 'donggua',
   wechat: 'donggua_nor',
@@ -181,24 +169,19 @@ for (const key of info) {
 }
 ```
 
-:::
-::: code-group-item Achieve
-
-```ts
+```ts [Achieve]
 
 ```
 
 :::
-::::
 
 ## Array <=> Tree
 
 ## compose
 
-:::: code-group
-::: code-group-item Test
+::: code-group
 
-```ts
+```ts [Test]
 function fn1(x: number) {
   return x + 1
 }
@@ -217,24 +200,19 @@ const a = compose(fn1, fn2, fn3, fn4)
 console.log(a(1)) // 1+4+3+2+1=11
 ```
 
-:::
-::: code-group-item Achieve
-
-```ts
+```ts [Achieve]
 
 ```
 
 :::
-::::
 
 ## Scheduler
 
 带并发限制的异步调度器 `Scheduler`，保证同时运行的任务最多有两个
 
-:::: code-group
-::: code-group-item Test
+::: code-group
 
-```ts
+```ts [Test]
 addTask(1000, '1')
 addTask(500, '2')
 addTask(300, '3')
@@ -243,41 +221,31 @@ addTask(400, '4')
 // log: 2 3 1 4
 ```
 
-:::
-::: code-group-item Achieve
-
-```ts
+```ts [Achieve]
 
 ```
 
 :::
-::::
 
 ## LazyMan
 
-:::: code-group
-::: code-group-item Test
+::: code-group
 
-```ts
+```ts [Test]
+
+```
+
+```ts [Achieve]
 
 ```
 
 :::
-::: code-group-item Achieve
-
-```ts
-
-```
-
-:::
-::::
 
 ## Flatten
 
-:::: code-group
-::: code-group-item Test
+::: code-group
 
-```ts
+```ts [Test]
 const obj = {
   a: {
     b: 1,
@@ -301,24 +269,19 @@ flatten(obj)
 // }
 ```
 
-:::
-::: code-group-item Achieve
-
-```ts
+```ts [Achieve]
 
 ```
 
 :::
-::::
 
 ## Currying
 
 ## LRUCache
 
-:::: code-group
-::: code-group-item Test
+::: code-group
 
-```ts
+```ts [Test]
 const cache = new LRUCache(2)
 
 cache.put(1, 'A') // Cache [A]
@@ -334,22 +297,17 @@ console.log(cache.get(3)) // undefined => Cache[D, E]
 console.log(cache.get(4)) // D => Cache[E, D]
 ```
 
-:::
-::: code-group-item Achieve
-
-```ts
+```ts [Achieve]
 
 ```
 
 :::
-::::
 
 ## EventEmitter
 
-:::: code-group
-::: code-group-item Test
+::: code-group
 
-```js
+```js [Test]
 const event = new EventEmitter()
 
 const log = (...rest) => console.log(...rest)
@@ -365,15 +323,11 @@ event.emit('tapOnce') // only fired once
 event.emit('tapOnce')
 ```
 
-:::
-::: code-group-item Achieve
-
-```ts
+```ts [Achieve]
 
 ```
 
 :::
-::::
 
 ## cloneDeep
 

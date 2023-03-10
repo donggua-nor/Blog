@@ -1,6 +1,10 @@
-# 笔记
+---
+markdown: auto
+---
 
-[type-challenges](https://github.com/type-challenges/type-challenges) 的前置知识回顾笔记，源于 [官方文档](https://www.typescriptlang.org/docs/handbook/intro.html) 与 [@wangtunan](https://github.com/wangtunan) 的慷慨指导
+# TypeScript
+
+[TypeScript](https://github.com/microsoft/TypeScript) 笔记，基于 [官方文档](https://www.typescriptlang.org/docs/handbook/intro.html) 与 [@wangtunan](https://github.com/wangtunan) 的慷慨指导
 
 ## 基础
 

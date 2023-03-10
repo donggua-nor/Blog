@@ -13,6 +13,6 @@
     "preserveSymlinks": true,
     "esModuleInterop": true
   },
-  "include": ["**/.vuepress/**/*"],
+  "include": ["**/.vitepress/**/*"],
   "exclude": ["node_modules", ".temp", "lib", "dist"]
 }

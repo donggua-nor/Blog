@@ -103,7 +103,7 @@ const pkgNameReg = ^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$
 
 ### type
 
-`'commonjs' | 'module'` 表明包使用的模块语法（ `Node@14` 以上版本支持 [ESM](http://localhost:8080/Blog/notes/node/esm.html)）
+`'commonjs' | 'module'` 表明包使用的模块语法（ `Node@14` 以上版本支持 [ESM](/notes/node/esm.html)）
 
 - 默认为 `commonjs`, 对于 `mjs` 后缀名文件采用 `ESM` 语法解析
 

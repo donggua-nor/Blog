@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'RampartOne';
+  src: url('../font/RampartOne-Regular.ttf');
+}
+
+.VPImage {
+  clip-path: circle(50%);
+}
+
+.VPNavBarTitle .title,
+.VPHomeHero .text {
+  font-family: RampartOne;
+}
+
+/* custom */
+.d-img__center {
+  display: block;
+  margin: 0 auto;
+}
