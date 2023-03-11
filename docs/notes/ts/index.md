@@ -1,5 +1,5 @@
 ---
-markdown: auto
+outline: [2, 3]
 ---
 
 # TypeScript

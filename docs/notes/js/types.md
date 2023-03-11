@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 数据类型
 
 ## 基本数据
@@ -22,11 +27,11 @@ _Reference values / Objects 对象_
 
 ## 区别
 
-- 基本数据占据内存空间固定并存储在 **堆栈（Stack）** 中，**按值（by value）** 访问，查询速度较快。
+- 基本数据占据内存空间固定并存储在**堆栈（Stack）** 中, **按值（by value）** 访问, 查询速度较快
 
-- 引用数据占据内存空间更多且不固定并存储于 **堆（Heap）** 中，**按引用（by reference）** 访问，即内存中存储对象的引用地址 / 指针，查询速度较慢。
+- 引用数据占据内存空间更多且不固定并存储于**堆（Heap）** 中，**按引用（by reference）** 访问，即内存中存储对象的引用地址 / 指针，查询速度较慢。
 
-<img class="d-img__center" src="https://cdn.JsDelivr.net/gh/donggua-nor/picture-lib//blog/js_values_stored.png" />
+<img class="d-img__center" src="https://cdn.JsDelivr.net/gh/donggua-nor/picture-lib/blog/js_values_stored.png" />
 
 - 基本数据仅保存原始值，而引用数据的对象一般拥有相应的**属性或方法**。
 
@@ -80,7 +85,9 @@ typeof new WeakSet() // object
 
 - `typeof null === 'object'`
 
-在 JavaScript 最初的实现中，JavaScript 中的值是由一个表示类型的标签和实际数据值表示的。对象的类型标签是 0。由于 null 代表的是空指针（大多数平台下值为 **`0x00`**），因此，null 的类型标签是 0，typeof null 也因此返回 "object" - [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof#typeof_null)
+在 JavaScript 最初的实现中，JavaScript 中的值是由一个表示类型的标签和实际数据值表示的。对象的类型标签是 0。由于 null 代表的是空指针（大多数平台下值为 **`0x00`**），因此，null 的类型标签是 0，typeof null 也因此返回 "object"
+
+参阅 [typeof | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof#typeof_null)
 
 ### instanceof
 
@@ -111,8 +118,6 @@ Array.isArray('str') // false
 :::tip
 在检测数组时，相对于 `instanceof` ，该方法可检测 `iframes`
 
-:::
-
 ```js
 const iframe = document.createElement('iframe')
 document.body.appendChild(iframe)
@@ -122,6 +127,8 @@ const arr = new xArray(1, 2, 3) // [1,2,3]
 Array.isArray(arr) // true
 arr instanceof Array // false
 ```
+
+:::
 
 ### Object.prototype.toString()
 

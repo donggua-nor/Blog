@@ -18,12 +18,16 @@ export default defineConfig({
     sidebar,
 
     outline: {
-      level: [2, 3]
+      level: [2, 4]
     },
     socialLinks: [{ icon: 'github', link: 'https://github.com/donggua-nor' }],
 
     footer: {
       copyright: 'MIT Licensed | Copyright © 2021-present Donggua'
     }
+  },
+
+  markdown: {
+    theme: 'one-dark-pro'
   }
 })
