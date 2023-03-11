@@ -13,7 +13,8 @@ export const genFallbackSidebar = () => {
     text: title,
     link: `/pg/js#${title
       .toLowerCase()
-      .replace(/[^\w\s]/gi, '')
+      .replace(/[&+]/gi, '') /* hack: maybe need to read markdown-it */
+      .replace(/[^\w\s\、\u4e00-\u9fa5]/gi, ' ')
       .replace(/\s+/g, '-')}`
   }))
 
