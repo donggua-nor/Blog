@@ -15,7 +15,7 @@ outline: false
 
 ::: code-group
 
-```js [Test]
+```js [<i class="fa-solid fa-flag-checkered"></i> Specification]
 function Car(number) {
   this.number = number
 }
@@ -32,7 +32,7 @@ console.log(car1.__proto__.color) //original color
 console.log(car2.__proto__.color) //original color
 ```
 
-```js [Achieve]
+```js [<i class="fa-solid fa-code"></i> Solution]
 function New(ctor) {
   if (typeof ctor !== 'function') {
     return
@@ -59,7 +59,7 @@ see [usage](/notes/js/types#instanceof)、[instanceof](/notes/js/prototype#原�
 
 ::: code-group
 
-```js [Test]
+```js [<i class="fa-solid fa-flag-checkered"></i> Specification]
 function Car(make, model, year) {
   this.make = make
   this.model = model
@@ -74,7 +74,7 @@ console.log(Instanceof(auto, Car)) // true
 console.log(Instanceof(auto, Object)) // true
 ```
 
-```js [Achieve]
+```js [<i class="fa-solid fa-code"></i> Solution]
 function Instanceof(instance, ctor) {
   if (typeof ctor !== 'function') {
     throw new Error(`Right-hand side of 'instanceof' is not callable`)
@@ -113,7 +113,7 @@ see [Object.create](/notes/js/prototype#原型式继承)
 
 ::: code-group
 
-```js [Test]
+```js [<i class="fa-solid fa-flag-checkered"></i> Specification]
 const person = {
   isHuman: false,
   say: function () {
@@ -135,7 +135,7 @@ me.say() // Hello！
 console.log(u) // { name: 'visitor', isHuman: true } ==prototype=> person
 ```
 
-```js [Achieve]
+```js [<i class="fa-solid fa-code"></i> Solution]
 function ObjectCreate(original) {
   function F() {}
   F.prototype = original
@@ -159,7 +159,7 @@ function ObjectCreate(original) {
 
 ::: code-group
 
-```ts [Test]
+```ts [<i class="fa-solid fa-flag-checkered"></i> Specification]
 const info = {
   nickname: 'donggua',
   wechat: 'donggua_nor',
@@ -171,7 +171,7 @@ for (const key of info) {
 }
 ```
 
-```ts [Achieve]
+```ts [<i class="fa-solid fa-code"></i> Solution]
 
 ```
 
@@ -183,7 +183,7 @@ for (const key of info) {
 
 ::: code-group
 
-```ts [Test]
+```ts [<i class="fa-solid fa-flag-checkered"></i> Specification]
 function fn1(x: number) {
   return x + 1
 }
@@ -202,7 +202,7 @@ const a = compose(fn1, fn2, fn3, fn4)
 console.log(a(1)) // 1+4+3+2+1=11
 ```
 
-```ts [Achieve]
+```ts [<i class="fa-solid fa-code"></i> Solution]
 
 ```
 
@@ -214,7 +214,7 @@ console.log(a(1)) // 1+4+3+2+1=11
 
 ::: code-group
 
-```ts [Test]
+```ts [<i class="fa-solid fa-flag-checkered"></i> Specification]
 addTask(1000, '1')
 addTask(500, '2')
 addTask(300, '3')
@@ -223,7 +223,7 @@ addTask(400, '4')
 // log: 2 3 1 4
 ```
 
-```ts [Achieve]
+```ts [<i class="fa-solid fa-code"></i> Solution]
 
 ```
 
@@ -233,11 +233,11 @@ addTask(400, '4')
 
 ::: code-group
 
-```ts [Test]
+```ts [<i class="fa-solid fa-flag-checkered"></i> Specification]
 
 ```
 
-```ts [Achieve]
+```ts [<i class="fa-solid fa-code"></i> Solution]
 
 ```
 
@@ -247,7 +247,7 @@ addTask(400, '4')
 
 ::: code-group
 
-```ts [Test]
+```ts [<i class="fa-solid fa-flag-checkered"></i> Specification]
 const obj = {
   a: {
     b: 1,
@@ -271,7 +271,7 @@ flatten(obj)
 // }
 ```
 
-```ts [Achieve]
+```ts [<i class="fa-solid fa-code"></i> Solution]
 
 ```
 
@@ -283,7 +283,7 @@ flatten(obj)
 
 ::: code-group
 
-```ts [Test]
+```ts [<i class="fa-solid fa-flag-checkered"></i> Specification]
 const cache = new LRUCache(2)
 
 cache.put(1, 'A') // Cache [A]
@@ -299,7 +299,7 @@ console.log(cache.get(3)) // undefined => Cache[D, E]
 console.log(cache.get(4)) // D => Cache[E, D]
 ```
 
-```ts [Achieve]
+```ts [<i class="fa-solid fa-code"></i> Solution]
 
 ```
 
@@ -309,7 +309,7 @@ console.log(cache.get(4)) // D => Cache[E, D]
 
 ::: code-group
 
-```js [Test]
+```js [<i class="fa-solid fa-flag-checkered"></i> Specification]
 const event = new EventEmitter()
 
 const log = (...rest) => console.log(...rest)
@@ -325,7 +325,7 @@ event.emit('tapOnce') // only fired once
 event.emit('tapOnce')
 ```
 
-```ts [Achieve]
+```ts [<i class="fa-solid fa-code"></i> Solution]
 
 ```
 

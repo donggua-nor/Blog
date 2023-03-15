@@ -9,5 +9,6 @@ export const head: HeadConfig[] = [
   ['meta', { name: 'msapplication-TileImage', content: '/favicon.ico' }],
   ['meta', { name: 'msapplication-TileColor', content: '#3eaf7c' }],
   ['meta', { name: 'theme-color', content: '#3eaf7c' }],
-  ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }]
+  ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+  ['script', { src: 'https://kit.fontawesome.com/b61423b84a.js', crossorigin: 'anonymous' }]
 ]
