@@ -522,13 +522,14 @@ const pkgManagerReg = (npm|pnpm|yarn)@\d+\.\d+\.\d+(-.+)?
 `Array<string>` 基于 [process.platform](https://nodejs.org/api/process.html#processplatform) 运行项目的操作系统黑白名单：
 
 ```json
+// whitelist
 {
-  // whitelist
   "os": ["darwin", "linux"]
-  // blacklist
-  {
-    "os": ["!win32"]
-  }
+}
+
+// blacklist
+{
+  "os": ["!win32"]
 }
 ```
 
@@ -537,13 +538,14 @@ const pkgManagerReg = (npm|pnpm|yarn)@\d+\.\d+\.\d+(-.+)?
 `Array<string>` 基于 [process.arch](https://nodejs.org/api/process.html#processarch) 运行项目的操作系统黑白名单：
 
 ```json
+// whitelist
 {
-  // whitelist
   "cpu": ["x64", "ia32"]
-  // blacklist
-  {
-    "cpu": ["!arm"]
-  }
+}
+
+// blacklist
+{
+  "cpu": ["!arm"]
 }
 ```
 
@@ -571,7 +573,7 @@ _对于模块是否有副作用的定义，基本是指开发者在设计时是�
 参阅 [unpkg | docs](https://unpkg.com/)
 :::
 
-### jsbelir
+### jsdelivr
 
 `string => filePath` 类似于 [unpkg](#unpkg)
 
