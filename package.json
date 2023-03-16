@@ -1,5 +1,6 @@
 {
   "name": "blog",
+  "private":"true",
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
@@ -15,12 +16,9 @@
     "javascript",
     "developer"
   ],
-  "author": "donggua",
+  "author": "donggua <donggua.nor@gmail.com> (https://github.com/donggua-nor)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/donggua-nor/Blog/issues"
-  },
-  "homepage": "https://github.com/donggua-nor/Blog#readme",
+  "homepage": "https://github.com/donggua-nor/Blog",
   "devDependencies": {
     "@types/node": "^18.15.0",
     "cross-env": "^7.0.3",
