@@ -35,5 +35,8 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       items: genFallbackSidebar()
     }
   ],
-  '/workflows/': [{ text: 'Workflows', link: '/workflows/' }]
+  '/workflows/': [
+    { text: 'Workflows', link: '/workflows/' },
+    { text: 'Experience', link: '/workflows/exp' }
+  ]
 }
