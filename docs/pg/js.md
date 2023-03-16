@@ -6,6 +6,8 @@ outline: false
 
 # JavaScript
 
+_Collection of interesting or practical practice questions_
+
 ## new
 
 1. 创建一个空的简单 JavaScript 对象 `{}`；
@@ -52,6 +54,14 @@ function isObject(val) {
 :::
 
 ## call、apply、bind
+
+::: code-group
+
+```js [<i class="fa-solid fa-code"></i> Solution]
+
+```
+
+:::
 
 ## instanceof
 
@@ -147,13 +157,33 @@ function ObjectCreate(original) {
 
 ## 防抖、节流
 
+::: code-group
+
+```js [<i class="fa-solid fa-code"></i> Solution]
+
+```
+
+:::
+
 ## 图片懒加载
+
+::: code-group
+
+```js [<i class="fa-solid fa-code"></i> Solution]
+
+```
+
+:::
 
 ## JSONP
 
-## 数组 flat
+::: code-group
 
-## 数组 reduce
+```js [<i class="fa-solid fa-code"></i> Solution]
+
+```
+
+:::
 
 ## Iterator
 
@@ -178,6 +208,61 @@ for (const key of info) {
 :::
 
 ## Array <=> Tree
+
+::: code-group
+
+```js [<i class="fa-solid fa-flag-checkered"></i> Specification]
+const arr = [
+  { id: 1, name: '部门1', pid: 0 },
+  { id: 2, name: '部门2', pid: 1 },
+  { id: 3, name: '部门3', pid: 2 },
+  { id: 4, name: '部门4', pid: 3 },
+  { id: 5, name: '部门5', pid: 3 }
+]
+
+/* convert */
+
+const tree = [
+  {
+    id: 1,
+    name: '部门1',
+    pid: 0,
+    children: [
+      {
+        id: 2,
+        name: '部门2',
+        pid: 1,
+        children: []
+      },
+      {
+        id: 3,
+        name: '部门3',
+        pid: 2,
+        children: [
+          {
+            id: 4,
+            name: '部门4',
+            pid: 3,
+            children: []
+          },
+          {
+            id: 5,
+            name: '部门5',
+            pid: 3,
+            children: []
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
+```js [<i class="fa-solid fa-code"></i> Solution]
+
+```
+
+:::
 
 ## compose
 
@@ -234,7 +319,24 @@ addTask(400, '4')
 ::: code-group
 
 ```ts [<i class="fa-solid fa-flag-checkered"></i> Specification]
+LazyMan('Hank')
+// Hi! This is Hank!
 
+LazyMan('Hank').sleep(10).eat('dinner')
+// Hi! This is Hank!
+// 等待10秒..
+// Wake up after 10
+// Eat dinner~
+
+LazyMan('Hank').eat('dinner').eat('supper')
+// Hi This is Hank!
+// Eat dinner~
+// Eat supper~
+
+LazyMan('Hank').sleepFirst(5).eat('supper')
+// Wake up after 5
+// Hi This is Hank!
+// Eat supper
 ```
 
 ```ts [<i class="fa-solid fa-code"></i> Solution]
@@ -259,6 +361,7 @@ const obj = {
 }
 
 flatten(obj)
+
 // {
 //  'a.b': 1,
 //  'a.c': 2,
@@ -278,6 +381,31 @@ flatten(obj)
 :::
 
 ## Currying
+
+::: code-group
+
+```js [<i class="fa-solid fa-flag-checkered"></i> Specification]
+const _log(a, b, c, d, e) => console.log(a, b, c, d, e)
+
+const logger = currying(_log)
+
+logger(1, 2, 3, 4, 5)
+logger(1)(2)(3, 4, 5)
+logger(1, 2)(3, 4)(5)
+logger(1)(2)(3)(4)(5)
+
+// 1
+// 2
+// 3
+// 4
+// 5
+```
+
+```js [<i class="fa-solid fa-code"></i> Solution]
+
+```
+
+:::
 
 ## LRUCache
 
@@ -333,6 +461,22 @@ event.emit('tapOnce')
 
 ## cloneDeep
 
+::: code-group
+
+```js [<i class="fa-solid fa-code"></i> Solution]
+
+```
+
+:::
+
 ## Promises/A+
 
 [Promise Standard](https://promisesaplus.com/)
+
+::: code-group
+
+```js [<i class="fa-solid fa-code"></i> Solution]
+
+```
+
+:::
