@@ -58,4 +58,90 @@
 
 ## Stylelint
 
+> 通过实践体验, 个人觉得 Stylelint 并没有什么必要, 多依赖一个工具反而徒增开发烦恼
+>
+> 使用 [Prettier](#Prettier) 进行格式化美化代码足以
+
+为自己保持一个良好的 CSS 书写顺序
+
+```json
+{
+  /**
+   * Using .json5/.jsonc if u want to comments like me,
+   * But I need highlight here.
+   *
+   * 1. 布局定位 > 容器布局 > 容器属性
+   * 2. 字体内容 > 颜色、背景 > 其他
+   * 3. 同类属性放置于一起，并按使用频率排序，简写属性 > 具体属性
+   */
+  "order/properties-order": [
+    /* 布局定位 */
+    "float",
+    "clear",
+    "position",
+    "top",
+    "bottom",
+    "right",
+    "left",
+    /* 容器布局 */
+    "display",
+    "flex",
+    "align-items",
+    "justify-content",
+    "overflow",
+    "overflow-x",
+    "overflow-y",
+    /* 容器属性: 由内至外 */
+    "width",
+    "min-width",
+    "max-width",
+    "height",
+    "min-height",
+    "max-height",
+    "padding",
+    "padding-top",
+    "padding-right",
+    "padding-bottom",
+    "padding-left",
+    "border",
+    "outline",
+    "margin",
+    "margin-top",
+    "margin-right",
+    "margin-bogttom",
+    "margin-left",
+    /* 文本内容 */
+    "line-height",
+    "font-size",
+    "font-family",
+    "font-weight",
+    "text-align",
+    "text-justify",
+    "text-indent",
+    "text-overflow",
+    "text-decoration",
+    "white-space",
+    "writing-mode",
+    /* 颜色与背景 */
+    "color",
+    "background",
+    "background-position",
+    "background-repeat",
+    "background-size",
+    "background-color",
+    "background-clip",
+    /* whatever */
+    "opacity",
+    "filter",
+    "list-style",
+    "visibility",
+    "z-index",
+    "box-shadow",
+    "resize",
+    "transition",
+    "transform"
+  ]
+}
+```
+
 ## User experience
