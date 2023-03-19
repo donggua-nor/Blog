@@ -53,8 +53,101 @@
 
 ## Prettier
 
+### Rules
+
+:::details
+
+#### _semi_
+
+一般来说，仅在以 `(`、`[`、`/`、`+`、`-` 开头的代码行需要分号以保证正确解析代码：
+
+```js
+// IIFE
+;(() => {
+  console.log('semi styles')
+})()
+```
+
+---
+
+#### _singleQuote_ 与 jsxSingleQuote
+
+单引号相对更简洁，但在浏览器中基本使用双引号，故在 JSX 中保留此行为
+
+---
+
+#### _trailingComma_
+
+- `es5`
+
+```c
+const obj = { a: 1, b: 2, }
+const arr = [1, 2, 3,]
+```
+
+- `none`
+
+```js
+const obj = { a: 1, b: 2 }
+const arr = [1, 2, 3]
+```
+
+---
+
+#### bracketSameLine
+
+- `true`
+
+```jsx
+// prettier-ignore
+<button
+  id="prettier-id"
+  className="prettier-class"
+  onClick={handleClick}>
+  Click Here
+</button>
+```
+
+- `false`
+
+```jsx
+// prettier-ignore
+<button
+  id="prettier-id"
+  className="prettier-class"
+  onClick={handleClick}
+>
+  Click Here
+</button>
+```
+
+:::
+
 - [prettier | Docs](https://prettier.io/docs/en/options.html)
 - [.prettierrc](http://json.schemastore.org/prettierrc)
+
+```json
+/* .prettierrc.json */
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": false,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "avoid",
+  "proseWrap": "preserve",
+  "htmlWhitespaceSensitivity": "css",
+  "vueIndentScriptAndStyle": true,
+  "endOfLine": "lf",
+  "embeddedLanguageFormatting": "auto",
+  "singleAttributePerLine": false
+}
+```
 
 ## Stylelint
 
