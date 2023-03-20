@@ -33,8 +33,10 @@
 │   ├── types                         # TypeScript 声明
 │   ├── utils                         # 工具函数
 │   └── main.tsx                      # 应用启动入口
+├── ...                               #
 ├── README.md                         # 必需的项目文档
-└── package.json                      # 项目信息
+├── package.json                      # 项目信息
+└── tsconfig.json                     # TypeScript 配置文件
 ```
 
 :::
@@ -233,6 +235,7 @@ const arr = [1, 2, 3]
     "resize",
     "transition",
     "transform"
+    /* ... */
   ]
 }
 ```
