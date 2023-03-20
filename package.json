@@ -1,6 +1,6 @@
 {
   "name": "blog",
-  "private":"true",
+  "private": "true",
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
