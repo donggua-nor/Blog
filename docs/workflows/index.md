@@ -11,7 +11,7 @@
 ```bash [<i class="fa-solid fa-list"></i> Basic]
 .
 ├── .vscode                           # VSCode 配置文件，用于统一开发习惯
-├── public                            # 网站资源 (ex. favicon.ico)
+├── public                            # 网站资源 (eg. favicon.ico)
 ├── scripts                           # 脚本相关
 ├── src                               #
 │   ├── apis                          # 接口 (有时候会使用 services 命名)
