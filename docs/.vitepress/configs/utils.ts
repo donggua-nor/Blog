@@ -1,6 +1,8 @@
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 
+export const basePath = process.env.APP_BASE_PATH || '/'
+
 export const genFallbackSidebar = () => {
   const root = process.cwd()
   const playgroundFile = resolve(root, 'docs', 'pg', 'js.md')

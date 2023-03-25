@@ -1,11 +1,12 @@
 import { defineConfig } from 'vitepress'
 import { head, nav, sidebar } from './configs'
+import { basePath } from './configs/utils'
 
 export default defineConfig({
   lang: 'zh-CN',
   title: 'donggua',
   description: "Donggua's Blog",
-  base: process.env.APP_BASE_PATH || '/',
+  base: basePath,
   outDir: '../dist',
   cacheDir: '../.cache',
   lastUpdated: true,
