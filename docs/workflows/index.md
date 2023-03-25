@@ -56,6 +56,8 @@ outline: [2, 2]
 
 - [.eslintrc | GitHub](https://github.com/standard/eslint-config-standard/blob/master/.eslintrc.json)
 
+- [@antfu/eslint-config | @antfu](https://github.com/antfu/eslint-config)
+
 ## Prettier
 
 ### Rules
