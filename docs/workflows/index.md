@@ -81,9 +81,8 @@ const commitRE =
 |   _perf_    | 性能优化相关                           |
 |   _build_   | 构建工具或者依赖项的改动               |
 |    _ci_     | 修改项目持续集成流程                   |
-|  _revert_   | 回复或者回退相关提交                   |
+|  _revert_   | 恢复或还原相关提交                     |
 | _wip/draft_ | 托管平台对应的草稿标识                 |
-
 
 - [Conventional Commits | GitHub](https://github.com/conventional-commits/conventionalcommits.org)
 - [Angular convention | Github](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines)
