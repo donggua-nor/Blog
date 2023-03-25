@@ -1,6 +1,7 @@
 ---
 outline: [2, 2]
 ---
+
 # Workflows
 
 > **All about what I've learned though work, including personal coding standards, exp & thinking, but not limited to that.**
@@ -50,7 +51,42 @@ outline: [2, 2]
 
 ## Git
 
+```bash
+<type>(<scope>): <subject>
+
+<body> # optional details
+
+<footer> # optional notes
+```
+
+**RegExp(validater)**
+
+```js
+// based on vuejs | @EvenYou
+const commitRE =
+  /^((revert|wip|draft): )?(feat|fix|chore|docs|style|test|refactor|perf|build|ci)(\(.+\))?: .{1,50}/
+```
+
+#### type 提交类型
+
+|    type     | introduction                           |
+| :---------: | :------------------------------------- |
+|   _feat_    | 新功能                                 |
+|    _fix_    | 修复 bug                               |
+|   _chore_   | 其他类型的提交                         |
+|   _docs_    | 文档类改动                             |
+|   _style_   | 代码格式改动，同理适用于业务样式调整   |
+|   _test_    | 单元测试、e2e 测试                     |
+| _refactor_  | 重构（即不是新增功能，也不是修复 bug） |
+|   _perf_    | 性能优化相关                           |
+|   _build_   | 构建工具或者依赖项的改动               |
+|    _ci_     | 修改项目持续集成流程                   |
+|  _revert_   | 回复或者回退相关提交                   |
+| _wip/draft_ | 托管平台对应的草稿标识                 |
+
+
 - [Conventional Commits | GitHub](https://github.com/conventional-commits/conventionalcommits.org)
+- [Angular convention | Github](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines)
 
 ## ESLint
 
