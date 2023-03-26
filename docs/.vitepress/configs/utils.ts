@@ -11,7 +11,7 @@ export const genFallbackSidebar = () => {
   const reg = /(?<=##\s)(.+)/g
   const titles = content.match(reg) as string[]
 
-  const sidebar = titles.map((title) => ({
+  const sidebar = titles.map(title => ({
     text: title,
     link: `/pg/js#${title
       .toLowerCase()

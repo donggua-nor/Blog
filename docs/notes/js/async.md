@@ -106,10 +106,10 @@ function* gen() {
 }
 
 const scheduler = gen()
-scheduler.next().value.catch((err) => errHandler(err))
+scheduler.next().value.catch(err => errHandler(err))
 scheduler.next().value.then(() => {
   const result = scheduler.next()
-  result.value.then((res) => console.log(res))
+  result.value.then(res => console.log(res))
 })
 
 // Hello World!
@@ -144,7 +144,7 @@ function promiseLauncher(gen) {
     if (!res.done) {
       return res.value
     }
-    res.value.then((data) => next(data))
+    res.value.then(data => next(data))
   }
   next()
 }
@@ -185,5 +185,5 @@ async function fileScheduler() {
 除此之外， `async/await` 方式更加语义化，除了例子中统一处理错误的方式，我们还可以针对某个一步操作进行错误处理：
 
 ```js
-;async () => await mkdir(dirPath).catch((err) => errHandler(err))
+;async () => await mkdir(dirPath).catch(err => errHandler(err))
 ```

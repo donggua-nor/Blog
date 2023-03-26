@@ -187,9 +187,9 @@ console.assert(clone.itself === clone) // and the circular reference is preserve
 
 ```js
 function cloneUsingChannel(obj) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const channel = new MessageChannel()
-    channel.port1.onmessage = (e) => resolve(e.data)
+    channel.port1.onmessage = e => resolve(e.data)
     channel.port2.postMessage(obj)
   })
 }

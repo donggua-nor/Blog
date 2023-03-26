@@ -22,6 +22,7 @@
   "devDependencies": {
     "@types/node": "^18.15.0",
     "cross-env": "^7.0.3",
+    "dg-prettier-config": "^1.0.1",
     "prettier": "^2.7.1",
     "vitepress": "1.0.0-alpha.51"
   }

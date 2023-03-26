@@ -3,12 +3,14 @@ lockfileVersion: 5.4
 specifiers:
   '@types/node': ^18.15.0
   cross-env: ^7.0.3
+  dg-prettier-config: ^1.0.1
   prettier: ^2.7.1
   vitepress: 1.0.0-alpha.51
 
 devDependencies:
   '@types/node': 18.15.0
   cross-env: 7.0.3
+  dg-prettier-config: 1.0.1
   prettier: 2.8.4
   vitepress: 1.0.0-alpha.51_@types+node@18.15.0
 
@@ -564,6 +566,10 @@ packages:
 
   /csstype/2.6.21:
     resolution: {integrity: sha512-Z1PhmomIfypOpoMjRQB70jfvy/wxT50qW08YXO5lMIJkrdq4yOTR+AW7FqutScmB9NkLwxo+jU+kZLbofZZq/w==}
+    dev: true
+
+  /dg-prettier-config/1.0.1:
+    resolution: {integrity: sha512-7hClkkddAqudjwxj/oTRxbuJ3502viZV3w2TAZA95nfjgYyEn6sgsoqK0lTsJcpo0cXwylrogs9wQb9u4kMUxA==}
     dev: true
 
   /esbuild/0.16.17:

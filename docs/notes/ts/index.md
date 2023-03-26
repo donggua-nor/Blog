@@ -179,7 +179,7 @@ names.forEach(function (s) {
 })
 
 // 箭头函数同样支持
-names.forEach((s) => {
+names.forEach(s => {
   console.log(s.toUppercase())
   // Property 'toUppercase' does not exist on type 'string'. Did you mean 'toUpperCase'?
 })
@@ -734,7 +734,7 @@ console.log(identity<string>('donggua')) // 'donggua'
 以上述例子为例，我们可以将其改造为箭头函数形式
 
 ```ts
-const identity: <T>(arg: T) => T = (arg) => arg
+const identity: <T>(arg: T) => T = arg => arg
 ```
 
 为方便理解，可以把上述代码拆解为：
@@ -742,7 +742,7 @@ const identity: <T>(arg: T) => T = (arg) => arg
 ```ts
 type GenericFn = <T>(arg: T) => T
 let identity: GenericFn
-identity = (arg) => arg // identity = (arg) => { return arg }
+identity = arg => arg // identity = (arg) => { return arg }
 ```
 
 对于箭头函数的泛型定义，我们还可以使用对象字面量的形式书写
