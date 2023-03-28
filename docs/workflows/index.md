@@ -14,15 +14,15 @@ outline: [2, 2]
 
 ```bash [<i class="fa-solid fa-list"></i> Basic]
 .
-├── .vscode                           # VSCode 配置文件，用于统一开发习惯
-├── public                            # 网站资源 (eg. favicon.ico)
+├── .vscode                           # VSCode 配置文件
+├── public                            # 网站资源 (e.g. favicon.ico)
 ├── scripts                           # 脚本相关
 ├── src                               #
 │   ├── apis                          # 接口 (有时候会使用 services 命名)
 │   ├── assets                        # 静态资源
 │   ├── components                    # 全局组件
 │   ├── constants                     # 常量
-│   ├── hooks                         # 通用 Hooks
+│   ├── hooks                         # 通用 hooks
 │   ├── lib                           # 第三方或无业务依赖代码
 │   ├── locales                       # i18n
 │   ├── pages                         # 页面
@@ -51,7 +51,7 @@ outline: [2, 2]
 
 ## Git
 
-```bash
+```
 <type>(<scope>): <subject>
 
 <body> # optional details
@@ -69,20 +69,20 @@ const commitRE =
 
 #### type 提交类型
 
-|    type     | introduction                           |
-| :---------: | :------------------------------------- |
-|   _feat_    | 新功能                                 |
-|    _fix_    | 修复 bug                               |
-|   _chore_   | 其他类型的提交                         |
-|   _docs_    | 文档类改动                             |
-|   _style_   | 代码格式改动，同理适用于业务样式调整   |
-|   _test_    | 单元测试、e2e 测试                     |
-| _refactor_  | 重构（即不是新增功能，也不是修复 bug） |
-|   _perf_    | 性能优化相关                           |
-|   _build_   | 构建工具或者依赖项的改动               |
-|    _ci_     | 修改项目持续集成流程                   |
-|  _revert_   | 恢复或还原相关提交                     |
-| _wip/draft_ | 托管平台对应的草稿标识                 |
+|       type       | introduction                           |
+| :--------------: | :------------------------------------- |
+|      _feat_      | 新功能                                 |
+|      _fix_       | 修复 bug                               |
+|     _chore_      | 其他类型的提交                         |
+|      _docs_      | 文档类改动                             |
+|     _style_      | 代码格式改动，同理适用于业务样式调整   |
+|      _test_      | 单元测试、e2e 测试                     |
+|    _refactor_    | 重构（即不是新增功能，也不是修复 bug） |
+|      _perf_      | 性能优化相关                           |
+|     _build_      | 构建工具或者依赖项的改动               |
+|       _ci_       | 修改项目持续集成流程                   |
+|     _revert_     | 恢复或还原相关提交                     |
+| _wip_ \| _draft_ | 托管平台对应的草稿标识                 |
 
 - [Conventional Commits | GitHub](https://github.com/conventional-commits/conventionalcommits.org)
 - [Angular convention | Github](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines)
@@ -104,7 +104,7 @@ const commitRE =
 一般来说，仅在以 `(`、`[`、`/`、`+`、`-` 开头的代码行需要分号以保证正确解析代码：
 
 ```js
-// IIFE
+// e.g. IIFE
 ;(() => {
   console.log('semi styles')
 })()
@@ -165,9 +165,6 @@ const arr = [1, 2, 3]
 
 :::
 
-- [prettier | Docs](https://prettier.io/docs/en/options.html)
-- [.prettierrc](http://json.schemastore.org/prettierrc)
-
 ```json
 /* .prettierrc.json */
 {
@@ -190,6 +187,9 @@ const arr = [1, 2, 3]
   "singleAttributePerLine": false
 }
 ```
+
+- [prettier | Docs](https://prettier.io/docs/en/options.html)
+- [.prettierrc](http://json.schemastore.org/prettierrc)
 
 ## Stylelint
 
