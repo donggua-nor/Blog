@@ -62,7 +62,11 @@ outline: [2, 2]
 **RegExp(validater)**
 
 ```js
-// based on vuejs | @EvenYou
+/**
+ * based on Vue.js
+ * https://github.com/vuejs/core/blob/main/scripts/verifyCommit.js
+ * @EvenYou
+ */
 const commitRE =
   /^((revert|wip|draft): )?(feat|fix|chore|docs|style|test|refactor|perf|build|ci)(\(.+\))?: .{1,50}/
 ```
@@ -95,7 +99,28 @@ const commitRE =
 
 ## Prettier
 
-### Rules
+```json
+/* .prettierrc.json */
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": false,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "avoid",
+  "proseWrap": "preserve",
+  "htmlWhitespaceSensitivity": "css",
+  "vueIndentScriptAndStyle": true,
+  "endOfLine": "lf",
+  "embeddedLanguageFormatting": "auto",
+  "singleAttributePerLine": false
+}
+```
 
 :::details
 
@@ -114,7 +139,7 @@ const commitRE =
 
 #### _singleQuote_ 与 jsxSingleQuote
 
-单引号相对更简洁，但在浏览器中基本使用双引号，故在 JSX 中保留此行为
+单引号相对更简洁，但在浏览器中基本使用双引号，故在 JSX 中保留为双引号
 
 ---
 
@@ -165,28 +190,15 @@ const arr = [1, 2, 3]
 
 :::
 
-```json
-/* .prettierrc.json */
-{
-  "printWidth": 100,
-  "tabWidth": 2,
-  "useTabs": false,
-  "semi": false,
-  "singleQuote": true,
-  "quoteProps": "as-needed",
-  "jsxSingleQuote": false,
-  "trailingComma": "none",
-  "bracketSpacing": true,
-  "bracketSameLine": false,
-  "arrowParens": "avoid",
-  "proseWrap": "preserve",
-  "htmlWhitespaceSensitivity": "css",
-  "vueIndentScriptAndStyle": true,
-  "endOfLine": "lf",
-  "embeddedLanguageFormatting": "auto",
-  "singleAttributePerLine": false
-}
+:::tip
+
+Try to use [@dg-prettier-config](https://www.npmjs.com/package/dg-prettier-config)
+
+```bash
+pnpm add dg-prettier-config -D && npm pkg set prettier="dg-prettier-config"
 ```
+
+:::
 
 - [prettier | Docs](https://prettier.io/docs/en/options.html)
 - [.prettierrc](http://json.schemastore.org/prettierrc)
