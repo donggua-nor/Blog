@@ -27,6 +27,15 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
     {
       text: 'TypeScript',
       link: '/notes/ts/'
+    },
+    {
+      text: 'Canvas',
+      items: [
+        {
+          text: '基础知识',
+          link: '/notes/canvas/basic'
+        }
+      ]
     }
   ],
   '/pg/': [
