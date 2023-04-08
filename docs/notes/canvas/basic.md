@@ -6,7 +6,7 @@
 
 ### canvas 元素
 
-[\<canvas\>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) HTML 元素用于创建一个用户指定尺寸大小的画布，供 JavaScript 绘制图形及图形动画:
+[\<canvas\>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) HTML 元素用于创建一个用户指定尺寸大小的画布，供 JavaScript 绘制图形、动画等:
 
 - [DOM properties](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement)
 
