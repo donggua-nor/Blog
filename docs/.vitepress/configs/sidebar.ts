@@ -32,7 +32,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       text: 'Canvas',
       items: [
         {
-          text: '基础知识',
+          text: '基础知识 <sup>2d</sup>',
           link: '/notes/canvas/basic'
         }
       ]

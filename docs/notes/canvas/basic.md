@@ -1,8 +1,8 @@
-# 基础知识
+# Canvas <Badge>2d</Badge>
 
 [Canvas | MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API) 笔记
 
-## 基本用法
+## Basic
 
 ### canvas 元素
 
@@ -73,3 +73,5 @@ ctx.fillRect(x, y, width, height)
 ```
 
 <img class="d-img__center" src="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes/canvas_default_grid.png" alt="canvas_default_grid" />
+
+## Canvas API
