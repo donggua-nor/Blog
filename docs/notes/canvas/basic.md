@@ -61,3 +61,15 @@ if (!ctx) {
 ```
 
 :::
+
+### 基于网格的坐标空间
+
+`canvas` 元素默认为网格结构，每个网格单元即为 `canvas` 元素中的一像素，默认以左上角坐标 `[0, 0]` 作为画布原点，当绘制元素时，所有元素位置均是相对于原点定位。
+
+```js
+const canvas = document.getElementById('canvas')
+const ctx = canvas.getContext('2d')
+ctx.fillRect(x, y, width, height)
+```
+
+<img class="d-img__center" src="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes/canvas_default_grid.png" alt="canvas_default_grid" />
