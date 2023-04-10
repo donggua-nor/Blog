@@ -115,29 +115,22 @@ const pkgNameReg = ^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$
 
 脚本文件一般在文件头以 [SheBang](<https://en.wikipedia.org/wiki/Shebang_(Unix)>) 声明运行脚本的语言
 
-:::: code-group
-:::code-group-item bash
+::: code-group
 
-```bash
+```bash [bash]
 npm install demo -g
 
 d
 # log: Npm is COOL
 ```
 
-:::
-:::code-group-item script
-
-```js
+```js [script]
 #!/usr/bin/env node
 
 console.log('Npm is COOL')
 ```
 
-:::
-:::code-group-item package.json
-
-```json
+```json [package.json]
 {
   "name": "demo",
   "bin": {
@@ -146,10 +139,7 @@ console.log('Npm is COOL')
 }
 ```
 
-:::
-:::code-group-item directory structure
-
-```bash
+```bash [directory structure]
 .
 ├── bin
 │   └── demo.js
@@ -157,7 +147,6 @@ console.log('Npm is COOL')
 ```
 
 :::
-::::
 
 ### files
 
@@ -204,27 +193,23 @@ console.log('Npm is COOL')
 
 `string` 标准化的工具包主入口
 
-默认为 `index.js` ，主要用于 `Node.js` 的 [cjs](/notes/node/cjs.html) 模块
+默认为 `index.js` ，主要用于 `Node.js` 的 [CommonJS](/notes/node/cjs.html) 模块
 
-:::: code-group
-:::code-group-item app
+::: code-group
 
-```js
+```js [app]
 const foo = require('foo') // => from "main" field
 // foo => { value: 1 }
 ```
 
-:::
-:::code-group-item dep
-
-```js
+```js [dep:core]
 // foo.cjs
 module.exports = {
   value: 1
 }
 ```
 
-```json
+```json [dep:package.json]
 // package.json
 {
   "main": "./foo.cjs"
@@ -232,7 +217,6 @@ module.exports = {
 ```
 
 :::
-::::
 
 ### browser
 
@@ -445,20 +429,16 @@ module.exports = {
 
 `Record<string, string>` [process.env](https://nodejs.org/api/process.html#processenv) 配置命令行的环境变量
 
-:::: code-group
-:::code-group-item main.js
+::: code-group
 
-```js
+```js [main.js]
 #!/usr/bin/env node
 
 console.log(process.env.npm_package_config_port) // 8080
 console.log(process.env.npm_package_config_foo) // bar
 ```
 
-:::
-:::code-group-item package.json
-
-```json
+```json [package.json]
 {
   "scripts": {
     "variable": "node main.js"
@@ -471,7 +451,6 @@ console.log(process.env.npm_package_config_foo) // bar
 ```
 
 :::
-::::
 
 ### packageManager
 
