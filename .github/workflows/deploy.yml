@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'docs/**'
+      - 'package.json'
 
 env:
   NODE_VERSION: '14.x'
