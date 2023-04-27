@@ -4,7 +4,7 @@ outline: [2, 3]
 
 # TypeScript
 
-[TypeScript](https://github.com/microsoft/TypeScript) 笔记，基于 [官方文档](https://www.typescriptlang.org/docs/handbook/intro.html) 与 [@wangtunan](https://github.com/wangtunan) 的慷慨指导
+[TypeScript](https://github.com/microsoft/TypeScript) 笔记，基于 [官方文档](https://www.typescriptlang.org/docs/handbook/intro.html) 与 [@wangtunan](https://github.com/wangtunan) 、[@maomao](https://github.com/maomao1996) 的慷慨分享
 
 ## 基础
 
@@ -1113,3 +1113,102 @@ type Result = Readonly<Person>
 ### 命名空间
 
 ### tsconfig.json
+
+:::tip
+本节内容由好友 [@maomao1996](https://github.com/maomao1996) 整理，原出处 [mm-notes](https://github.com/maomao1996/mm-notes)
+:::
+
+[`tsconfig.json` ｜ Docs](https://www.typescriptlang.org/tsconfig)
+
+#### `compilerOptions`
+
+`compilerOptions` 是用于配置 TypeScript 编译器的选项
+
+> 这里列举的是通过 `tsc --init` 生成的默认配置（`tsc` 的版本为 `5.0.3`）
+
+<<< @/snippnets/tsconfig.json
+
+#### `files`
+
+`files` 是用于指定 TypeScript 编译器应该编译哪些文件（支持相对路径、绝对路径）
+
+- **Default: `false`**
+
+```json
+{
+  "files": ["core.ts", "types.ts", "utils.ts", "maomao.ts"]
+}
+```
+
+::: warning
+当指定的文件或文件夹不存在时，会提示错误
+:::
+
+#### `include`
+
+`include` 是用于指定 TypeScript 编译器应该编译哪些文件（支持相对路径、绝对路径和 `glob` 模式）
+
+- **Default: `[]`**
+
+```json
+{
+  "include": ["src/**/*", "tests/**/*"]
+}
+```
+
+::: tip `files` 和 `include`
+
+- `files`
+  - 不会排除 `exclude` 中指定的文件或目录
+  - 支持相对路径、绝对路径
+  - 路径必须指向文件，不能指向目录
+- `include`
+  - 会排除 `exclude` 中指定的文件或目录
+  - 支持相对路径、绝对路径和 `glob` 模式
+  - 路径可以指向文件，也可以指向目录
+
+:::
+
+#### `exclude`
+
+`exclude` 是用于指定 TypeScript 编译器应该忽略哪些文件，从而不对这些文件进行编译
+
+- **Default: `["node_modules", "bower_components", "jspm_packages", "outDir"]`**
+
+```json
+{
+  "exclude": ["node_modules", "maomao"]
+}
+```
+
+#### `extends`
+
+`extends` 是用于指定父级配置文件的路径，从而继承父级配置文件中的编译选项
+
+- **Default: `false`**
+
+```json
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist"
+  }
+}
+```
+
+#### `references`
+
+> 项目引用是 TypeScript 3.0 新增的特性，用于将多个 TypeScript 项目组合在一起进行编译
+
+`references` 是用于指定项目引用的路径，从而引用项目
+
+- **Default: `false`**
+
+```json
+{
+  "compilerOptions": {
+    "outDir": "./dist"
+  },
+  "references": [{ "path": "./tsconfig.base.json" }]
+}
+```
