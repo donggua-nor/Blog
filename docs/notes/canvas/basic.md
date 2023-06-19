@@ -1,12 +1,12 @@
 # Canvas <Badge>2d</Badge>
 
-[Canvas | MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API) 笔记
+[Canvas | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) 笔记
 
 ## Basic
 
 ### canvas 元素
 
-[\<canvas\>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) HTML 元素用于创建一个用户指定尺寸大小的画布，供 JavaScript 绘制图形、动画等:
+[\<canvas\>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) HTML 元素用于创建一个用户指定尺寸大小的画布，供 `JavaScript` 绘制图形、动画等:
 
 - [DOM properties](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement)
 
@@ -40,7 +40,7 @@
 
 ### 渲染上下文
 
-拥有了 `canvas` 标签创建的画布，想要使用 JavaScript 进行绘制，就需要使用 `canvas` 元素属性方法 [getContext()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext) 获取该画布的渲染上下文及其绘画功能：[Canvas API](#canvas-api)
+拥有了 `canvas` 标签创建的画布，就可以通过调用 `canvas` 元素的实例方法 [getContext()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext) 获取该画布的渲染上下文以使用其[绘画功能](#drawing)
 
 ```js
 const canvas = document.getElementById('canvas')
@@ -148,7 +148,7 @@ ctx.fill()
 
 :::tip
 
-- 在开始绘制新路径前都必须调用 `beginPath()`，并且通常在调用后需要使用 `moveTo(x, y)` 指定起始位置
+- 本质上，路径是由很多子路径构成，这些子路径都是在一个列表中，所有的子路径（线、弧形、等等）构成图形。因此在开始绘制新路径前都必须调用 `beginPath()`，清空重置当前的路径列表，以重新绘制新的图形
 
 - `closePath()` 是非必需的，比如调用 `fill()` 时会自动闭合图形路径
 
@@ -258,7 +258,7 @@ ctx.fill()
 
   - `arc()` 方法中 `startAngle` 与 `endAngle` 单位为弧度，与角度的计算公式为：**弧度=(Math.PI/180)\*角度**。
 
-  - 根据 [MDN 中文文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#%E5%9C%86%E5%BC%A7) 描述，`arcTo()` 方法的实现不太可靠，故不在此演示。
+  - 根据 [MDN 中文文档](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#%E5%9C%86%E5%BC%A7) 描述，`arcTo()` 方法的实现不太可靠，故不在此演示。
 
   :::
 
@@ -276,7 +276,7 @@ ctx.quadraticCurveTo(250, 100, 400, 250)
 ctx.stroke()
 ```
 
-- [bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo)
+- [bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo)
 
   从当前画笔位置 `[beginX, beginY]` ，以 `[cp1x, cp1y]`、`[cp2x, cp2y]` 为两个控制点，`[x, y]` 为结束点绘制**三次贝塞尔曲线**
 
