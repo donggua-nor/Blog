@@ -25,6 +25,11 @@ export default defineConfig({
 
     footer: {
       copyright: 'MIT Licensed | Copyright © 2021-present Donggua'
+    },
+
+    docFooter: {
+      prev: false,
+      next: false
     }
   },
 

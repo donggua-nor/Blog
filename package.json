@@ -24,6 +24,6 @@
     "cross-env": "^7.0.3",
     "dg-prettier-config": "^1.0.1",
     "prettier": "^2.7.1",
-    "vitepress": "1.0.0-alpha.51"
+    "vitepress": "1.0.0-beta.2"
   }
 }

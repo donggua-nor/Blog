@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # 数据类型
 
 ## 基本数据

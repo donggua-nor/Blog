@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # 异步编程
 
 ## 单线程模式
