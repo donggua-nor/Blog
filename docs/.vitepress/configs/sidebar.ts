@@ -46,6 +46,15 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
   ],
   '/workflows/': [
     { text: 'Workflows', link: '/workflows/' },
-    { text: 'Experience', link: '/workflows/exp' }
+    {
+      text: 'Experience',
+      collapsed: false,
+      items: [
+        {
+          text: '音视频播放',
+          link: '/workflows/exp/media'
+        }
+      ]
+    }
   ]
 }
